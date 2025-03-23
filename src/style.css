@@ -1,0 +1,90 @@
+/* Global Styles */
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  /* Navbar */
+  .navbar {
+    background-color: #222;
+    padding: 15px 0;
+  }
+  
+  .navbar .nav-item a {
+    color: white;
+    margin: 0 15px;
+  }
+  
+  /* Hero Section */
+  .hero {
+    background: url('../images/hero.jpg') no-repeat center center/cover;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    text-align: center;
+  }
+  
+  .hero h2 {
+    font-size: 40px;
+    font-weight: bold;
+  }
+  
+  .hero .btn {
+    background-color: #28a745;
+    padding: 10px 20px;
+    border-radius: 5px;
+    color: white;
+    text-decoration: none;
+  }
+  
+  /* Search Bar */
+  .search-bar {
+    background-color: white;
+    padding: 20px;
+    margin-top: -50px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .search-bar input, .search-bar select {
+    padding: 10px;
+    margin: 5px;
+    width: 100%;
+  }
+  
+  /* Destinations Section */
+  .destinations {
+    padding: 50px 0;
+    text-align: center;
+  }
+  
+  .destinations .destination-card {
+    background-color: #f8f8f8;
+    padding: 20px;
+    margin: 10px;
+  }
+  
+  /* News Section */
+  .news {
+    background-color: #f1f1f1;
+    padding: 50px 0;
+    text-align: center;
+  }
+  
+  .news .news-card {
+    background: white;
+    padding: 20px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Footer */
+  .footer {
+    background-color: #222;
+    color: white;
+    text-align: center;
+    padding: 20px;
+  }
+  

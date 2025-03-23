@@ -1,0 +1,152 @@
+/* Login Page Styling */
+.login-page {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  overflow: auto;
+  
+  position: relative; /* Add relative positioning for the overlay */
+}
+
+/* Dark blue opacity layer for background */
+.login-page::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(1, 1, 20, 0.5); /* Dark blue with 50% opacity */
+  z-index: 1; /* Place it behind the login-container */
+}
+
+.login-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  z-index: 2; /* Place it above the overlay */
+}
+
+/* ... (rest of your CSS remains the same) ... */
+
+.login-box {
+  width: 350px;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 10px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  z-index: 3; /* Place it above the overlay */
+}
+
+.login-box::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    90deg, 
+    transparent, 
+    #87ceeb,
+    transparent, 
+    transparent
+  );
+  animation: runningLight 4s linear infinite;
+  transform: translate(-25%, -25%);
+}
+
+
+
+
+@keyframes runningLight {
+  0% {
+    transform: translate(-25%, -25%) rotate(0deg);
+  }
+  100% {
+    transform: translate(-25%, -25%) rotate(360deg);
+  }
+}
+
+.login-box h2 {
+  margin-bottom: 20px;
+  color: #0077b6;
+  position: relative;
+  z-index: 4; /* Place it above the overlay */
+}
+
+.login-box input {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #a0bbe2;
+  border-radius: 5px;
+  font-size: 16px;
+  position: relative;
+  z-index: 4; /* Place it above the overlay */
+}
+
+.login-box button {
+  width: 100%;
+  padding: 10px;
+  background-color: #0077b6;
+  color: white;
+  font-size: 18px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.3s;
+  position: relative;
+  z-index: 4; /* Place it above the overlay */
+}
+
+.login-box button:hover {
+  background-color: #005f8f;
+}
+
+.login-box p {
+  margin-top: 10px;
+  position: relative;
+  z-index: 4; /* Place it above the overlay */
+}
+
+.login-box a {
+  color: #0077b6;
+  text-decoration: none;
+  font-weight: bold;
+  position: relative;
+  z-index: 4; /* Place it above the overlay */
+}
+
+.login-box a:hover {
+  text-decoration: underline;
+}
+
+
+
+/* ... (your existing login.css) ... */
+
+.compass-icon {
+  position: absolute;
+  top: 20px; /* Adjust as needed */
+  left: 20px; /* Adjust as needed */
+  width: 50px; /* Adjust size as needed */
+  height: 50px; /* Adjust size as needed */
+  z-index: 5; /* Place it above other elements */
+  animation: spinCompass 5s linear infinite; /* Apply animation */
+}
+
+@keyframes spinCompass {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

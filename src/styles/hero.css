@@ -1,0 +1,92 @@
+/* Hero Section */
+.hero {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    background: url("../images/hero.jpg") center/cover no-repeat;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+    
+  }
+  
+  /* Light Blue Overlay on the Image */
+  .hero::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 153, 255, 0.3); /* Light blue overlay */
+  }
+  
+  /* Center Content */
+  .hero div {
+    position: relative;
+    max-width: 700px;
+  }
+  
+  .hero h2 {
+    font-size: 50px;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+  
+  /* Explore Now Button */
+  .btn {
+    display: inline-block;
+    padding: 12px 25px;
+    background-color: #00bfff;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.3s ease-in-out;
+  }
+  
+  .btn:hover {
+    background-color: #009acd;
+  }
+  
+  /* Navbar */
+  .navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    padding: 15px 30px;
+    background: transparent;
+    transition: background 0.3s ease-in-out;
+  }
+  
+  /* Navbar Before Scroll - Same as Image */
+  .navbar-before-scroll {
+    background: rgba(0, 0, 0, 0.3); /* Transparent dark effect */
+  }
+  
+  /* Navbar After Scroll */
+  .navbar-after-scroll {
+    background: rgba(0, 0, 0, 0.9);
+  }
+  
+  /* Navigation Links */
+  .navbar a {
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    text-decoration: none;
+    padding: 10px 15px;
+    transition: color 0.3s ease-in-out;
+  }
+  
+  .navbar a:hover {
+    color: #00bfff;
+  }
+
+  .hero.dark-mode {
+    background-color: rgba(0, 0, 0, 0.8); /* Dark overlay */
+  }
+  
