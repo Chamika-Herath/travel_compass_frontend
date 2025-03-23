@@ -1,0 +1,33 @@
+body {
+  font-family: Arial, sans-serif;
+}
+
+.top-area {
+  background-color: #007bff;
+  padding: 15px;
+}
+
+.logo {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.book-btn {
+  background-color: #28a745;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  cursor: pointer;
+}
+
+.about-us {
+  text-align: center;
+  padding: 50px 0;
+}
+
+.about-view {
+  background-color: #ff5733;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+}

@@ -1,0 +1,108 @@
+/* Navbar */
+.navbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  padding: 15px 30px; /* Original padding */
+  transition: background 0.3s ease-in-out;
+  z-index: 1000;
+}
+
+/* Navbar Before Scroll - Same as Background Image */
+.navbar-before-scroll {
+  background: rgba(50, 153, 223, 0.3);
+}
+
+/* Navbar After Scroll - Solid Color */
+.navbar-after-scroll {
+  background: rgba(13, 8, 44, 0.9);
+}
+
+/* Navigation Links */
+.navbar .nav-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Left Side (Logo) */
+.navbar .logo {
+  font-size: 24px; /* Original font size */
+  font-weight: bold;
+  color: white;
+  text-decoration: none;
+}
+
+/* Right Side (Nav Links) */
+.navbar .nav-links {
+  display: flex;
+  gap: 20px; /* Original gap */
+}
+
+.navbar .nav-links a {
+  color: white;
+  font-size: 18px; /* Original font size */
+  font-weight: bold;
+  text-decoration: none;
+  padding: 10px 15px; /* Original padding */
+  transition: color 0.3s ease-in-out;
+}
+
+.navbar .nav-links a:hover {
+  color: #00bfff;
+}
+
+/* Login Button */
+.navbar .btn {
+  padding: 10px 20px; /* Original padding */
+  background-color: #00bfff;
+  color: white;
+  font-size: 16px; /* Original font size */
+  font-weight: bold;
+  border-radius: 5px; /* Original border radius */
+  text-decoration: none;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.navbar .btn:hover {
+  background-color: #009acd;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+  .navbar {
+    padding: 5px 10px; /* Reduced padding for mobile */
+  }
+
+  .navbar .nav-content {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .navbar .logo {
+    font-size: 16px; /* Reduced font size for mobile */
+    margin-bottom: 3px;
+  }
+
+  .navbar .nav-links {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 3px;
+    margin-top: 3px;
+  }
+
+  .navbar .nav-links a {
+    font-size: 12px; /* Reduced font size for mobile */
+    padding: 3px 5px; /* Reduced padding for mobile */
+  }
+
+  .navbar .btn {
+    font-size: 10px; /* Reduced font size for mobile */
+    padding: 3px 8px; /* Reduced padding for mobile */
+    border-radius: 3px; /* Reduced border radius for mobile */
+    margin-top: 3px;
+    align-self: center;
+  }
+}
