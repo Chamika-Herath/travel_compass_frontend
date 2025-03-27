@@ -14,20 +14,33 @@ const Login = () => {
 
   const handleLogin = async (e) => {
     e.preventDefault();
+    setError(""); // Clear previous errors
+  
     try {
       const response = await axios.post(
         "http://localhost:8080/auth/login",
         { email, password },
         { withCredentials: true }
       );
-
-      if (response.status === 200 || response.status === 201) {
-        navigate("/user_profile");
+  
+      console.log("Login Response:", response); // Debugging log
+  
+      if (response.status === 200) {
+        navigate("/user_profile"); // ✅ Navigate only on success
       }
     } catch (err) {
-      setError("Invalid email or password. Please try again.");
+      console.error("Login error:", err.response ? err.response.data : err.message);
+      
+      // ❌ Handle incorrect credentials
+      if (err.response && err.response.status === 401) {
+        setError("Invalid email or password. Please try again.");
+      } else {
+        setError("Something went wrong. Please try again later.");
+      }
     }
   };
+  
+  
 
   return (
     <div className="login-page">

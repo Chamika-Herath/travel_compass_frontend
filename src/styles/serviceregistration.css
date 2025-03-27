@@ -1,0 +1,61 @@
+/* Centered Form with Background Blur Effect */
+.service-registration-container {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 400px;
+    padding: 30px;
+    background: rgba(255, 255, 255, 0.9); /* Slight transparency */
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+
+/* Form Heading */
+.service-registration-container h2 {
+    font-size: 20px;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+/* Input Fields */
+.service-registration-container input,
+.service-registration-container textarea {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+/* Textarea */
+.service-registration-container textarea {
+    height: 80px;
+    resize: none;
+}
+
+/* Submit Button */
+.service-registration-container button {
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff; /* Blue Button */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.service-registration-container button:hover {
+    background-color: #0056b3;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .service-registration-container {
+        width: 90%;
+    }
+}
