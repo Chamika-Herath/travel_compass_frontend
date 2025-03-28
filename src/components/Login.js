@@ -6,7 +6,7 @@ import axios from "axios";
 import HeroSection from "./HeroSection"; // Import HeroSection
 import "../styles/login.css";
 
-const Login = () => {
+const Login =({ setUser }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
@@ -26,6 +26,7 @@ const Login = () => {
       console.log("Login Response:", response); // Debugging log
   
       if (response.status === 200) {
+        setUser(response.data); // ✅ Set logged-in user
         navigate("/user_profile"); // ✅ Navigate only on success
       }
     } catch (err) {

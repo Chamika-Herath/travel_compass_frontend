@@ -20,31 +20,65 @@
 // export default Navbar;
 
 import React, { useEffect, useState } from "react";
-import "../styles/navbar.css"; 
+import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
+import "../styles/navbar.css";
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
+  const [user, setUser] = useState(null);
+  const navigate = useNavigate();
 
+  // Check session when component mounts
+  useEffect(() => {
+    axios.get("http://localhost:8080/auth/session", { withCredentials: true })
+      .then(response => {
+        if (response.data && response.data.id) {
+          setUser(response.data); // ✅ Store logged-in user
+        }
+      })
+      .catch(() => setUser(null));
+  }, []);
+
+  // Handle scroll effect
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
     };
-
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // Logout function
+  const handleLogout = async () => {
+    try {
+      await axios.post("http://localhost:8080/auth/logout", {}, { withCredentials: true });
+      setUser(null); // Clear user session
+      navigate("/"); // Redirect to home after logout
+    } catch (error) {
+      console.error("Logout failed", error);
+    }
+  };
+
   return (
     <nav className={`navbar ${isScrolled ? "navbar-after-scroll" : "navbar-before-scroll"}`}>
       <div className="nav-content">
-        <a href="/" className="logo">Travel<span style={{ color: "#00bfff" }}>COMPASS</span></a>
+        <Link to="/" className="logo">Travel<span style={{ color: "#00bfff" }}>COMPASS</span></Link>
         <div className="nav-links">
-          <a href="/">Home</a>
-          <a href="/packages">Packages</a>
-          <a href="/offers">Special Offers</a>
-          <a href="/about">About Us</a>
-          <a href="/contact">Contact Us</a>
-          <a href="/login" className="btn">Log In</a>
+          <Link to="/">Home</Link>
+          <Link to="/packages">Packages</Link>
+          <Link to="/offers">Special Offers</Link>
+          <Link to="/about">About Us</Link>
+          <Link to="/contact">Contact Us</Link>
+
+          {user ? (
+            <>
+              <Link to="/user_profile" className="btn">Profile</Link>
+              <button onClick={handleLogout} className="btn">Logout</button>
+            </>
+          ) : (
+            <Link to="/login" className="btn">Log In</Link>
+          )}
         </div>
       </div>
     </nav>
