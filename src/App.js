@@ -57,8 +57,6 @@
 
 // export default AppWrapper;
 
-
-
 import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
 import axios from "axios";
@@ -71,36 +69,30 @@ import Footer from "./components/Footer";
 import Login from "./components/Login";
 import Register from "./components/Register";
 import UserProfile from "./pages/UserProfile";
-import Recommendations from './pages/Recommendations';
-import ServiceRegistration from './pages/ServiceRegistration';
+import Recommendations from "./pages/Recommendations";
+import ServiceRegistration from "./pages/ServiceRegistration";
+import AdminDashboard from "./pages/AdminDashboard";
+import ServiceRequests from "./pages/ServiceRequests";
+import GuideProfile from "./pages/GuideProfile";
+import HotelOwnerProfile from "./pages/HotelOwnerProfile";
+import DriverProfile from "./pages/DriverProfile";
 
-function App() {
-  const [user, setUser] = useState(null);  // Store logged-in user
+function App({ user, setUser }) {
   const location = useLocation();
 
-  // Check session on mount
-  useEffect(() => {
-    axios.get("http://localhost:8080/auth/session", { withCredentials: true })
-      .then(response => {
-        if (response.data && response.data.id) {
-          setUser(response.data);
-        }
-      })
-      .catch(() => setUser(null));
-  }, []);
+  // ✅ Detect if user is in a profile route
+  const isProfileRoute = ["/user_profile", "/guide_profile", "/hotel_owner_profile", "/driver_profile"].includes(location.pathname);
 
-  const renderNavbar = () => {
-    if (location.pathname === "/user_profile" || location.pathname === "/admin") {
-      return <ProfileNavbar user={user} setUser={setUser} />;
-    } else {
-      return <Navbar user={user} setUser={setUser} />;
-    }
-  };
+  // ✅ Check if the route is an admin route
+  const isAdminRoute = location.pathname.startsWith("/admin");
 
   return (
     <div>
-      {renderNavbar()}
+      {/* ✅ Change Navbar dynamically based on profile page */}
+      {!isAdminRoute && (isProfileRoute ? <ProfileNavbar user={user} setUser={setUser} /> : <Navbar user={user} setUser={setUser} />)}
+
       <Routes>
+        {/* User Routes */}
         <Route path="/" element={
           <>
             <HeroSection />
@@ -112,17 +104,41 @@ function App() {
         <Route path="/register" element={<Register />} />
         <Route path="/user_profile" element={<UserProfile user={user} />} />
         <Route path="/recommendations" element={<Recommendations />} />
-        <Route path="/service-Registration" element={<ServiceRegistration />} />
+        <Route path="/service-registration" element={<ServiceRegistration />} />
+
+        {/* Profile Pages */}
+        <Route path="/user_profile" element={<UserProfile user={user} />} />
+        <Route path="/guide_profile" element={<GuideProfile user={user} />} />
+        <Route path="/hotel_owner_profile" element={<HotelOwnerProfile user={user} />} />
+        <Route path="/driver_profile" element={<DriverProfile user={user} />} />
+
+        {/* Admin Routes - No Navbar & Footer */}
+        <Route path="/admin" element={<AdminDashboard />} />
+        <Route path="/admin/service-requests" element={<ServiceRequests />} />
       </Routes>
-      <Footer />
+
+      {!isAdminRoute && <Footer />}
     </div>
   );
 }
 
 function AppWrapper() {
+  const [user, setUser] = useState(null);
+
+  // ✅ Check session on mount and store user
+  useEffect(() => {
+    axios.get("http://localhost:8080/auth/session", { withCredentials: true })
+      .then(response => {
+        if (response.data && response.data.id) {
+          setUser(response.data);
+        }
+      })
+      .catch(() => setUser(null));
+  }, []);
+
   return (
     <Router>
-      <App />
+      <App user={user} setUser={setUser} />
     </Router>
   );
 }
