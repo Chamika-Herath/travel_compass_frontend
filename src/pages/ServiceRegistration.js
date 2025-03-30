@@ -1,5 +1,4 @@
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
+
 
 
 
@@ -104,10 +103,7 @@
 
 
 
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
+
 
 import React, { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
