@@ -12,6 +12,7 @@ const Sidebar = () => {
         <li><Link to="#">Hotels</Link></li>
         <li><Link to="#">Guides</Link></li>
         <li><Link to="#">Vehicles</Link></li>
+        <li><Link to="#">Places</Link></li>
         <li><Link to="#">Reviews & Ratings</Link></li>
       </ul>
     </div>
