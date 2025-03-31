@@ -364,3 +364,177 @@
   margin-right: 5px;
   color: green;
 }
+
+
+/*---------------------------------------------------------------------------------------------*/
+/* Profile Popup Container */
+/* User Profile Popup Styles */
+.edit-profile-popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  backdrop-filter: blur(3px);
+  animation: popupFadeIn 0.3s ease-in-out;
+}
+
+@keyframes popupFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.popup-content {
+  background: #ffffff;
+  padding: 2rem;
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+  width: 90%;
+  max-width: 500px;
+  transform: translateY(-20px);
+  animation: contentSlideUp 0.3s ease-out forwards;
+}
+
+@keyframes contentSlideUp {
+  to { transform: translateY(0); }
+}
+
+.popup-content h2 {
+  color: #2d3436;
+  margin-bottom: 1.5rem;
+  font-size: 1.8rem;
+  border-bottom: 2px solid #0984e3;
+  padding-bottom: 0.5rem;
+}
+
+.popup-content label {
+  display: block;
+  margin: 1rem 0 0.5rem;
+  color: #636e72;
+  font-weight: 500;
+  font-size: 0.9rem;
+}
+
+.popup-content input[type="text"],
+.popup-content input[type="email"] {
+  width: 100%;
+  padding: 0.8rem;
+  border: 2px solid #dfe6e9;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  margin-bottom: 1rem;
+}
+
+.popup-content input[type="text"]:focus,
+.popup-content input[type="email"]:focus {
+  border-color: #74b9ff;
+  box-shadow: 0 0 0 3px rgba(116, 185, 255, 0.2);
+  outline: none;
+}
+
+/* File Upload Styling */
+.popup-content input[type="file"] {
+  width: 100%;
+  padding: 0.8rem;
+  background: #f8f9fa;
+  border: 2px dashed #dfe6e9;
+  border-radius: 8px;
+  text-align: center;
+  margin-bottom: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.popup-content input[type="file"]:hover {
+  border-color: #74b9ff;
+  background: #fff;
+}
+
+/* Button Styles */
+.popup-buttons {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.popup-buttons button {
+  padding: 0.8rem 1.5rem;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.popup-buttons button:first-child {
+  background: #0984e3;
+  color: white;
+  grid-column: 1 / -1;
+}
+
+.popup-buttons button:first-child:hover {
+  background: #0873c4;
+  transform: translateY(-1px);
+}
+
+.popup-buttons .delete-btn {
+  background: #ff7675;
+  color: white;
+}
+
+.popup-buttons .delete-btn:hover {
+  background: #e74c3c;
+  transform: translateY(-1px);
+}
+
+.popup-buttons button:last-child {
+  background: #dfe6e9;
+  color: #2d3436;
+}
+
+.popup-buttons button:last-child:hover {
+  background: #b2bec3;
+}
+
+/* Error/Success Messages */
+.error-message {
+  background: #ffe3e6;
+  color: #ff4757;
+  padding: 1rem;
+  border-radius: 8px;
+  margin: 1rem 0;
+  border: 1px solid #ff6b81;
+  font-size: 0.9rem;
+}
+
+.success-message {
+  background: #d1fae5;
+  color: #10b981;
+  padding: 1rem;
+  border-radius: 8px;
+  margin: 1rem 0;
+  border: 1px solid #34d399;
+  font-size: 0.9rem;
+}
+
+/* Profile Image Preview */
+.profile-image-preview {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin: 0 auto 1rem;
+  border: 3px solid #74b9ff;
+  display: block;
+}
