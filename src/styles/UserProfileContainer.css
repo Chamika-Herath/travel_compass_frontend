@@ -1,0 +1,126 @@
+/* Modern Dark Theme - Sleek & Animated */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+.partner-section {
+  padding: 4rem 2rem;
+  background: #d6dee4; /* Dark blue-gray */
+  font-family: 'Inter', sans-serif;
+}
+
+.partner-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.partner-text h3 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #187bdf; /* Pure white */
+  margin-bottom: 1.5rem;
+}
+
+.partner-text p {
+  font-size: 1.2rem;
+  color: #151b24; /* Light gray */
+  margin-bottom: 3rem;
+  line-height: 1.6;
+}
+
+/* Cards with Dark Overlay & Hover Animations */
+.partner-options {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.partner-card {
+  position: relative;
+  width: 340px;
+  height: 240px;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 10px 250px rgba(126, 209, 18, 0.3);
+  cursor: pointer;
+  transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.partner-card:hover {
+  transform: translateY(-10px) scale(1.02);
+  box-shadow: 0 15px 305px rgba(221, 162, 35, 0.2);
+}
+
+/* Dark Overlay for Text Contrast */
+.partner-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    to bottom, 
+    rgba(32, 3, 70, 0.2) 50%, 
+    rgba(12, 3, 44, 0.8) 100%
+  );
+  z-index: 1;
+}
+
+.partner-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: grayscale(20%) contrast(110%);
+  transition: all 0.5s ease;
+}
+
+.partner-card:hover img {
+  filter: grayscale(0%) contrast(120%) brightness(0.7);
+  transform: scale(1.05);
+}
+
+/* Text Styles (Clearly Visible) */
+.card-label {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 2rem;
+  text-align: center;
+  z-index: 2;
+  transform: translateY(20px);
+  opacity: 0.9;
+  transition: all 0.5s ease;
+}
+
+.partner-card:hover .card-label {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.card-label h4 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: rgb(231, 222, 222);
+  margin: 0;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
+}
+
+.card-label p {
+  font-size: 1rem;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.9);
+  margin: 0.8rem 0 0;
+}
+
+/* Pulse Animation (Light Blue) */
+@keyframes pulse {
+  4% { box-shadow: 0 0 0 0 rgba(77, 22, 228, 0.4); }
+  70% { box-shadow: 0 0 0 12px rgba(64, 115, 255, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(64, 115, 255, 0); }
+}
+
+.partner-card:hover {
+  animation: pulse 1.5s infinite;
+}
