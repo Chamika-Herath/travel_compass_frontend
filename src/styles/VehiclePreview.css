@@ -1,0 +1,64 @@
+.vehicle-preview-container {
+    padding: 20px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: left;
+  }
+  
+  .vehicle-preview-container h3 {
+    font-size: 22px;
+    color: #333;
+    margin-bottom: 15px;
+    text-align: center;
+  }
+  
+  .vehicle-details p {
+    font-size: 16px;
+    color: #555;
+    margin: 8px 0;
+  }
+  
+  .vehicle-images {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+  }
+  
+  .vehicle-image {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    margin: 5px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+  }
+  
+  .no-images {
+    text-align: center;
+    font-size: 14px;
+    color: #888;
+  }
+  
+  .vehicle-actions {
+    margin-top: 20px;
+    text-align: center;
+  }
+  
+  .vehicle-actions button {
+    background: #28a745;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+    margin-right: 10px;
+  }
+  
+  .vehicle-actions button:hover {
+    background: #218838;
+  }
+  

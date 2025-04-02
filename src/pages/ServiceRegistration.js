@@ -150,7 +150,7 @@ const ServiceRegistration = () => {
   useEffect(() => {
     const fetchUser = async () => {
       try {
-        const response = await axios.get("http://localhost:8080/auth/session", {
+        const response = await axios.get("http://localhost:8081/auth/session", {
           withCredentials: true, // Ensure session cookies are sent
         });
         setUserId(response.data.id); // Assuming the response contains { id: 123, name: "John" }
@@ -183,7 +183,7 @@ const ServiceRegistration = () => {
     }
 
     try {
-      await axios.post("http://localhost:8080/service-request/submit", 
+      await axios.post("http://localhost:8081/service-request/submit", 
         { ...formData, userId }, // Pass userId
         { withCredentials: true } // Ensure session is sent
       );

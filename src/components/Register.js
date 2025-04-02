@@ -18,7 +18,7 @@ const Register = () => {
     setError(""); // Clear previous errors
 
     try {
-      const response = await axios.post("http://localhost:8080/auth/register", {
+      const response = await axios.post("http://localhost:8081/auth/register", {
         firstName,
         lastName,
         email,

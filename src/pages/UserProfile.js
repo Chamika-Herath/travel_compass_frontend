@@ -114,7 +114,7 @@ const UserProfile = () => {
   // Fetch logged-in user details
   useEffect(() => {
     axios
-      .get("http://localhost:8080/auth/session", { withCredentials: true })
+      .get("http://localhost:8081/auth/session", { withCredentials: true })
       .then((response) => {
         if (response.data.id) {
           setUser(response.data);
@@ -130,7 +130,7 @@ const UserProfile = () => {
   // Handle Logout
   const handleLogout = () => {
     axios
-      .post("http://localhost:8080/auth/logout", {}, { withCredentials: true })
+      .post("http://localhost:8081/auth/logout", {}, { withCredentials: true })
       .then(() => {
         navigate("/login"); // Redirect to login after logout
       })

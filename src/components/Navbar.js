@@ -31,7 +31,7 @@ const Navbar = () => {
 
   // Check session when component mounts
   useEffect(() => {
-    axios.get("http://localhost:8080/auth/session", { withCredentials: true })
+    axios.get("http://localhost:8081/auth/session", { withCredentials: true })
       .then(response => {
         if (response.data && response.data.id) {
           setUser(response.data); // ✅ Store logged-in user
@@ -52,7 +52,7 @@ const Navbar = () => {
   // Logout function
   const handleLogout = async () => {
     try {
-      await axios.post("http://localhost:8080/auth/logout", {}, { withCredentials: true });
+      await axios.post("http://localhost:8081/auth/logout", {}, { withCredentials: true });
       setUser(null); // Clear user session
       navigate("/"); // Redirect to home after logout
     } catch (error) {

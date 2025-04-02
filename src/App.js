@@ -73,6 +73,9 @@ import Register from "./components/Register";
 import UserProfile from "./pages/UserProfile";
 import Recommendations from './pages/Recommendations';
 import ServiceRegistration from './pages/ServiceRegistration';
+import VehicleRegistrationForm from './pages/VehicleRegistrationForm';
+import VehiclePreview from "./pages/VehiclePreview";
+import VehiclePage from "./pages/VehiclePage";
 
 function App() {
   const [user, setUser] = useState(null);  // Store logged-in user
@@ -80,7 +83,7 @@ function App() {
 
   // Check session on mount
   useEffect(() => {
-    axios.get("http://localhost:8080/auth/session", { withCredentials: true })
+    axios.get("http://localhost:8081/auth/session", { withCredentials: true })
       .then(response => {
         if (response.data && response.data.id) {
           setUser(response.data);
@@ -113,6 +116,10 @@ function App() {
         <Route path="/user_profile" element={<UserProfile user={user} />} />
         <Route path="/recommendations" element={<Recommendations />} />
         <Route path="/service-Registration" element={<ServiceRegistration />} />
+        <Route path="/vehicle-registration" element={<VehicleRegistrationForm />} />
+        <Route path="/vehicle-preview" element={<VehiclePreview/>}/>
+        <Route path="/vehicle-page/:vehicleId" element={<VehiclePage/>}/>
+        
       </Routes>
       <Footer />
     </div>
