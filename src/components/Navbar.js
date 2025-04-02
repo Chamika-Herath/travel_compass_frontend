@@ -161,8 +161,11 @@ const Navbar = ({ user, setUser, isProfilePage, userProfileRoute }) => {
   const [activeLink, setActiveLink] = useState(location.pathname);
 
   useEffect(() => {
+
+
     setActiveLink(location.pathname);
   }, [location]);
+
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 50);
@@ -212,9 +215,12 @@ const Navbar = ({ user, setUser, isProfilePage, userProfileRoute }) => {
 
   const handleLogout = async () => {
     try {
-      await axios.post("http://localhost:8080/auth/logout", {}, { withCredentials: true });
+
+
+      await axios.post("http://localhost:8081/auth/logout", {}, { withCredentials: true });
       setUser(null);
       navigate("/");
+
     } catch (error) {
       console.error("Logout failed", error);
     }

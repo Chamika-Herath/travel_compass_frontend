@@ -105,16 +105,25 @@ import Footer from "./components/Footer";
 import Login from "./components/Login";
 import Register from "./components/Register";
 import UserProfile from "./pages/UserProfile";
-import Recommendations from "./pages/Recommendations";
-import ServiceRegistration from "./pages/ServiceRegistration";
+
+import Recommendations from './pages/Recommendations';
+import ServiceRegistration from './pages/ServiceRegistration';
+import VehicleRegistrationForm from './pages/VehicleRegistrationForm';
+import VehiclePreview from "./pages/VehiclePreview";
+import VehiclePage from "./pages/VehiclePage";
+
+
+
 import AdminDashboard from "./pages/AdminDashboard";
 import ServiceRequests from "./pages/ServiceRequests";
 import GuideProfile from "./pages/GuideProfile";
 import HotelOwnerProfile from "./pages/HotelOwnerProfile";
 import DriverProfile from "./pages/DriverProfile";
 
+
 function App({ user, setUser }) {
   const location = useLocation();
+
   
   // Check if current route is admin
   const isAdminRoute = location.pathname.startsWith('/admin');
@@ -125,6 +134,7 @@ function App({ user, setUser }) {
     ROLE_HOTEL_OWNER: "/hotel_owner_profile",
     ROLE_DRIVER: "/driver_profile",
     USER: "/user_profile"
+
   };
 
   const userProfileRoute = profileRoutes[user?.role] || "/user_profile";
@@ -148,6 +158,13 @@ function App({ user, setUser }) {
         <Route path="/login" element={<Login setUser={setUser} />} />
         <Route path="/register" element={<Register />} />
         <Route path="/recommendations" element={<Recommendations />} />
+
+       
+        <Route path="/vehicle-registration" element={<VehicleRegistrationForm />} />
+        <Route path="/vehicle-preview" element={<VehiclePreview/>}/>
+        <Route path="/vehicle-page/:vehicleId" element={<VehiclePage/>}/>
+        
+
         <Route path="/service-registration" element={<ServiceRegistration />} />
 
         {/* Profile Routes */}
@@ -162,6 +179,7 @@ function App({ user, setUser }) {
 
         {/* Redirects */}
         <Route path="/profile" element={<Navigate to={userProfileRoute} />} />
+
       </Routes>
 
       {/* Conditionally render footer */}

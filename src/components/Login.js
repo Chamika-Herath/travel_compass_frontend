@@ -98,7 +98,7 @@ const Login = ({ setUser }) => {
 
     try {
       const response = await axios.post(
-        "http://localhost:8080/auth/login",
+        "http://localhost:8081/auth/login",
         { email, password },
         { withCredentials: true }
       );
