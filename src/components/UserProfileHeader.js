@@ -1,87 +1,10 @@
 
-// import React, { useState } from "react";
-// import profileImage from "../images/hero.jpg";
-// import "../styles/userprofile.css";
-
-// const UserProfileHeader = ({ user, handleLogout }) => {
-//   const [isEditing, setIsEditing] = useState(false);
-//   const [firstName, setFirstName] = useState(user?.firstName || "");
-//   const [lastName, setLastName] = useState(user?.lastName || "");
-//   const [profilePic, setProfilePic] = useState(profileImage);
-  
-//   // Handle Profile Image Change
-//   const handleImageChange = (e) => {
-//     const file = e.target.files[0];
-//     if (file) {
-//       const reader = new FileReader();
-//       reader.onload = (e) => setProfilePic(e.target.result);
-//       reader.readAsDataURL(file);
-//     }
-//   };
-
-//   // Handle Save Changes
-//   const handleSaveChanges = () => {
-//     console.log("Updated First Name:", firstName);
-//     console.log("Updated Last Name:", lastName);
-//     setIsEditing(false);
-//   };
-
-//   // Handle Delete Account
-//   const handleDeleteAccount = () => {
-//     if (window.confirm("Are you sure you want to delete your account? This action cannot be undone.")) {
-//       console.log("Account deleted");
-//     }
-//   };
-
-//   return (
-//     <div className="profile-header">
-//       <div className="profile-header-content">
-//         <div className="profile-left">
-//           <img src={profilePic} alt="Profile" className="profile-image" />
-//         </div>
-//         <div className="profile-right">
-//           <h1>WELCOME, {user ? user.firstName : "User"}!</h1>
-//           <div className="profile-form-container">
-//             <div className="profile-form">
-//               <input type="text" value={`${firstName} ${lastName}`} readOnly />
-//               <input type="email" value={user ? user.email : ""} readOnly />
-//               <input type="text" value={user ? user.role : "User"} readOnly />
-//             </div>
-//             <button className="edit-profile-btn" onClick={() => setIsEditing(true)}>Edit Profile</button>
-//           </div>
-//         </div>
-//       </div>
-
-//       {/* ✅ Edit Profile Popup */}
-//       {isEditing && (
-//         <div className="edit-profile-popup">
-//           <div className="popup-content">
-//             <h2>Edit Profile</h2>
-//             <label>Profile Picture:</label>
-//             <input type="file" accept="image/*" onChange={handleImageChange} />
-//             <label>First Name:</label>
-//             <input type="text" value={firstName} onChange={(e) => setFirstName(e.target.value)} />
-//             <label>Last Name:</label>
-//             <input type="text" value={lastName} onChange={(e) => setLastName(e.target.value)} />
-//             <div className="popup-buttons">
-//               <button onClick={handleSaveChanges}>Save Changes</button>
-//               <button onClick={handleDeleteAccount} className="delete-btn">Delete Account</button>
-//               <button onClick={() => setIsEditing(false)}>Cancel</button>
-//             </div>
-//           </div>
-//         </div>
-//       )}
-//     </div>
-//   );
-// };
-
-// export default UserProfileHeader;
 
 
 import React, { useState, useEffect } from "react";
-import profileImage from "../images/hero.jpg";
-import "../styles/userprofile.css";
-//import "../styles/UserProfileHeader.css";
+import profileImage from "../images/images.jpeg";
+//import "../styles/userprofile.css";
+import "../styles/UserProfileHeader.css";
 
 const UserProfileHeader = ({ user, handleLogout, handleUpdateUser }) => {
   const [isEditing, setIsEditing] = useState(false);
@@ -266,3 +189,5 @@ UserProfileHeader.defaultProps = {
 };
 
 export default UserProfileHeader;
+
+

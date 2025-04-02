@@ -142,7 +142,7 @@ const Login = ({ setUser }) => {
   return (
     <div className="login-page">
       <HeroSection /> {/* Background Hero Section */}
-      <img src="../images/compass.svg" alt="Compass" className="compass-icon" /> {/* Compass Icon */}
+      
 
       <div className="login-container">
         <div className="login-box">
