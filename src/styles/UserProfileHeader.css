@@ -1,164 +1,118 @@
-/* Profile Popup Container */
-.edit-profile-popup {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.4);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
-    backdrop-filter: blur(2px);
+/* userprofile.css */
+.profile-header {
+  width: 100%;
+  padding: 6rem 0 4rem;
+  position: relative;
+  font-family: 'Inter', sans-serif;
+  color: white;
+  overflow: hidden;
+}
+
+/* Background image with overlay */
+.profile-header::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: 
+    linear-gradient(rgba(0, 0, 0, 0.3)),
+    url('../images/vehicle.jpg') center/cover no-repeat;
+  z-index: -1;
+}
+
+.profile-header-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  position: relative;
+}
+
+/* Profile picture circle */
+.profile-picture {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  border: 3px solid white;
+  object-fit: cover;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.profile-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+/* Name styling */
+.profile-name {
+  font-size: 3rem;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  display: flex;
+  flex-direction: column;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.profile-name span {
+  display: block;
+}
+
+/* Stats badge */
+.profile-stats {
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  display: inline-block;
+  padding: 0.3rem 1rem;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  margin: 0.5rem 0;
+}
+
+/* Bio text */
+.profile-bio {
+  max-width: 600px;
+  font-size: 1.2rem;
+  line-height: 1.6;
+  margin: 1rem 0;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+/* Secondary name */
+.profile-secondary-name {
+  font-size: 1.8rem;
+  font-weight: 400;
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.profile-nickname {
+  font-size: 1rem;
+  font-style: italic;
+  opacity: 0.9;
+  margin-top: 0.5rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .profile-header {
+    padding: 5rem 0 3rem;
   }
   
-  /* Popup Content */
-  .popup-content {
-    background: white;
-    padding: 2.5rem;
-    border-radius: 20px;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-    width: 90%;
-    max-width: 440px;
-    position: relative;
-    animation: slideIn 0.3s cubic-bezier(0.18, 0.89, 0.32, 1.28);
+  .profile-name {
+    font-size: 2.2rem;
   }
   
-  @keyframes slideIn {
-    from { transform: translateY(-20px); opacity: 0; }
-    to { transform: translateY(0); opacity: 1; }
+  .profile-secondary-name {
+    font-size: 1.5rem;
   }
   
-  /* Header */
-  .popup-content h2 {
-    color: #2d3436;
-    margin: 0 0 2rem 0;
-    font-size: 1.8rem;
-    font-weight: 600;
-    text-align: center;
-    position: relative;
+  .profile-bio {
+    font-size: 1.1rem;
   }
-  
-  .popup-content h2::after {
-    content: '';
-    display: block;
-    width: 50px;
-    height: 3px;
-    background: #0984e3;
-    margin: 0.5rem auto;
-    border-radius: 2px;
-  }
-  
-  /* Form Elements */
-  .popup-content label {
-    display: block;
-    margin: 1.2rem 0 0.6rem;
-    color: #57606f;
-    font-size: 0.9rem;
-    font-weight: 500;
-  }
-  
-  .popup-content input {
-    width: 100%;
-    padding: 0.9rem;
-    border: 2px solid #dfe6e9;
-    border-radius: 10px;
-    font-size: 1rem;
-    transition: all 0.2s ease;
-  }
-  
-  .popup-content input:focus {
-    border-color: #70a1ff;
-    box-shadow: 0 0 0 3px rgba(112, 161, 255, 0.2);
-    outline: none;
-  }
-  
-  /* File Upload */
-  .popup-content input[type="file"] {
-    padding: 1rem;
-    background: #f8f9fa;
-    border: 2px dashed #a4b0be;
-    text-align: center;
-    cursor: pointer;
-  }
-  
-  .popup-content input[type="file"]:hover {
-    background: #f1f2f6;
-    border-color: #70a1ff;
-  }
-  
-  /* Action Buttons */
-  .popup-buttons {
-    display: grid;
-    gap: 1rem;
-    margin-top: 2rem;
-  }
-  
-  .popup-buttons button {
-    padding: 1rem;
-    border: none;
-    border-radius: 10px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.2s ease;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.5rem;
-  }
-  
-  /* Save Button */
-  .popup-buttons button:first-child {
-    background: #0984e3;
-    color: white;
-  }
-  
-  .popup-buttons button:first-child:hover {
-    background: #0873c4;
-    transform: translateY(-1px);
-  }
-  
-  /* Delete Button */
-  .popup-buttons .delete-btn {
-    background: #ff6b6b;
-    color: white;
-  }
-  
-  .popup-buttons .delete-btn:hover {
-    background: #ee5253;
-    transform: translateY(-1px);
-  }
-  
-  /* Cancel Button */
-  .popup-buttons button:last-child {
-    background: #f1f2f6;
-    color: #2d3436;
-  }
-  
-  .popup-buttons button:last-child:hover {
-    background: #dfe6e9;
-  }
-  
-  /* Messages */
-  .error-message {
-    background: #ffe3e3;
-    color: #ff4757;
-    padding: 1rem;
-    border-radius: 8px;
-    margin: 1rem 0;
-    display: flex;
-    align-items: center;
-    gap: 0.8rem;
-  }
-  
-  .success-message {
-    background: #d1fae5;
-    color: #10b981;
-    padding: 1rem;
-    border-radius: 8px;
-    margin: 1rem 0;
-    display: flex;
-    align-items: center;
-    gap: 0.8rem;
-  }
+}

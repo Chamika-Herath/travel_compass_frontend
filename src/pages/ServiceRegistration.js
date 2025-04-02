@@ -128,8 +128,10 @@ const ServiceRegistration = () => {
   useEffect(() => {
     const fetchUser = async () => {
       try {
-        const response = await axios.get("http://localhost:8080/auth/session", {
-          withCredentials: true, // Ensures cookies/session are sent
+
+        const response = await axios.get("http://localhost:8081/auth/session", {
+          withCredentials: true, // Ensure session cookies are sent
+
         });
 
         if (response.data && response.data.id) {
@@ -182,14 +184,16 @@ const ServiceRegistration = () => {
     console.log("Submitting request with:", { ...formData, userId });
 
     try {
+
       const requestData = {
         ...formData,
         userId, // Include logged-in user's ID
       };
 
-      await axios.post("http://localhost:8080/service-requests/submit", requestData, {
+      await axios.post("http://localhost:8081/service-requests/submit", requestData, {
         withCredentials: true, // Send session cookies
       });
+
 
       alert("Request submitted successfully! Waiting for admin approval.");
       navigate("/user_profile");
