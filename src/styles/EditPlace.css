@@ -1,0 +1,252 @@
+/* Edit Place Styles */
+.ep-edit-place {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 2rem;
+  background: linear-gradient(135deg, #f5f7fa 0%, #e4e8eb 100%);
+  font-family: 'Segoe UI', system-ui, sans-serif;
+}
+
+.ep-container {
+  width: 100%;
+  max-width: 900px;
+  background: white;
+  border-radius: 1rem;
+  padding: 2.5rem;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.ep-container:hover {
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08);
+}
+
+.ep-title {
+  color: #2d3748;
+  margin-bottom: 2rem;
+  font-size: 1.8rem;
+  font-weight: 700;
+  text-align: center;
+  position: relative;
+  padding-bottom: 1rem;
+}
+
+.ep-title::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 4px;
+  background: linear-gradient(90deg, #4f46e5 0%, #10b981 100%);
+  border-radius: 2px;
+}
+
+/* Form Styles */
+.ep-form {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.ep-form-group {
+  position: relative;
+}
+
+.ep-form-label {
+  display: block;
+  margin-bottom: 0.75rem;
+  color: #4a5568;
+  font-size: 0.95rem;
+  font-weight: 500;
+}
+
+.ep-form-input,
+.ep-form-textarea {
+  width: 100%;
+  padding: 0.85rem 1.25rem;
+  border: 2px solid #e2e8f0;
+  border-radius: 0.75rem;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  background-color: #f8fafc;
+}
+
+.ep-form-input:focus,
+.ep-form-textarea:focus {
+  outline: none;
+  border-color: #4f46e5;
+  background-color: white;
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.15);
+}
+
+.ep-form-textarea {
+  min-height: 8rem;
+  resize: vertical;
+}
+
+/* Image Styles */
+.ep-current-image {
+  max-width: 100%;
+  height: auto;
+  max-height: 250px;
+  border-radius: 0.75rem;
+  border: 2px dashed #e2e8f0;
+  padding: 0.5rem;
+  margin-top: 0.5rem;
+  transition: all 0.3s ease;
+}
+
+.ep-current-image:hover {
+  border-color: #4f46e5;
+}
+
+/* File Upload Styles */
+.ep-file-upload {
+  position: relative;
+  margin-top: 0.5rem;
+}
+
+.ep-file-input {
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 0;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+}
+
+.ep-file-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  background-color: #f1f5f9;
+  color: #4a5568;
+  border-radius: 0.75rem;
+  font-size: 0.95rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  border: 2px dashed #cbd5e0;
+  cursor: pointer;
+}
+
+.ep-file-label:hover {
+  background-color: #e2e8f0;
+  border-color: #94a3b8;
+}
+
+/* Button Styles */
+.ep-form-actions {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.ep-btn {
+  padding: 0.85rem 1.75rem;
+  border: none;
+  border-radius: 0.75rem;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.ep-btn-primary {
+  background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+  color: white;
+  box-shadow: 0 4px 6px rgba(79, 70, 229, 0.15);
+}
+
+.ep-btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(79, 70, 229, 0.2);
+}
+
+.ep-btn-secondary {
+  background-color: white;
+  color: #4a5568;
+  border: 2px solid #e2e8f0;
+}
+
+.ep-btn-secondary:hover {
+  background-color: #f8fafc;
+  border-color: #cbd5e0;
+  transform: translateY(-2px);
+}
+
+/* Not Found Message */
+.ep-not-found {
+  text-align: center;
+  padding: 2rem;
+  color: #4a5568;
+  font-size: 1.2rem;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .ep-edit-place {
+    padding: 1.25rem;
+  }
+  
+  .ep-container {
+    padding: 1.75rem;
+    border-radius: 0.75rem;
+  }
+  
+  .ep-title {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .ep-form-actions {
+    flex-direction: column;
+  }
+  
+  .ep-btn {
+    width: 100%;
+  }
+  
+  .ep-current-image {
+    max-width: 100%;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  .ep-container {
+    max-width: 800px;
+    padding: 2.25rem;
+  }
+  
+  .ep-title {
+    font-size: 2rem;
+  }
+}
+
+@media (min-width: 1025px) {
+  .ep-container {
+    max-width: 950px;
+  }
+  
+  .ep-form {
+    grid-template-columns: 1fr 1fr;
+    gap: 1.75rem 2rem;
+  }
+  
+  .ep-form-group:last-child,
+  .ep-form-actions {
+    grid-column: span 2;
+  }
+  
+  .ep-current-image {
+    max-width: 300px;
+  }
+}
