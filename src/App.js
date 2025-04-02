@@ -112,6 +112,8 @@ import ServiceRequests from "./pages/ServiceRequests";
 import GuideProfile from "./pages/GuideProfile";
 import HotelOwnerProfile from "./pages/HotelOwnerProfile";
 import DriverProfile from "./pages/DriverProfile";
+import PlacesManagement from './pages/admin/PlacesManagement';
+import EditPlace from './pages/admin/EditPlace';
 
 function App({ user, setUser }) {
   const location = useLocation();
@@ -162,6 +164,11 @@ function App({ user, setUser }) {
 
         {/* Redirects */}
         <Route path="/profile" element={<Navigate to={userProfileRoute} />} />
+
+        {/*place_manage*/}
+        <Route path="/admin/places" element={<PlacesManagement />} />
+        <Route path="/admin/places/edit/:id" element={<EditPlace />} />
+
       </Routes>
 
       {/* Conditionally render footer */}
