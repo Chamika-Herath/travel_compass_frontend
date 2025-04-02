@@ -1,3 +1,5 @@
+//ADMIN PPROFILE NAVBAR
+
 import React, { useEffect, useState } from "react";
 import "../styles/navbar.css"; // Adjust the path if necessary
 
