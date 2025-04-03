@@ -3,6 +3,7 @@
 
 
 import React from "react";
+import "../styles/VehiclePreview.css";
 
 const VehiclePreview = ({ vehicle, imageUrls }) => {
   return (
@@ -15,7 +16,7 @@ const VehiclePreview = ({ vehicle, imageUrls }) => {
       <p>Rental Rate: ${vehicle.rentalRate} per day</p>
       <p>Location: {vehicle.location}</p>
 
-      <div className="image-gallery">
+      {/* <div className="image-gallery">
         {imageUrls.length > 0 ? (
           imageUrls.map((url, index) => (
             <img key={index} src={url} alt={`Vehicle ${index + 1}`} />
@@ -23,8 +24,20 @@ const VehiclePreview = ({ vehicle, imageUrls }) => {
         ) : (
           <p>No images available</p>
         )}
-      </div>
-    </div>
+      </div> */}
+
+      <div className="vehicle-images">
+        <h3>Vehicle Images</h3>
+        <div className="image-container">
+          {imageUrls.length > 0 ? (
+            imageUrls.map((url, index) => (
+              <img key={index} src={`http://localhost:8081/uploads/${url}`} alt={`Vehicle ${index + 1}`} />
+            ))
+          ) : (
+            <p>No images available for this vehicle.</p>
+          )}
+        </div>
+    </div> </div>
   );
 };
 

@@ -111,6 +111,7 @@ import ServiceRegistration from './pages/ServiceRegistration';
 import VehicleRegistrationForm from './pages/VehicleRegistrationForm';
 import VehiclePreview from "./pages/VehiclePreview";
 import VehiclePage from "./pages/VehiclePage";
+import EditVehicleForm from "./pages/EditVehicleForm";
 
 
 
@@ -165,7 +166,7 @@ function App({ user, setUser }) {
         <Route path="/vehicle-registration" element={<VehicleRegistrationForm />} />
         <Route path="/vehicle-preview" element={<VehiclePreview/>}/>
         <Route path="/vehicle-page/:vehicleId" element={<VehiclePage/>}/>
-        
+        <Route path="/edit-vehicle/:vehicleId" element={<EditVehicleForm />} />
 
         <Route path="/service-registration" element={<ServiceRegistration />} />
 
@@ -200,7 +201,7 @@ function AppWrapper() {
   const [user, setUser] = useState(null);
 
   useEffect(() => {
-    axios.get("http://localhost:8080/auth/session", { withCredentials: true })
+    axios.get("http://localhost:8081/auth/session", { withCredentials: true })
       .then(response => {
         if (response.data?.id) {
           setUser(response.data);

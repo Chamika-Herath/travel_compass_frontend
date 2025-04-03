@@ -69,14 +69,14 @@ const ServiceRequests = () => {
 
   // ✅ Fetch all pending service requests
   useEffect(() => {
-    axios.get("http://localhost:8080/service-requests/pending", { withCredentials: true })
+    axios.get("http://localhost:8081/service-requests/pending", { withCredentials: true })
       .then(response => setRequests(response.data))
       .catch(error => console.error("Error fetching requests:", error));
   }, []);
 
   // ✅ Approve or Reject a service request
   const handleAction = (id, action) => {
-    axios.put(`http://localhost:8080/service-requests/${id}/status/${action}`, {}, { withCredentials: true })
+    axios.put(`http://localhost:8081/service-requests/${id}/status/${action}`, {}, { withCredentials: true })
       .then(() => {
         setRequests(requests.filter(req => req.id !== id)); // Remove processed request
       })
