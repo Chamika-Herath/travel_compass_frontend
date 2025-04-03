@@ -1,5 +1,5 @@
 /* Centering the form properly */
-.form-container {
+.vform-container {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -53,23 +53,25 @@ input:focus, select:focus, textarea:focus {
 }
 
 /* Button Styles */
-button {
-  width: 100%;
-  padding: 14px;
-  background-color: #3cb7e7;
-  color: white;
-  font-size: 16px;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  font-weight: bold;
-  transition: background-color 0.3s ease-in-out;
-}
+.Reg-button{
+  button {
+    width: 100%;
+    padding: 14px;
+    background-color: #3cb7e7;
+    color: white;
+    font-size: 16px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s ease-in-out;
+  }
 
-button:hover {
-  background-color: #3cb7e7;
-}
+  button:hover {
+    background-color: #3cb7e7;
+  }
 
+}
 /* File Input Styling */
 input[type="file"] {
   padding: 5px;
