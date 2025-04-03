@@ -1,4 +1,5 @@
 
+
 // import React, { useState } from "react";
 // import UserProfileHeader from "../components/UserProfileHeader";
 // import "../styles/hotelOwnerProfile.css";
@@ -421,5 +422,6 @@ const HotelOwnerProfile = ({ user, handleLogout }) => {
 };
 
 export default HotelOwnerProfile;
+
 
 

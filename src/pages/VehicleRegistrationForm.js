@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-// import "../styles/VehicleRegistrationForm.css";
+import "../styles/VehicleRegistrationForm.css";
 
 const VehicleRegistrationForm = () => {
   const [vehicleData, setVehicleData] = useState({
