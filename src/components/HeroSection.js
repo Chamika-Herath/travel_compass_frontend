@@ -48,10 +48,10 @@ const HeroSection = () => {
     let interval;
     if (isAutoPlaying) {
       interval = setInterval(() => {
-        setZoomLevel(110);
+        setZoomLevel(160);
         setTimeout(() => {
           setCurrentIndex((prev) => (prev + 1) % slides.length);
-          setZoomLevel(100);
+          setZoomLevel(150);
         }, 1000);
       }, 20000);
     }
@@ -59,7 +59,7 @@ const HeroSection = () => {
   }, [isAutoPlaying, slides.length]);
 
   const handleDotClick = (index) => {
-    setZoomLevel(110);
+    setZoomLevel(160);
     setTimeout(() => {
       setCurrentIndex(index);
       setZoomLevel(100);
