@@ -192,7 +192,7 @@ function AppWrapper() {
   const [user, setUser] = useState(null);
 
   useEffect(() => {
-    axios.get("http://localhost:8080/auth/session", { withCredentials: true })
+    axios.get("http://localhost:8081/auth/session", { withCredentials: true })
       .then(response => {
         if (response.data?.id) {
           setUser(response.data);

@@ -35,7 +35,7 @@ const UserProfileHeader = ({ user, handleLogout, handleUpdateUser }) => {
   // Handle Profile Update
   const handleSaveChanges = async () => {
     try {
-      const response = await fetch(`http://localhost:8080/api/users/${user.id}`, {
+      const response = await fetch(`http://localhost:8081/api/users/${user.id}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -75,7 +75,7 @@ const UserProfileHeader = ({ user, handleLogout, handleUpdateUser }) => {
       // Debug: Confirm user ID
     console.log("Deleting user ID:", user.id); // ✅ Add this line
 
-      const response = await fetch(`http://localhost:8080/api/users/${user.id}/delete`, {
+      const response = await fetch(`http://localhost:8081/api/users/${user.id}/delete`, {
         method: "DELETE",
         credentials: 'include'
       });
