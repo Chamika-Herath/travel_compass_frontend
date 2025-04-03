@@ -111,6 +111,7 @@ import ServiceRegistration from './pages/ServiceRegistration';
 import VehicleRegistrationForm from './pages/VehicleRegistrationForm';
 import VehiclePreview from "./pages/VehiclePreview";
 import VehiclePage from "./pages/VehiclePage";
+import EditVehicleForm from "./pages/EditVehicleForm";
 
 
 
@@ -119,6 +120,8 @@ import ServiceRequests from "./pages/ServiceRequests";
 import GuideProfile from "./pages/GuideProfile";
 import HotelOwnerProfile from "./pages/HotelOwnerProfile";
 import DriverProfile from "./pages/DriverProfile";
+import PlacesManagement from './pages/admin/PlacesManagement';
+import EditPlace from './pages/admin/EditPlace';
 
 
 function App({ user, setUser }) {
@@ -163,7 +166,7 @@ function App({ user, setUser }) {
         <Route path="/vehicle-registration" element={<VehicleRegistrationForm />} />
         <Route path="/vehicle-preview" element={<VehiclePreview/>}/>
         <Route path="/vehicle-page/:vehicleId" element={<VehiclePage/>}/>
-        
+        <Route path="/edit-vehicle/:vehicleId" element={<EditVehicleForm />} />
 
         <Route path="/service-registration" element={<ServiceRegistration />} />
 
@@ -179,6 +182,12 @@ function App({ user, setUser }) {
 
         {/* Redirects */}
         <Route path="/profile" element={<Navigate to={userProfileRoute} />} />
+
+
+        {/*place_manage*/}
+        <Route path="/admin/places" element={<PlacesManagement />} />
+        <Route path="/admin/places/edit/:id" element={<EditPlace />} />
+
 
       </Routes>
 
