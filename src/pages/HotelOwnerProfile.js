@@ -231,7 +231,7 @@ const HotelOwnerProfile = ({ user, handleLogout }) => {
 
 
   useEffect(() => {
-    fetch("http://localhost:8080/api/packages")
+    fetch("http://localhost:8081/api/packages")
       .then((response) => response.json())
       .then((data) => setPackages(data))
       .catch((error) => console.error("Error fetching packages:", error));
@@ -243,7 +243,7 @@ const HotelOwnerProfile = ({ user, handleLogout }) => {
     }else if (action === "delete") {
       if (window.confirm("Are you sure you want to delete this package?")) {
         try {
-          const response = await fetch(`http://localhost:8080/api/packages/${packageId}`, {
+          const response = await fetch(`http://localhost:8081/api/packages/${packageId}`, {
             method: "DELETE",
             headers: {
               "Content-Type": "application/json",
@@ -283,7 +283,7 @@ const HotelOwnerProfile = ({ user, handleLogout }) => {
     };
 
     try {
-      const response = await fetch("http://localhost:8080/api/packages", {
+      const response = await fetch("http://localhost:8081/api/packages", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

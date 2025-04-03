@@ -29,6 +29,7 @@ const VehiclePage = () => {
         const imagesResponse = await fetch(`${API_BASE_URL}/${vehicleId}/images`);
         if (imagesResponse.ok) {
           const imageUrlsData = await imagesResponse.json();
+          console.log("Fetched Image URLs:", imageUrlsData); // 🔍 Debugging
           setImageUrls(imageUrlsData);
         } else {
           console.warn("No images found for this vehicle");

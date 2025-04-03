@@ -35,7 +35,7 @@ const UserProfileHeader = ({ user, handleLogout, handleUpdateUser }) => {
   // Handle Profile Update
   const handleSaveChanges = async () => {
     try {
-      const response = await fetch(`http://localhost:8080/api/users/${user.id}`, {
+      const response = await fetch(`http://localhost:8081/api/users/${user.id}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",

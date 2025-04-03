@@ -31,7 +31,7 @@ const VehiclePreview = ({ vehicle, imageUrls }) => {
         <div className="image-container">
           {imageUrls.length > 0 ? (
             imageUrls.map((url, index) => (
-              <img key={index} src={`http://localhost:8081/uploads/${url}`} alt={`Vehicle ${index + 1}`} />
+              <img key={index} src={url} alt={`Vehicle ${index + 1}`} />
             ))
           ) : (
             <p>No images available for this vehicle.</p>

@@ -6,13 +6,13 @@ import { useNavigate } from "react-router-dom";
 import UserProfileHeader from "../components/UserProfileHeader";
 import "../styles/userprofile.css";
 import "../styles/DriverProfile.css";
-import vehicleImage from "../images/hero.jpg"; // Replace with actual vehicle images
+import vehicleImage from "../images/car.jpg"; // Replace with actual vehicle images
 
 const vehicles = [
-  { id: 21, name: "Car", image: vehicleImage },
-  { id: 2, name: "Van", image: vehicleImage },
-  { id: 3, name: "Tuk Tuk", image: vehicleImage },
-  { id: 4, name: "Motor Bike", image: vehicleImage },
+  { id: 24, name: "Vehicle 1", image: vehicleImage },
+  { id: 25, name: "Vehicle 2", image: vehicleImage },
+  { id: 26, name: "Vehicle 3", image: vehicleImage },
+  { id: 27, name: "Vehicle 4", image: vehicleImage },
 ];
 
 const VehicleProviderProfile = ({ user, handleLogout }) => {

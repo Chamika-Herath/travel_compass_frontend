@@ -1,43 +1,109 @@
+/* Vehicle Preview Container */
 .vehicle-preview-container {
-    background-color: #fff;
-    border: 1px solid #ddd;
-    border-radius: 8px;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  width: 350px; /* Increased width for better layout */
+  margin: 80px auto 20px;
+  text-align: center;
+}
+
+/* Vehicle Images */
+.vehicle-images {
+  position: relative;
+  height: 220px;
+  overflow: hidden;
+  padding-top: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f0f0f0; /* Light background for contrast */
+  border-radius: 8px;
+}
+
+.vehicle-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+/* Vehicle Details */
+.vehicle-details {
+  padding: 15px;
+  text-align: left;
+}
+
+.vehicle-details h3 {
+  font-size: 20px;
+  margin-bottom: 8px;
+  color: #333;
+}
+
+.vehicle-details p {
+  font-size: 14px;
+  margin: 5px 0;
+  color: #555;
+}
+
+.vehicle-details strong {
+  font-weight: bold;
+  color: #222;
+}
+
+/* Vehicle Actions (Edit & Delete Buttons) */
+.vehicle-actions {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.vehicle-actions button {
+  padding: 10px 16px;
+  margin: 0 10px;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+/* Light Blue Edit Button */
+.edit-btn {
+  background-color: #87CEEB; /* Light blue */
+  color: white;
+}
+
+.edit-btn:hover {
+  background-color: #5aaedb; /* Slightly darker blue */
+}
+
+/* Delete Button */
+.delete-btn {
+  background-color: #dc3545;
+  color: white;
+}
+
+.delete-btn:hover {
+  background-color: #a71d2a;
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+  .vehicle-preview-container {
+    width: 90%;
     padding: 15px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    width: 300px; /* Adjust the width if needed */
-    margin: 20px auto;
-    margin: 100px auto 20px;
-    
   }
-  
-  .vehicle-images {
-    position: relative;
-    height: 200px;
-    overflow: hidden;
-    padding-top: 80px;
+
+  .vehicle-actions {
+    flex-direction: column;
+    align-items: center;
   }
-  
-  .vehicle-image {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-  
-  .vehicle-details {
-    padding: 15px;
-  }
-  
-  .vehicle-details h3 {
-    font-size: 18px;
+
+  .vehicle-actions button {
+    width: 80%;
     margin-bottom: 10px;
   }
-  
-  .vehicle-details p {
-    font-size: 14px;
-    margin: 5px 0;
-  }
-  
-  .vehicle-details strong {
-    font-weight: bold;
-  }
-  
+}
