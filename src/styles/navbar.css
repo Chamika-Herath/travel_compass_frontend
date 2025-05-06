@@ -54,7 +54,7 @@
   will-change: transform;
 }
 
-/* Idle animation */
+/* Idle animation ........................
 .logo-icon.idle {
   animation: gentlePulse 4s ease-in-out infinite;
 }
@@ -62,7 +62,7 @@
 @keyframes gentlePulse {
   0%, 100% { transform: rotate(var(--rotation)) scale(1); }
   50% { transform: rotate(var(--rotation)) scale(1.1); }
-}
+}*/
 
 .nav-links {
   display: flex;
@@ -189,7 +189,7 @@
 }
 
 /* Idle animation for compass */
-@keyframes gentlePulse {
+/*@keyframes gentlePulse {
   0%, 100% { transform: scale(1); }
   50% { transform: scale(1.1); }
 }
@@ -197,4 +197,4 @@
 .logo-icon.idle {
   animation: gentlePulse 4s ease-in-out infinite;
   filter: drop-shadow(0 0 5px rgba(0, 191, 255, 0.9));
-}
+}*/
