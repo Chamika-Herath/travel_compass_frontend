@@ -1,267 +1,380 @@
+/* guideProfile.css - Modern Tour Guide Dashboard */
+
+:root {
+  --primary-color: #3a7bd5;
+  --primary-light: #6fa0e3;
+  --primary-dark: #2a5d9c;
+  --accent-color: #16a085;
+  --light-gray: #f8f9fa;
+  --medium-gray: #e9ecef;
+  --dark-gray: #495057;
+  --text-color: #343a40;
+  --white: #ffffff;
+  --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  --radius: 8px;
+  --transition: all 0.3s ease;
+}
+
 .guide-section {
-    text-align: left;
-    padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+  font-family: 'Poppins', 'Segoe UI', sans-serif;
+  color: var(--text-color);
 }
 
-.guide-content h2 {
-    text-align: center;
-    margin-bottom: 20px;
+/* Header Row */
+.header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--medium-gray);
 }
 
+.header-row h2 {
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: var(--primary-dark);
+  margin: 0;
+}
+
+.add-package-btn {
+  background-color: var(--accent-color);
+  color: var(--white);
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: var(--radius);
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+  box-shadow: var(--shadow);
+}
+
+.add-package-btn:hover {
+  background-color: #138a72;
+  transform: translateY(-2px);
+}
+
+/* Package Form */
+.package-form {
+  background-color: var(--white);
+  border-radius: var(--radius);
+  padding: 2rem;
+  margin-bottom: 2rem;
+  box-shadow: var(--shadow);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.package-form label {
+  display: flex;
+  flex-direction: column;
+  font-weight: 500;
+  color: var(--dark-gray);
+}
+
+.package-form input[type="text"],
+.package-form input[type="number"],
+.package-form input:not([type="checkbox"]) {
+  margin-top: 0.5rem;
+  padding: 0.75rem;
+  border: 1px solid var(--medium-gray);
+  border-radius: var(--radius);
+  font-size: 1rem;
+  transition: var(--transition);
+}
+
+.package-form input:focus {
+  outline: none;
+  border-color: var(--primary-light);
+  box-shadow: 0 0 0 3px rgba(58, 123, 213, 0.1);
+}
+
+.package-form .availability {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.package-form input[type="checkbox"] {
+  width: 20px;
+  height: 20px;
+  accent-color: var(--accent-color);
+}
+
+.package-form .form-buttons {
+  grid-column: span 2;
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.package-form button {
+  padding: 0.75rem 1.5rem;
+  border-radius: var(--radius);
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.package-form button[type="submit"] {
+  background-color: var(--primary-color);
+  color: var(--white);
+  border: none;
+}
+
+.package-form button[type="submit"]:hover {
+  background-color: var(--primary-dark);
+}
+
+.package-form button[type="button"] {
+  background-color: var(--white);
+  color: var(--dark-gray);
+  border: 1px solid var(--medium-gray);
+}
+
+.package-form button[type="button"]:hover {
+  background-color: var(--light-gray);
+}
+
+/* Package Grid */
 .guide-grid {
-    display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
-    gap: 20px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 2rem;
 }
 
 .guide-card {
-    background: white;
-    padding: 15px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    text-align: center;
-    width: 250px;
+  background-color: var(--white);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  transition: var(--transition);
+  border: 1px solid var(--medium-gray);
 }
 
-.guide-image {
-    width: 100%;
-    height: 150px;
-    object-fit: cover;
-    border-radius: 8px;
+.guide-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
 }
 
 .guide-card h3 {
-    margin: 10px 0;
+  font-size: 1.3rem;
+  margin: 0;
+  padding: 1.25rem;
+  color: var(--primary-dark);
+  background-color: var(--light-gray);
+  border-bottom: 1px solid var(--medium-gray);
 }
 
-.guide-card a {
-    display: block;
-    margin-bottom: 10px;
-    color: #007bff;
-    text-decoration: none;
-    font-weight: bold;
+.featured-image {
+  width: 100%;
+  height: 180px;
+  overflow: hidden;
 }
 
-.guide-card a:hover {
-    text-decoration: underline;
+.featured-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: var(--transition);
+}
+
+.featured-image img:hover {
+  transform: scale(1.03);
+}
+
+.package-details {
+  padding: 1.25rem;
 }
 
 .guide-card p {
-    color: green;
-    font-weight: bold;
+  margin: 0.75rem 0;
+  color: var(--dark-gray);
 }
 
-.guide-update-btn {
-    background-color: #007bff;
-    color: white;
-    padding: 10px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    width: 100%;
-    margin-top: 10px;
+.guide-card strong {
+  color: var(--text-color);
 }
 
-.guide-update-btn:hover {
-    background-color: #0056b3;
+.status-available {
+  color: var(--accent-color);
+  font-weight: 600;
 }
 
+.status-unavailable {
+  color: #e74c3c;
+  font-weight: 600;
+}
 
+.card-buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.75rem;
+  padding: 1.25rem;
+  border-top: 1px solid var(--medium-gray);
+}
 
+.card-buttons button {
+  padding: 0.5rem 1rem;
+  border-radius: var(--radius);
+  font-weight: 500;
+  cursor: pointer;
+  transition: var(--transition);
+}
 
+.card-buttons .view-btn {
+  background-color: var(--primary-light);
+  color: var(--white);
+  border: none;
+}
 
-.guide-section {
-    padding: 20px;
-    max-width: 1200px;
-    margin: 0 auto;
+.card-buttons .view-btn:hover {
+  background-color: var(--primary-color);
+}
+
+.card-buttons button:nth-child(2) {
+  background-color: var(--accent-color);
+  color: var(--white);
+  border: none;
+}
+
+.card-buttons button:nth-child(2):hover {
+  background-color: #138a72;
+}
+
+.card-buttons .delete-btn {
+  background-color: #fff;
+  color: #e74c3c;
+  border: 1px solid #e74c3c;
+}
+
+.card-buttons .delete-btn:hover {
+  background-color: #e74c3c;
+  color: white;
+}
+
+/* Image Modal */
+.image-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.75);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  backdrop-filter: blur(4px);
+}
+
+.image-modal {
+  background-color: var(--white);
+  border-radius: var(--radius);
+  width: 90%;
+  max-width: 800px;
+  max-height: 90vh;
+  overflow: auto;
+  position: relative;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  animation: modalFadeIn 0.3s ease-out;
+}
+
+@keyframes modalFadeIn {
+  from { opacity: 0; transform: translateY(-30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.close-modal {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  background: none;
+  border: none;
+  font-size: 28px;
+  color: var(--dark-gray);
+  cursor: pointer;
+  z-index: 10;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: var(--transition);
+}
+
+.close-modal:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.image-gallery {
+  padding: 2rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+}
+
+.gallery-image {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: var(--radius);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: var(--transition);
+}
+
+.gallery-image:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .package-form {
+    grid-template-columns: 1fr;
   }
   
-  .guide-content {
-    margin-top: 20px;
-  }
-  
-  .header-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 2rem;
-  }
-  
-  .add-package-btn {
-    padding: 0.8rem 1.5rem;
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 1rem;
+  .package-form .form-buttons {
+    grid-column: 1;
   }
   
   .guide-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 2rem;
+    grid-template-columns: 1fr;
   }
   
-  .guide-card {
-    background: white;
-    border-radius: 8px;
-    padding: 1rem;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-  }
-  
-  .guide-image {
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
-    border-radius: 4px;
-    margin-bottom: 1rem;
-  }
-  
-  .package-form-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(0, 0, 0, 0.5);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
-  }
-  
-  .package-form {
-    background: white;
-    padding: 2rem;
-    border-radius: 8px;
-    width: 90%;
-    max-width: 500px;
-  }
-  
-  .package-form label {
-    display: block;
-    margin-bottom: 1rem;
-  }
-  
-  .package-form input[type="text"],
-  .package-form input[type="number"],
-  .package-form textarea {
-    width: 100%;
-    padding: 0.5rem;
-    margin-top: 0.3rem;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-  }
-  
-  .image-requirements {
-    color: #666;
-    font-size: 0.9em;
-    margin: 0.5rem 0;
-  }
-  
-  .form-buttons {
-    margin-top: 1rem;
-    display: flex;
+  .header-row {
+    flex-direction: column;
+    align-items: flex-start;
     gap: 1rem;
-    justify-content: flex-end;
-  }
-  
-  .package-details-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(0, 0, 0, 0.5);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
-    cursor: pointer;
-  }
-  
-  .package-details {
-    background: white;
-    padding: 2rem;
-    border-radius: 8px;
-    width: 90%;
-    max-width: 600px;
-    position: relative;
-    cursor: auto;
-  }
-  
-  .close-btn {
-    position: absolute;
-    top: 1rem;
-    right: 1rem;
-    background: none;
-    border: none;
-    font-size: 1.5rem;
-    cursor: pointer;
-    padding: 0;
-  }
-  
-  .image-gallery {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1rem;
-    margin: 1rem 0;
-  }
-  
-  .image-gallery img {
-    width: 100%;
-    height: 150px;
-    object-fit: cover;
-    border-radius: 4px;
   }
   
   .card-buttons {
-    display: flex;
-    gap: 1rem;
-    margin-top: 1rem;
+    flex-wrap: wrap;
   }
   
-  .view-btn {
-    background-color: #2196F3;
-    color: white;
-    padding: 0.5rem 1rem;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-  }
-  
-  .edit-btn {
-    background-color: #FFC107;
-    color: black;
-    padding: 0.5rem 1rem;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-  }
-  
-  .availability {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-  }
-  
-  .modal-actions {
-    margin-top: 1.5rem;
+  .card-buttons button {
+    flex: 1 1 auto;
     text-align: center;
   }
   
-  .close-details-btn {
-    background-color: #f44336;
-    color: white;
-    padding: 0.8rem 1.5rem;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
+  .image-modal {
+    width: 95%;
   }
   
-  textarea {
-    resize: vertical;
-    min-height: 100px;
+  .image-gallery {
+    grid-template-columns: 1fr;
   }
+}

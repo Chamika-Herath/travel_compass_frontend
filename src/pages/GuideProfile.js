@@ -1,36 +1,189 @@
-// import React from "react";
+
+
+
+
+
+// import React, { useEffect, useState } from "react";
+// import axios from "axios";
 // import UserProfileHeader from "../components/UserProfileHeader";
 // import "../styles/guideProfile.css";
-// import guideImage from "../images/hero.jpg"; // Example image
 
 // const GuideProfile = ({ user, handleLogout }) => {
+//   const [packages, setPackages] = useState([]);
+//   const [formData, setFormData] = useState({
+//     packageName: "",
+//     location: "",
+//     places: "",
+//     pricePerDay: "",
+//     available: true
+//   });
+//   const [images, setImages] = useState([]);
+//   const [editingId, setEditingId] = useState(null);
+//   const [showForm, setShowForm] = useState(false);
+
+//   const BASE_URL = "http://localhost:8081/api/guide-packages";
+
+//   const fetchPackages = async () => {
+//     try {
+//       const res = await axios.get(`${BASE_URL}/guide/${user.id}`);
+//       setPackages(res.data);
+//     } catch (err) {
+//       console.error("Error fetching packages", err);
+//     }
+//   };
+
+//   useEffect(() => {
+//     if (user?.id) fetchPackages();
+//   }, [user]);
+
+//   const handleChange = (e) => {
+//     const { name, value, type, checked } = e.target;
+//     setFormData(prev => ({
+//       ...prev,
+//       [name]: type === "checkbox" ? checked : value
+//     }));
+//   };
+
+//   const handleImageChange = (e) => {
+//     const selectedFiles = Array.from(e.target.files).slice(0, 3); // Only keep max 3
+//     setImages(selectedFiles);
+//   };
+
+//   const handleSubmit = async (e) => {
+//     e.preventDefault();
+//     const payload = {
+//       ...formData,
+//       places: formData.places.split(",").map(p => p.trim())
+//     };
+
+//     if (editingId) {
+//       try {
+//         await axios.put(`${BASE_URL}/update/${editingId}`, payload);
+//         fetchPackages();
+//         resetForm();
+//       } catch (err) {
+//         console.error("Error updating package", err);
+//       }
+//     } else {
+//       const formPayload = new FormData();
+//       formPayload.append("package", new Blob([JSON.stringify(payload)], { type: "application/json" }));
+//       images.forEach((file) => formPayload.append("images", file));
+
+//       try {
+//         await axios.post(`${BASE_URL}/create/${user.id}`, formPayload, {
+//           headers: { "Content-Type": "multipart/form-data" }
+//         });
+//         fetchPackages();
+//         resetForm();
+//       } catch (err) {
+//         console.error("Error creating package", err);
+//       }
+//     }
+//   };
+
+//   const resetForm = () => {
+//     setFormData({
+//       packageName: "",
+//       location: "",
+//       places: "",
+//       pricePerDay: "",
+//       available: true
+//     });
+//     setImages([]);
+//     setEditingId(null);
+//     setShowForm(false);
+//   };
+
+//   const handleEdit = (pkg) => {
+//     setFormData({
+//       packageName: pkg.packageName,
+//       location: pkg.location,
+//       places: pkg.places.join(", "),
+//       pricePerDay: pkg.pricePerDay,
+//       available: pkg.available
+//     });
+//     setEditingId(pkg.id);
+//     setShowForm(true);
+//   };
+
+//   const handleDelete = async (id) => {
+//     try {
+//       await axios.delete(`${BASE_URL}/delete/${id}`);
+//       fetchPackages();
+//     } catch (err) {
+//       console.error("Error deleting package", err);
+//     }
+//   };
+
 //   return (
 //     <div className="guide-section">
 //       <UserProfileHeader user={user} handleLogout={handleLogout} />
+
 //       <div className="guide-content">
-//         <h2>My Tour Packages</h2>
+//         <div className="header-row">
+//           <h2>My Tour Packages</h2>
+//           <button onClick={() => setShowForm(true)} className="add-package-btn">
+//             {editingId ? "Edit Package" : "Add Package"}
+//           </button>
+//         </div>
+
+//         {showForm && (
+//           <form className="package-form" onSubmit={handleSubmit}>
+//             <label>Package Name:
+//               <input name="packageName" value={formData.packageName} onChange={handleChange} required />
+//             </label>
+
+//             <label>Location:
+//               <input name="location" value={formData.location} onChange={handleChange} required />
+//             </label>
+
+//             <label>Places (comma separated):
+//               <input name="places" value={formData.places} onChange={handleChange} required />
+//             </label>
+
+//             <label>Price Per Day:
+//               <input type="number" name="pricePerDay" value={formData.pricePerDay} onChange={handleChange} required />
+//             </label>
+
+//             <label>Images (max 3):
+//               <input type="file" accept="image/*" multiple onChange={handleImageChange} />
+//             </label>
+
+//             <label className="availability">
+//               Available:
+//               <input type="checkbox" name="available" checked={formData.available} onChange={handleChange} />
+//             </label>
+
+//             <div className="form-buttons">
+//               <button type="submit">{editingId ? "Update" : "Create"}</button>
+//               <button type="button" onClick={resetForm}>Cancel</button>
+//             </div>
+//           </form>
+//         )}
+
 //         <div className="guide-grid">
-//           <div className="guide-card">
-//             <img src={guideImage} alt="Tour Package 01" className="guide-image" />
-//             <h3>Tour Package 01</h3>
-//             <a href="#">Update and view</a>
-//             <p>✔ Availability</p>
-//             <button className="guide-update-btn">Update</button>
-//           </div>
-//           <div className="guide-card">
-//             <img src={guideImage} alt="Tour Package 02" className="guide-image" />
-//             <h3>Tour Package 02</h3>
-//             <a href="#">Update and view</a>
-//             <p>✔ Availability</p>
-//             <button className="guide-update-btn">Update</button>
-//           </div>
-//           <div className="guide-card">
-//             <img src={guideImage} alt="Tour Package 03" className="guide-image" />
-//             <h3>Tour Package 03</h3>
-//             <a href="#">Update and view</a>
-//             <p>✔ Availability</p>
-//             <button className="guide-update-btn">Update</button>
-//           </div>
+//           {packages.map(pkg => (
+//             <div key={pkg.id} className="guide-card">
+//               <h3>{pkg.packageName}</h3>
+//               <p><strong>Location:</strong> {pkg.location}</p>
+//               <p><strong>Places:</strong> {pkg.places.join(", ")}</p>
+//               <p><strong>Price per day:</strong> ${pkg.pricePerDay}</p>
+//               <p><strong>Status:</strong> {pkg.available ? "Available" : "Not Available"}</p>
+
+//               {pkg.imagePaths?.length > 0 && (
+//                 <div className="image-preview">
+//                   {pkg.imagePaths.map((img, index) => (
+//                     <img key={index} src={`http://localhost:8081${img}`} alt={`Package ${index}`} className="thumbnail" />
+//                   ))}
+//                 </div>
+//               )}
+
+//               <div className="card-buttons">
+//                 <button onClick={() => handleEdit(pkg)}>Edit</button>
+//                 <button onClick={() => handleDelete(pkg.id)} className="delete-btn">Delete</button>
+//               </div>
+//             </div>
+//           ))}
 //         </div>
 //       </div>
 //     </div>
@@ -41,251 +194,228 @@
 
 
 
-
-
-
-
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 import UserProfileHeader from "../components/UserProfileHeader";
 import "../styles/guideProfile.css";
 
 const GuideProfile = ({ user, handleLogout }) => {
   const [packages, setPackages] = useState([]);
-  const [showAddForm, setShowAddForm] = useState(false);
-  const [selectedPackage, setSelectedPackage] = useState(null);
-  const [editingPackage, setEditingPackage] = useState(null);
   const [formData, setFormData] = useState({
     packageName: "",
     location: "",
     places: "",
-    price: "",
-    description: "",
-    images: [],
+    pricePerDay: "",
     available: true
   });
+  const [images, setImages] = useState([]);
+  const [editingId, setEditingId] = useState(null);
+  const [showForm, setShowForm] = useState(false);
+  const [viewingImages, setViewingImages] = useState(null);
 
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
+  const BASE_URL = "http://localhost:8081/api/guide-packages";
+
+  const fetchPackages = async () => {
+    try {
+      const res = await axios.get(`${BASE_URL}/guide/${user.id}`);
+      setPackages(res.data);
+    } catch (err) {
+      console.error("Error fetching packages", err);
+    }
+  };
+
+  useEffect(() => {
+    if (user?.id) fetchPackages();
+  }, [user]);
+
+  const handleChange = (e) => {
+    const { name, value, type, checked } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: type === "checkbox" ? checked : value
+    }));
   };
 
   const handleImageChange = (e) => {
-    const files = Array.from(e.target.files);
-    if (files.length !== 3) {
-      alert("Please select exactly 3 images");
-      return;
-    }
-    const imageUrls = files.map(file => URL.createObjectURL(file));
-    setFormData(prev => ({ ...prev, images: imageUrls }));
+    const selectedFiles = Array.from(e.target.files).slice(0, 3); // Only keep max 3
+    setImages(selectedFiles);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if (formData.images.length !== 3) {
-      alert("Please upload exactly 3 images");
-      return;
-    }
-
-    const newPackage = {
+    const payload = {
       ...formData,
-      id: Date.now(),
-      places: formData.places.split(',').map(p => p.trim()),
+      places: formData.places.split(",").map(p => p.trim())
     };
 
-    if (editingPackage) {
-      setPackages(prev => prev.map(p => p.id === editingPackage.id ? newPackage : p));
-      setEditingPackage(null);
+    if (editingId) {
+      try {
+        await axios.put(`${BASE_URL}/update/${editingId}`, payload);
+        fetchPackages();
+        resetForm();
+      } catch (err) {
+        console.error("Error updating package", err);
+      }
     } else {
-      setPackages(prev => [...prev, newPackage]);
-    }
+      const formPayload = new FormData();
+      formPayload.append("package", new Blob([JSON.stringify(payload)], { type: "application/json" }));
+      images.forEach((file) => formPayload.append("images", file));
 
+      try {
+        await axios.post(`${BASE_URL}/create/${user.id}`, formPayload, {
+          headers: { "Content-Type": "multipart/form-data" }
+        });
+        fetchPackages();
+        resetForm();
+      } catch (err) {
+        console.error("Error creating package", err);
+      }
+    }
+  };
+
+  const resetForm = () => {
     setFormData({
       packageName: "",
       location: "",
       places: "",
-      price: "",
-      description: "",
-      images: [],
+      pricePerDay: "",
       available: true
     });
-    setShowAddForm(false);
+    setImages([]);
+    setEditingId(null);
+    setShowForm(false);
   };
 
   const handleEdit = (pkg) => {
-    setEditingPackage(pkg);
     setFormData({
-      ...pkg,
-      places: pkg.places.join(', ')
+      packageName: pkg.packageName,
+      location: pkg.location,
+      places: pkg.places.join(", "),
+      pricePerDay: pkg.pricePerDay,
+      available: pkg.available
     });
-    setShowAddForm(true);
+    setEditingId(pkg.id);
+    setShowForm(true);
   };
 
-  const closePackageDetails = () => {
-    setSelectedPackage(null);
+  const handleDelete = async (id) => {
+    try {
+      await axios.delete(`${BASE_URL}/delete/${id}`);
+      fetchPackages();
+    } catch (err) {
+      console.error("Error deleting package", err);
+    }
+  };
+
+  const openImageViewer = (images) => {
+    setViewingImages(images);
+  };
+
+  const closeImageViewer = () => {
+    setViewingImages(null);
   };
 
   return (
     <div className="guide-section">
       <UserProfileHeader user={user} handleLogout={handleLogout} />
+
       <div className="guide-content">
         <div className="header-row">
           <h2>My Tour Packages</h2>
-          <button 
-            className="add-package-btn"
-            onClick={() => setShowAddForm(true)}
-          >
-            Add Package
+          <button onClick={() => setShowForm(true)} className="add-package-btn">
+            {editingId ? "Edit Package" : "Add Package"}
           </button>
         </div>
 
-        {showAddForm && (
-          <div className="package-form-overlay">
-            <form className="package-form" onSubmit={handleSubmit}>
-              <h3>{editingPackage ? "Edit Package" : "New Package"}</h3>
-              
-              <label>
-                Package Name:
-                <input
-                  type="text"
-                  name="packageName"
-                  value={formData.packageName}
-                  onChange={handleInputChange}
-                  required
-                />
-              </label>
+        {showForm && (
+          <form className="package-form" onSubmit={handleSubmit}>
+            <label>Package Name:
+              <input name="packageName" value={formData.packageName} onChange={handleChange} required />
+            </label>
 
-              <label>
-                Location:
-                <input
-                  type="text"
-                  name="location"
-                  value={formData.location}
-                  onChange={handleInputChange}
-                  required
-                />
-              </label>
+            <label>Location:
+              <input name="location" value={formData.location} onChange={handleChange} required />
+            </label>
 
-              <label>
-                Places (comma separated):
-                <input
-                  type="text"
-                  name="places"
-                  value={formData.places}
-                  onChange={handleInputChange}
-                  required
-                />
-              </label>
+            <label>Places (comma separated):
+              <input name="places" value={formData.places} onChange={handleChange} required />
+            </label>
 
-              <label>
-                Price per day:
-                <input
-                  type="number"
-                  name="price"
-                  value={formData.price}
-                  onChange={handleInputChange}
-                  required
-                />
-              </label>
+            <label>Price Per Day:
+              <input type="number" name="pricePerDay" value={formData.pricePerDay} onChange={handleChange} required />
+            </label>
 
-              <label>
-                Description:
-                <textarea
-                  name="description"
-                  value={formData.description}
-                  onChange={handleInputChange}
-                  required
-                />
-              </label>
+            <label>Images (max 3):
+              <input type="file" accept="image/*" multiple onChange={handleImageChange} />
+            </label>
 
-              <label>
-                Images (exactly 3):
-                <input
-                  type="file"
-                  multiple
-                  onChange={handleImageChange}
-                  accept="image/*"
-                  required={!editingPackage}
-                />
-                <div className="image-requirements">Select exactly 3 images</div>
-              </label>
+            <label className="availability">
+              Available:
+              <input type="checkbox" name="available" checked={formData.available} onChange={handleChange} />
+            </label>
 
-              <label className="availability">
-                Available:
-                <input
-                  type="checkbox"
-                  name="available"
-                  checked={formData.available}
-                  onChange={(e) => setFormData(prev => ({ ...prev, available: e.target.checked }))}
-                />
-              </label>
-
-              <div className="form-buttons">
-                <button type="submit">{editingPackage ? "Update" : "Create"}</button>
-                <button type="button" onClick={() => {
-                  setShowAddForm(false);
-                  setEditingPackage(null);
-                }}>
-                  Cancel
-                </button>
-              </div>
-            </form>
-          </div>
-        )}
-
-        {selectedPackage && (
-          <div className="package-details-overlay" onClick={closePackageDetails}>
-            <div className="package-details" onClick={(e) => e.stopPropagation()}>
-              <button className="close-btn" onClick={closePackageDetails}>×</button>
-              <h3>{selectedPackage.packageName}</h3>
-              <div className="image-gallery">
-                {selectedPackage.images.map((img, index) => (
-                  <img key={index} src={img} alt={`Package ${index + 1}`} />
-                ))}
-              </div>
-              <p><strong>Location:</strong> {selectedPackage.location}</p>
-              <p><strong>Places:</strong> {selectedPackage.places.join(', ')}</p>
-              <p><strong>Price per day:</strong> ${selectedPackage.price}</p>
-              <p><strong>Description:</strong> {selectedPackage.description}</p>
-              <p><strong>Availability:</strong> {selectedPackage.available ? "Available" : "Not Available"}</p>
-              <div className="modal-actions">
-                <button 
-                  className="close-details-btn"
-                  onClick={closePackageDetails}
-                >
-                  Close Details
-                </button>
-              </div>
+            <div className="form-buttons">
+              <button type="submit">{editingId ? "Update" : "Create"}</button>
+              <button type="button" onClick={resetForm}>Cancel</button>
             </div>
-          </div>
+          </form>
         )}
 
         <div className="guide-grid">
           {packages.map(pkg => (
-            <div className="guide-card" key={pkg.id}>
-              {pkg.images.length > 0 && (
-                <img src={pkg.images[0]} alt={pkg.packageName} className="guide-image" />
-              )}
+            <div key={pkg.id} className="guide-card">
               <h3>{pkg.packageName}</h3>
-              <p>{pkg.location}</p>
-              <p>{pkg.available ? "✔ Available" : "✖ Not Available"}</p>
+              
+              {pkg.imagePaths?.length > 0 && (
+                <div className="featured-image">
+                  <img src={`http://localhost:8081${pkg.imagePaths[0]}`} alt={pkg.packageName} />
+                </div>
+              )}
+              
+              <div className="package-details">
+                <p><strong>Location:</strong> {pkg.location}</p>
+                <p><strong>Places:</strong> {pkg.places.join(", ")}</p>
+                <p><strong>Price per day:</strong> ${pkg.pricePerDay}</p>
+                <p><strong>Status:</strong> <span className={pkg.available ? "status-available" : "status-unavailable"}>
+                  {pkg.available ? "Available" : "Not Available"}
+                </span></p>
+              </div>
+
               <div className="card-buttons">
-                <button 
-                  className="view-btn"
-                  onClick={() => setSelectedPackage(pkg)}
-                >
-                  View
-                </button>
-                <button
-                  className="edit-btn"
-                  onClick={() => handleEdit(pkg)}
-                >
-                  Edit
-                </button>
+                {pkg.imagePaths?.length > 1 && (
+                  <button 
+                    onClick={() => openImageViewer(pkg.imagePaths)} 
+                    className="view-btn"
+                  >
+                    View Images
+                  </button>
+                )}
+                <button onClick={() => handleEdit(pkg)}>Edit</button>
+                <button onClick={() => handleDelete(pkg.id)} className="delete-btn">Delete</button>
               </div>
             </div>
           ))}
         </div>
       </div>
+
+      {/* Image Viewer Modal */}
+      {viewingImages && (
+        <div className="image-modal-overlay" onClick={closeImageViewer}>
+          <div className="image-modal" onClick={e => e.stopPropagation()}>
+            <button className="close-modal" onClick={closeImageViewer}>×</button>
+            <div className="image-gallery">
+              {viewingImages.map((img, index) => (
+                <img 
+                  key={index} 
+                  src={`http://localhost:8081${img}`} 
+                  alt={`Gallery image ${index + 1}`} 
+                  className="gallery-image" 
+                />
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
