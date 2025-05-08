@@ -122,7 +122,8 @@ import HotelOwnerProfile from "./pages/HotelOwnerProfile";
 import DriverProfile from "./pages/DriverProfile";
 import PlacesManagement from './pages/admin/PlacesManagement';
 import EditPlace from './pages/admin/EditPlace';
-
+import AddLocationForm from './pages/admin/AddLocationForm';
+import LocationList from './pages/LocationList';
 
 function App({ user, setUser }) {
   const location = useLocation();
@@ -187,6 +188,11 @@ function App({ user, setUser }) {
         {/*place_manage*/}
         <Route path="/admin/places" element={<PlacesManagement />} />
         <Route path="/admin/places/edit/:id" element={<EditPlace />} />
+
+
+
+        <Route path="/admin/addplaces" element={<AddLocationForm />} />
+        <Route path="/all/locations" element={<LocationList />} />
 
 
       </Routes>
