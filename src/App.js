@@ -124,6 +124,7 @@ import PlacesManagement from './pages/admin/PlacesManagement';
 import EditPlace from './pages/admin/EditPlace';
 import AddLocationForm from './pages/admin/AddLocationForm';
 import LocationList from './pages/LocationList';
+import LocationManage from './pages/admin/LocationManage';
 
 function App({ user, setUser }) {
   const location = useLocation();
@@ -193,6 +194,7 @@ function App({ user, setUser }) {
 
         <Route path="/admin/addplaces" element={<AddLocationForm />} />
         <Route path="/all/locations" element={<LocationList />} />
+        <Route path="/admin/locations" element={<LocationManage />} />
 
 
       </Routes>
