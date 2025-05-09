@@ -1,65 +1,152 @@
-.location-list-container {
-    padding: 2rem;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+/* LocationList.css - Professional design for location display */
+
+/* Main container styling */
+.location-list {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.location-list h2 {
+  color: #2c3e50;
+  font-size: 2.2rem;
+  margin-bottom: 1.5rem;
+  text-align: center;
+  font-weight: 600;
+  position: relative;
+  padding-bottom: 0.8rem;
+}
+
+.location-list h2::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px;
+  height: 3px;
+  background: linear-gradient(to right, #3498db, #2ecc71);
+}
+
+/* Grid layout for location cards */
+.locations-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+/* Card styling */
+.location-card {
+  background-color: white;
+  border-radius: 12px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.location-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.location-card h3 {
+  color: #2c3e50;
+  font-size: 1.5rem;
+  margin: 0;
+  padding: 1.2rem 1.5rem;
+  border-bottom: 1px solid #f0f0f0;
+  font-weight: 600;
+}
+
+.location-card p {
+  margin: 0.5rem 0;
+  padding: 0 1.5rem;
+  color: #4a4a4a;
+  line-height: 1.6;
+}
+
+.location-card p strong {
+  color: #2980b9;
+  font-weight: 600;
+}
+
+/* Image gallery styling */
+.image-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  gap: 0.8rem;
+  padding: 1.5rem;
+  margin-top: auto;
+}
+
+.location-image {
+  width: 100%;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 8px;
+  transition: transform 0.2s ease;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.location-image:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Loading and error states */
+.location-list > div:only-child:not(.locations-container) {
+  padding: 2rem;
+  text-align: center;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  margin: 2rem auto;
+  max-width: 400px;
+  font-size: 1.1rem;
+  color: #555;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+/* Description text styling */
+.location-card p:nth-of-type(4) {
+  margin-bottom: 1rem;
+  font-style: italic;
+  color: #555;
+  border-left: 3px solid #3498db;
+  padding-left: 1.2rem;
+  margin-left: 1.2rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .locations-container {
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.5rem;
   }
   
-  .location-list-title {
-    font-size: 2rem;
-    font-weight: 600;
-    margin-bottom: 1.5rem;
-    color: #333;
+  .location-list {
+    padding: 1.5rem;
   }
   
-  .location-grid {
-    display: grid;
-    gap: 24px;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  .location-list h2 {
+    font-size: 1.8rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .locations-container {
+    grid-template-columns: 1fr;
   }
   
-  .location-card {
-    background-color: #fff;
-    border-radius: 12px;
-    padding: 20px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-    border: 1px solid #e0e0e0;
-  }
-  
-  .location-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.12);
+  .image-gallery {
+    grid-template-columns: repeat(2, 1fr);
   }
   
   .location-card h3 {
-    font-size: 1.4rem;
-    margin-bottom: 10px;
-    color: #2c3e50;
+    font-size: 1.3rem;
   }
-  
-  .location-card p {
-    font-size: 0.95rem;
-    margin: 4px 0;
-    color: #555;
-  }
-  
-  .location-images {
-    display: flex;
-    gap: 10px;
-    flex-wrap: wrap;
-    margin-top: 12px;
-  }
-  
-  .location-images img {
-    width: 90px;
-    height: 70px;
-    object-fit: cover;
-    border-radius: 6px;
-    border: 1px solid #ccc;
-    transition: transform 0.2s ease;
-  }
-  
-  .location-images img:hover {
-    transform: scale(1.05);
-    cursor: pointer;
-  }
-  
+}
