@@ -220,6 +220,7 @@ import hotelImage from "../images/hero.jpg";
 
 const HotelOwnerProfile = ({ user, handleLogout }) => {
   const [showModal, setShowModal] = useState(false);
+  const [editingPackageId, setEditingPackageId] = useState(null);
   const [newPackage, setNewPackage] = useState({
     name: "",
     description: "",
@@ -229,11 +230,9 @@ const HotelOwnerProfile = ({ user, handleLogout }) => {
   });
 
   const [packages, setPackages] = useState([]);
- 
-
 
   useEffect(() => {
-    fetch("http://localhost:8080/api/packages")
+    fetch("http://localhost:8081/api/packages")
       .then((response) => response.json())
       .then((data) => setPackages(data))
       .catch((error) => console.error("Error fetching packages:", error));
@@ -241,11 +240,32 @@ const HotelOwnerProfile = ({ user, handleLogout }) => {
 
   const handlePackageAction = async (action, packageId) => {
     if (action === "create") {
+      setEditingPackageId(null);
+      setNewPackage({
+        name: "",
+        description: "",
+        bedCount: "",
+        price: "",
+        available: true
+      });
       setShowModal(true);
-    }else if (action === "delete") {
+    } else if (action === "edit") {
+      const pkgToEdit = packages.find((pkg) => pkg.id === packageId);
+      if (pkgToEdit) {
+        setNewPackage({
+          name: pkgToEdit.name,
+          description: pkgToEdit.description,
+          bedCount: pkgToEdit.bedCount,
+          price: pkgToEdit.price,
+          available: pkgToEdit.available
+        });
+        setEditingPackageId(pkgToEdit.id);
+        setShowModal(true);
+      }
+    } else if (action === "delete") {
       if (window.confirm("Are you sure you want to delete this package?")) {
         try {
-          const response = await fetch(`http://localhost:8080/api/packages/${packageId}`, {
+          const response = await fetch(`http://localhost:8081/api/packages/${packageId}`, {
             method: "DELETE",
             headers: {
               "Content-Type": "application/json",
@@ -254,7 +274,9 @@ const HotelOwnerProfile = ({ user, handleLogout }) => {
           });
 
           if (response.ok) {
-            setPackages((prevPackages) => prevPackages.filter((pkg) => pkg.id !== packageId));
+            setPackages((prevPackages) =>
+              prevPackages.filter((pkg) => pkg.id !== packageId)
+            );
           } else {
             const errorMessage = await response.text();
             alert(`Failed to delete the package: ${errorMessage}`);
@@ -270,13 +292,12 @@ const HotelOwnerProfile = ({ user, handleLogout }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Validate inputs
     if (!newPackage.name || !newPackage.description || !newPackage.bedCount || !newPackage.price) {
       alert("All fields are required.");
       return;
     }
 
-    const createdPackage = {
+    const preparedPackage = {
       name: newPackage.name,
       description: newPackage.description,
       bedCount: parseInt(newPackage.bedCount, 10),
@@ -285,39 +306,58 @@ const HotelOwnerProfile = ({ user, handleLogout }) => {
     };
 
     try {
-      const response = await fetch("http://localhost:8080/api/packages", {
-        method: "POST",
+      const url = editingPackageId
+        ? `http://localhost:8081/api/packages/${editingPackageId}`
+        : "http://localhost:8081/api/packages";
+
+      const method = editingPackageId ? "PUT" : "POST";
+
+      const response = await fetch(url, {
+        method,
         headers: {
           "Content-Type": "application/json",
           "Authorization": `Bearer ${localStorage.getItem("token")}`
         },
-        body: JSON.stringify(createdPackage)
+        body: JSON.stringify(preparedPackage)
       });
 
-      if (!response.ok) {
-        throw new Error("Failed to create package");
-      }
+      if (!response.ok) throw new Error("Failed to save package");
 
       const data = await response.json();
-      setPackages((prevPackages) => [...prevPackages, data]);
-      setNewPackage({ name: "", description: "", bedCount: "", price: "", available: true });
+
+      if (editingPackageId) {
+        setPackages((prevPackages) =>
+          prevPackages.map((pkg) => (pkg.id === editingPackageId ? data : pkg))
+        );
+      } else {
+        setPackages((prevPackages) => [...prevPackages, data]);
+      }
+
       setShowModal(false);
+      setEditingPackageId(null);
+      setNewPackage({
+        name: "",
+        description: "",
+        bedCount: "",
+        price: "",
+        available: true
+      });
     } catch (error) {
-      console.error("Error creating package:", error);
-      alert("An error occurred while creating the package.");
+      console.error("Error saving package:", error);
+      alert("An error occurred while saving the package.");
     }
   };
 
   return (
     <div className="hotel-section">
-      {/* Add Package Modal */}
+      {/* Add/Edit Package Modal */}
       {showModal && (
         <div className="modal-overlay">
           <div className="package-modal">
             <button className="close-modal" onClick={() => setShowModal(false)}>
               &times;
             </button>
-            <h2>Create New Package</h2>
+            <h2>{editingPackageId ? "Edit Package" : "Create New Package"}</h2>
             <form onSubmit={handleSubmit}>
               <div className="form-group">
                 <label>Package Name:</label>
@@ -363,7 +403,7 @@ const HotelOwnerProfile = ({ user, handleLogout }) => {
                   Cancel
                 </button>
                 <button type="submit" className="submit-btn">
-                  Create Package
+                  {editingPackageId ? "Update Package" : "Create Package"}
                 </button>
               </div>
             </form>
@@ -422,6 +462,7 @@ const HotelOwnerProfile = ({ user, handleLogout }) => {
 };
 
 export default HotelOwnerProfile;
+
 
 
 
