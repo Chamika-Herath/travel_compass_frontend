@@ -126,6 +126,7 @@ import AddLocationForm from './pages/admin/AddLocationForm';
 import LocationList from './pages/LocationList';
 import LocationManage from './pages/admin/LocationManage';
 import AdminGuideList from './pages/admin/AdminGuideList';
+import AboutUs from "./pages/AboutUs";
 
 function App({ user, setUser }) {
   const location = useLocation();
@@ -164,6 +165,8 @@ function App({ user, setUser }) {
         <Route path="/login" element={<Login setUser={setUser} />} />
         <Route path="/register" element={<Register />} />
         <Route path="/recommendations" element={<Recommendations />} />
+        <Route path="/about" element={<AboutUs />} />
+
 
        
         <Route path="/vehicle-registration" element={<VehicleRegistrationForm />} />
