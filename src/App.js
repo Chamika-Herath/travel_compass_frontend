@@ -139,7 +139,7 @@ function App({ user, setUser }) {
   const profileRoutes = {
     ROLE_GUIDE: "/guide_profile",
     ROLE_HOTEL_OWNER: "/hotel_owner_profile",
-    ROLE_DRIVER: "/driver_profile",
+    ROLE_VEHICLE_OWNER: "/driver_profile",
     USER: "/user_profile"
 
   };
