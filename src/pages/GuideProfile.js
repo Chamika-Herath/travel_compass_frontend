@@ -1,8 +1,5 @@
 
 
-
-
-
 // import React, { useEffect, useState } from "react";
 // import axios from "axios";
 // import UserProfileHeader from "../components/UserProfileHeader";
@@ -20,6 +17,7 @@
 //   const [images, setImages] = useState([]);
 //   const [editingId, setEditingId] = useState(null);
 //   const [showForm, setShowForm] = useState(false);
+//   const [viewingImages, setViewingImages] = useState(null);
 
 //   const BASE_URL = "http://localhost:8081/api/guide-packages";
 
@@ -115,6 +113,14 @@
 //     }
 //   };
 
+//   const openImageViewer = (images) => {
+//     setViewingImages(images);
+//   };
+
+//   const closeImageViewer = () => {
+//     setViewingImages(null);
+//   };
+
 //   return (
 //     <div className="guide-section">
 //       <UserProfileHeader user={user} handleLogout={handleLogout} />
@@ -165,20 +171,31 @@
 //           {packages.map(pkg => (
 //             <div key={pkg.id} className="guide-card">
 //               <h3>{pkg.packageName}</h3>
-//               <p><strong>Location:</strong> {pkg.location}</p>
-//               <p><strong>Places:</strong> {pkg.places.join(", ")}</p>
-//               <p><strong>Price per day:</strong> ${pkg.pricePerDay}</p>
-//               <p><strong>Status:</strong> {pkg.available ? "Available" : "Not Available"}</p>
-
+              
 //               {pkg.imagePaths?.length > 0 && (
-//                 <div className="image-preview">
-//                   {pkg.imagePaths.map((img, index) => (
-//                     <img key={index} src={`http://localhost:8081${img}`} alt={`Package ${index}`} className="thumbnail" />
-//                   ))}
+//                 <div className="featured-image">
+//                   <img src={`http://localhost:8081${pkg.imagePaths[0]}`} alt={pkg.packageName} />
 //                 </div>
 //               )}
+              
+//               <div className="package-details">
+//                 <p><strong>Location:</strong> {pkg.location}</p>
+//                 <p><strong>Places:</strong> {pkg.places.join(", ")}</p>
+//                 <p><strong>Price per day:</strong> ${pkg.pricePerDay}</p>
+//                 <p><strong>Status:</strong> <span className={pkg.available ? "status-available" : "status-unavailable"}>
+//                   {pkg.available ? "Available" : "Not Available"}
+//                 </span></p>
+//               </div>
 
 //               <div className="card-buttons">
+//                 {pkg.imagePaths?.length > 1 && (
+//                   <button 
+//                     onClick={() => openImageViewer(pkg.imagePaths)} 
+//                     className="view-btn"
+//                   >
+//                     View Images
+//                   </button>
+//                 )}
 //                 <button onClick={() => handleEdit(pkg)}>Edit</button>
 //                 <button onClick={() => handleDelete(pkg.id)} className="delete-btn">Delete</button>
 //               </div>
@@ -186,6 +203,25 @@
 //           ))}
 //         </div>
 //       </div>
+
+//       {/* Image Viewer Modal */}
+//       {viewingImages && (
+//         <div className="image-modal-overlay" onClick={closeImageViewer}>
+//           <div className="image-modal" onClick={e => e.stopPropagation()}>
+//             <button className="close-modal" onClick={closeImageViewer}>×</button>
+//             <div className="image-gallery">
+//               {viewingImages.map((img, index) => (
+//                 <img 
+//                   key={index} 
+//                   src={`http://localhost:8081${img}`} 
+//                   alt={`Gallery image ${index + 1}`} 
+//                   className="gallery-image" 
+//                 />
+//               ))}
+//             </div>
+//           </div>
+//         </div>
+//       )}
 //     </div>
 //   );
 // };
@@ -201,10 +237,10 @@ import "../styles/guideProfile.css";
 
 const GuideProfile = ({ user, handleLogout }) => {
   const [packages, setPackages] = useState([]);
+  const [locations, setLocations] = useState([]);
   const [formData, setFormData] = useState({
     packageName: "",
-    location: "",
-    places: "",
+    locationIds: [],
     pricePerDay: "",
     available: true
   });
@@ -224,20 +260,42 @@ const GuideProfile = ({ user, handleLogout }) => {
     }
   };
 
+  const fetchLocations = async () => {
+    try {
+      const res = await axios.get("http://localhost:8081/api/locations/all");
+      setLocations(res.data);
+    } catch (err) {
+      console.error("Error fetching locations", err);
+    }
+  };
+
   useEffect(() => {
-    if (user?.id) fetchPackages();
+    if (user?.id) {
+      fetchPackages();
+      fetchLocations();
+    }
   }, [user]);
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
-    setFormData(prev => ({
-      ...prev,
-      [name]: type === "checkbox" ? checked : value
-    }));
+    if (name === "locationIds") {
+      const val = parseInt(value);
+      setFormData(prev => ({
+        ...prev,
+        locationIds: checked
+          ? [...prev.locationIds, val]
+          : prev.locationIds.filter(id => id !== val)
+      }));
+    } else {
+      setFormData(prev => ({
+        ...prev,
+        [name]: type === "checkbox" ? checked : value
+      }));
+    }
   };
 
   const handleImageChange = (e) => {
-    const selectedFiles = Array.from(e.target.files).slice(0, 3); // Only keep max 3
+    const selectedFiles = Array.from(e.target.files).slice(0, 3); // Max 3
     setImages(selectedFiles);
   };
 
@@ -245,7 +303,7 @@ const GuideProfile = ({ user, handleLogout }) => {
     e.preventDefault();
     const payload = {
       ...formData,
-      places: formData.places.split(",").map(p => p.trim())
+      imagePaths: [] // Required by DTO
     };
 
     if (editingId) {
@@ -259,7 +317,7 @@ const GuideProfile = ({ user, handleLogout }) => {
     } else {
       const formPayload = new FormData();
       formPayload.append("package", new Blob([JSON.stringify(payload)], { type: "application/json" }));
-      images.forEach((file) => formPayload.append("images", file));
+      images.forEach(file => formPayload.append("images", file));
 
       try {
         await axios.post(`${BASE_URL}/create/${user.id}`, formPayload, {
@@ -276,8 +334,7 @@ const GuideProfile = ({ user, handleLogout }) => {
   const resetForm = () => {
     setFormData({
       packageName: "",
-      location: "",
-      places: "",
+      locationIds: [],
       pricePerDay: "",
       available: true
     });
@@ -289,8 +346,7 @@ const GuideProfile = ({ user, handleLogout }) => {
   const handleEdit = (pkg) => {
     setFormData({
       packageName: pkg.packageName,
-      location: pkg.location,
-      places: pkg.places.join(", "),
+      locationIds: pkg.locationIds || [],
       pricePerDay: pkg.pricePerDay,
       available: pkg.available
     });
@@ -307,13 +363,8 @@ const GuideProfile = ({ user, handleLogout }) => {
     }
   };
 
-  const openImageViewer = (images) => {
-    setViewingImages(images);
-  };
-
-  const closeImageViewer = () => {
-    setViewingImages(null);
-  };
+  const openImageViewer = (images) => setViewingImages(images);
+  const closeImageViewer = () => setViewingImages(null);
 
   return (
     <div className="guide-section">
@@ -333,12 +384,19 @@ const GuideProfile = ({ user, handleLogout }) => {
               <input name="packageName" value={formData.packageName} onChange={handleChange} required />
             </label>
 
-            <label>Location:
-              <input name="location" value={formData.location} onChange={handleChange} required />
-            </label>
-
-            <label>Places (comma separated):
-              <input name="places" value={formData.places} onChange={handleChange} required />
+            <label>Select Locations:
+              {locations.map(loc => (
+                <div key={loc.id}>
+                  <input
+                    type="checkbox"
+                    name="locationIds"
+                    value={loc.id}
+                    checked={formData.locationIds.includes(loc.id)}
+                    onChange={handleChange}
+                  />
+                  {loc.name} ({loc.province}, {loc.district})
+                </div>
+              ))}
             </label>
 
             <label>Price Per Day:
@@ -365,28 +423,21 @@ const GuideProfile = ({ user, handleLogout }) => {
           {packages.map(pkg => (
             <div key={pkg.id} className="guide-card">
               <h3>{pkg.packageName}</h3>
-              
               {pkg.imagePaths?.length > 0 && (
                 <div className="featured-image">
                   <img src={`http://localhost:8081${pkg.imagePaths[0]}`} alt={pkg.packageName} />
                 </div>
               )}
-              
               <div className="package-details">
-                <p><strong>Location:</strong> {pkg.location}</p>
-                <p><strong>Places:</strong> {pkg.places.join(", ")}</p>
+                <p><strong>Locations:</strong> {pkg.locationIds?.join(", ")}</p>
                 <p><strong>Price per day:</strong> ${pkg.pricePerDay}</p>
                 <p><strong>Status:</strong> <span className={pkg.available ? "status-available" : "status-unavailable"}>
                   {pkg.available ? "Available" : "Not Available"}
                 </span></p>
               </div>
-
               <div className="card-buttons">
                 {pkg.imagePaths?.length > 1 && (
-                  <button 
-                    onClick={() => openImageViewer(pkg.imagePaths)} 
-                    className="view-btn"
-                  >
+                  <button onClick={() => openImageViewer(pkg.imagePaths)} className="view-btn">
                     View Images
                   </button>
                 )}
@@ -398,19 +449,13 @@ const GuideProfile = ({ user, handleLogout }) => {
         </div>
       </div>
 
-      {/* Image Viewer Modal */}
       {viewingImages && (
         <div className="image-modal-overlay" onClick={closeImageViewer}>
           <div className="image-modal" onClick={e => e.stopPropagation()}>
             <button className="close-modal" onClick={closeImageViewer}>×</button>
             <div className="image-gallery">
               {viewingImages.map((img, index) => (
-                <img 
-                  key={index} 
-                  src={`http://localhost:8081${img}`} 
-                  alt={`Gallery image ${index + 1}`} 
-                  className="gallery-image" 
-                />
+                <img key={index} src={`http://localhost:8081${img}`} alt={`Gallery ${index + 1}`} className="gallery-image" />
               ))}
             </div>
           </div>

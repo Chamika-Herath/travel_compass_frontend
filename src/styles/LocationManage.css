@@ -19,6 +19,7 @@
     font-weight: 600;
     position: relative;
     display: inline-block;
+    
   }
   
   .manage-container > h1::after {

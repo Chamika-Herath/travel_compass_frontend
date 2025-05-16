@@ -197,7 +197,7 @@ function App({ user, setUser }) {
 
 
         <Route path="/admin/addplaces" element={<AddLocationForm />} />
-        <Route path="/all/locations" element={<LocationList />} />
+        <Route path="/packages" element={<LocationList />} />
         <Route path="/admin/locations" element={<LocationManage />} />
         <Route path="/admin/guides" element={<AdminGuideList />} />
 
