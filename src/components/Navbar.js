@@ -266,7 +266,7 @@ const Navbar = ({ user, setUser, isProfilePage, userProfileRoute }) => {
             className={activeLink === "/packages" ? "active" : ""}
             onClick={() => handleNavClick("/packages")}
           >
-            Packages
+            Locations
           </Link>
           <Link 
             to="/offers" 
