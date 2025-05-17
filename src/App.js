@@ -119,7 +119,7 @@ import AdminDashboard from "./pages/AdminDashboard";
 import ServiceRequests from "./pages/ServiceRequests";
 import GuideProfile from "./pages/GuideProfile";
 import HotelOwnerProfile from "./pages/HotelOwnerProfile";
-import DriverProfile from "./pages/DriverProfile";
+import VehicleOwnerProfile from "./pages/VehicleOwner";
 import PlacesManagement from './pages/admin/PlacesManagement';
 import EditPlace from './pages/admin/EditPlace';
 import AddLocationForm from './pages/admin/AddLocationForm';
@@ -139,7 +139,7 @@ function App({ user, setUser }) {
   const profileRoutes = {
     ROLE_GUIDE: "/guide_profile",
     ROLE_HOTEL_OWNER: "/hotel_owner_profile",
-    ROLE_VEHICLE_OWNER: "/driver_profile",
+    ROLE_VEHICLE_OWNER: "/vehicle_owner_profile",
     USER: "/user_profile"
 
   };
@@ -180,7 +180,7 @@ function App({ user, setUser }) {
         <Route path="/user_profile" element={<UserProfile user={user} />} />
         <Route path="/guide_profile" element={<GuideProfile user={user} />} />
         <Route path="/hotel_owner_profile" element={<HotelOwnerProfile user={user} />} />
-        <Route path="/driver_profile" element={<DriverProfile user={user} />} />
+        <Route path="/vehicle_owner_profile" element={<VehicleOwnerProfile user={user} />} />
 
         {/* Admin Routes (no navbar) */}
         <Route path="/admin" element={<AdminDashboard />} />
