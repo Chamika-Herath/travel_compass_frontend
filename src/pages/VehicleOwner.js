@@ -56,7 +56,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import UserProfileHeader from "../components/UserProfileHeader";
-import "../styles/guideProfile.css";
+import "../styles/VehicleOwner.css";
 
 const VehicleOwner = ({ user, handleLogout }) => {
   const [vehicles, setVehicles] = useState([]);
@@ -231,254 +231,248 @@ const VehicleOwner = ({ user, handleLogout }) => {
   const closeImageGallery = () => setViewingImages(null);
 
   return (
-    <div className="guide-profile">
-      <UserProfileHeader user={user} handleLogout={handleLogout} />
 
-      {providerDetails && (
-        <div className="guide-header">
-          <h1>{providerDetails.user?.firstName}'s Vehicle Fleet</h1>
-          <div className="guide-info">
-            <p>Company: {providerDetails.companyName}</p>
-            <p>License: {providerDetails.licenseNumber}</p>
-            <p>Fleet Size: {providerDetails.fleetSize} vehicles</p>
+    <div className="vehicle-profile-page">
+      <div className="vehicle-profile">
+        <UserProfileHeader user={user} handleLogout={handleLogout} />
+
+        
+
+        <div className="package-management">
+          <div className="header-section">
+            <h2>Manage Vehicles</h2>
+            <button 
+              onClick={() => setShowForm(!showForm)} 
+              className="toggle-form-btn"
+            >
+              {showForm ? "Close Form" : "Add New Vehicle"}
+            </button>
           </div>
-        </div>
-      )}
 
-      <div className="package-management">
-        <div className="header-section">
-          <h2>Manage Vehicles</h2>
-          <button 
-            onClick={() => setShowForm(!showForm)} 
-            className="toggle-form-btn"
-          >
-            {showForm ? "Close Form" : "Add New Vehicle"}
-          </button>
-        </div>
-
-        {showForm && (
-          <form className="package-form" onSubmit={handleSubmit}>
-            <div className="form-group">
-              <label>Vehicle Model</label>
-              <input
-                name="vehicleModel"
-                value={formData.vehicleModel}
-                onChange={handleChange}
-                required
-              />
-            </div>
-
-            <div className="form-group">
-              <label>Vehicle Type</label>
-              <select
-                name="vehicleType"
-                value={formData.vehicleType}
-                onChange={handleChange}
-                required
-              >
-                <option value="BIKE">Bike</option>
-                <option value="CAR">Car</option>
-                <option value="VAN">Van</option>
-                <option value="THREE_WHEELER">Three Wheeler</option>
-              </select>
-            </div>
-
-            <div className="form-group">
-              <label>License Plate</label>
-              <input
-                name="licensePlate"
-                value={formData.licensePlate}
-                onChange={handleChange}
-                required
-              />
-            </div>
-
-            <div className="form-group">
-              <label>Passenger Capacity</label>
-              <input
-                type="number"
-                name="passengerCapacity"
-                value={formData.passengerCapacity}
-                onChange={handleChange}
-                min="1"
-                required
-              />
-            </div>
-
-            <div className="form-group">
-              <label>Fuel Type</label>
-              <select
-                name="fuelType"
-                value={formData.fuelType}
-                onChange={handleChange}
-                required
-              >
-                <option value="PETROL">Petrol</option>
-                <option value="DIESEL">Diesel</option>
-                <option value="ELECTRIC">Electric</option>
-                <option value="HYBRID">Hybrid</option>
-              </select>
-            </div>
-
-            <div className="form-group">
-              <label>Price Per Day ($)</label>
-              <input
-                type="number"
-                name="pricePerDay"
-                step="0.01"
-                value={formData.pricePerDay}
-                onChange={handleChange}
-                required
-              />
-            </div>
-
-            <div className="form-group">
-              <label>Price Per Km ($)</label>
-              <input
-                type="number"
-                name="pricePerKm"
-                step="0.01"
-                value={formData.pricePerKm}
-                onChange={handleChange}
-                required
-              />
-            </div>
-
-            <div className="form-group locations-group">
-              <label>Service Locations</label>
-              <div className="location-checkboxes">
-                {locations.map(loc => (
-                  <label key={loc.id} className="checkbox-label">
-                    <input
-                      type="checkbox"
-                      name="locationIds"
-                      value={loc.id}
-                      checked={formData.locationIds.includes(loc.id)}
-                      onChange={handleChange}
-                    />
-                    {loc.name} ({loc.province})
-                  </label>
-                ))}
-              </div>
-            </div>
-
-            <div className="form-group">
-              <label>Vehicle Images (max 3)</label>
-              <input
-                type="file"
-                accept="image/*"
-                multiple
-                onChange={handleImageChange}
-              />
-              <div className="image-preview">
-                {images.map((file, index) => (
-                  <img
-                    key={index}
-                    src={URL.createObjectURL(file)}
-                    alt={`Preview ${index + 1}`}
-                    className="preview-image"
-                  />
-                ))}
-              </div>
-            </div>
-
-            <div className="form-group availability-group">
-              <label>
+          {showForm && (
+            <form className="package-form" onSubmit={handleSubmit}>
+              <div className="form-group">
+                <label>Vehicle Model</label>
                 <input
-                  type="checkbox"
-                  name="available"
-                  checked={formData.available}
+                  name="vehicleModel"
+                  value={formData.vehicleModel}
                   onChange={handleChange}
+                  required
                 />
-                Available for Booking
-              </label>
-            </div>
-
-            <div className="form-actions">
-              <button type="submit" className="submit-btn">
-                {editingId ? "Update Vehicle" : "Add Vehicle"}
-              </button>
-              <button type="button" onClick={resetForm} className="cancel-btn">
-                Cancel
-              </button>
-            </div>
-          </form>
-        )}
-
-        <div className="package-list">
-          {vehicles.map(vehicle => (
-            <div key={vehicle.id} className="package-card">
-              <div className="card-header">
-                <h3>{vehicle.vehicleModel}</h3>
-                <span className={`status ${vehicle.available ? 'available' : 'unavailable'}`}>
-                  {vehicle.available ? 'Available' : 'Unavailable'}
-                </span>
               </div>
-              
-              {vehicle.imagePaths?.length > 0 && (
-                <div className="card-images">
-                  <img
-                    src={`http://localhost:8081${vehicle.imagePaths[0]}`}
-                    alt={vehicle.vehicleModel}
-                    className="main-image"
-                    onClick={() => openImageGallery(vehicle.imagePaths)}
-                  />
-                  {vehicle.imagePaths.length > 1 && (
-                    <div 
-                      className="image-count" 
-                      onClick={() => openImageGallery(vehicle.imagePaths)}
-                    >
-                      +{vehicle.imagePaths.length - 1}
-                    </div>
-                  )}
-                </div>
-              )}
 
-              <div className="card-details">
-                <p><strong>Type:</strong> {vehicle.vehicleType}</p>
-                <p><strong>License:</strong> {vehicle.licensePlate}</p>
-                <p><strong>Capacity:</strong> {vehicle.passengerCapacity} passengers</p>
-                <p><strong>Fuel:</strong> {vehicle.fuelType}</p>
-                <p><strong>Prices:</strong> 
-                  ${vehicle.pricePerDay}/day + ${vehicle.pricePerKm}/km
-                </p>
-                <p><strong>Locations:</strong></p>
-                <ul className="location-list">
-                  {vehicle.locations?.map(location => (
-                    <li key={location.id}>{location.name}</li>
+              <div className="form-group">
+                <label>Vehicle Type</label>
+                <select
+                  name="vehicleType"
+                  value={formData.vehicleType}
+                  onChange={handleChange}
+                  required
+                >
+                  <option value="BIKE">Bike</option>
+                  <option value="CAR">Car</option>
+                  <option value="VAN">Van</option>
+                  <option value="THREE_WHEELER">Three Wheeler</option>
+                </select>
+              </div>
+
+              <div className="form-group">
+                <label>License Plate</label>
+                <input
+                  name="licensePlate"
+                  value={formData.licensePlate}
+                  onChange={handleChange}
+                  required
+                />
+              </div>
+
+              <div className="form-group">
+                <label>Passenger Capacity</label>
+                <input
+                  type="number"
+                  name="passengerCapacity"
+                  value={formData.passengerCapacity}
+                  onChange={handleChange}
+                  min="1"
+                  required
+                />
+              </div>
+
+              <div className="form-group">
+                <label>Fuel Type</label>
+                <select
+                  name="fuelType"
+                  value={formData.fuelType}
+                  onChange={handleChange}
+                  required
+                >
+                  <option value="PETROL">Petrol</option>
+                  <option value="DIESEL">Diesel</option>
+                  <option value="ELECTRIC">Electric</option>
+                  <option value="HYBRID">Hybrid</option>
+                </select>
+              </div>
+
+              <div className="form-group">
+                <label>Price Per Day ($)</label>
+                <input
+                  type="number"
+                  name="pricePerDay"
+                  step="0.01"
+                  value={formData.pricePerDay}
+                  onChange={handleChange}
+                  required
+                />
+              </div>
+
+              <div className="form-group">
+                <label>Price Per Km ($)</label>
+                <input
+                  type="number"
+                  name="pricePerKm"
+                  step="0.01"
+                  value={formData.pricePerKm}
+                  onChange={handleChange}
+                  required
+                />
+              </div>
+
+              <div className="form-group locations-group">
+                <label>Service Locations</label>
+                <div className="location-checkboxes">
+                  {locations.map(loc => (
+                    <label key={loc.id} className="checkbox-label">
+                      <input
+                        type="checkbox"
+                        name="locationIds"
+                        value={loc.id}
+                        checked={formData.locationIds.includes(loc.id)}
+                        onChange={handleChange}
+                      />
+                      {loc.name} ({loc.province})
+                    </label>
                   ))}
-                </ul>
+                </div>
               </div>
 
-              <div className="card-actions">
-                <button onClick={() => handleEdit(vehicle)} className="edit-btn">
-                  Edit
-                </button>
-                <button onClick={() => handleDelete(vehicle.id)} className="delete-btn">
-                  Delete
-                </button>
+              <div className="form-group">
+                <label>Vehicle Images (max 3)</label>
+                <input
+                  type="file"
+                  accept="image/*"
+                  multiple
+                  onChange={handleImageChange}
+                />
+                <div className="image-preview">
+                  {images.map((file, index) => (
+                    <img
+                      key={index}
+                      src={URL.createObjectURL(file)}
+                      alt={`Preview ${index + 1}`}
+                      className="preview-image"
+                    />
+                  ))}
+                </div>
               </div>
-            </div>
-          ))}
-        </div>
 
-        {viewingImages && (
-          <div className="image-modal" onClick={closeImageGallery}>
-            <div className="modal-content" onClick={e => e.stopPropagation()}>
-              <button className="close-btn" onClick={closeImageGallery}>×</button>
-              <div className="image-gallery">
-                {viewingImages.map((img, index) => (
-                  <img
-                    key={index}
-                    src={`http://localhost:8081${img}`}
-                    alt={`Gallery ${index + 1}`}
-                    className="gallery-image"
+              <div className="form-group availability-group">
+                <label>
+                  <input
+                    type="checkbox"
+                    name="available"
+                    checked={formData.available}
+                    onChange={handleChange}
                   />
-                ))}
+                  Available for Booking
+                </label>
+              </div>
+
+              <div className="form-actions">
+                <button type="submit" className="submit-btn">
+                  {editingId ? "Update Vehicle" : "Add Vehicle"}
+                </button>
+                <button type="button" onClick={resetForm} className="cancel-btn">
+                  Cancel
+                </button>
+              </div>
+            </form>
+          )}
+
+          <div className="package-list">
+            {vehicles.map(vehicle => (
+              <div key={vehicle.id} className="package-card">
+                <div className="card-header">
+                  <h3>{vehicle.vehicleModel}</h3>
+                  <span className={`status ${vehicle.available ? 'available' : 'unavailable'}`}>
+                    {vehicle.available ? 'Available' : 'Unavailable'}
+                  </span>
+                </div>
+                
+                {vehicle.imagePaths?.length > 0 && (
+                  <div className="card-images">
+                    <img
+                      src={`http://localhost:8081${vehicle.imagePaths[0]}`}
+                      alt={vehicle.vehicleModel}
+                      className="main-image"
+                      onClick={() => openImageGallery(vehicle.imagePaths)}
+                    />
+                    {vehicle.imagePaths.length > 1 && (
+                      <div 
+                        className="image-count" 
+                        onClick={() => openImageGallery(vehicle.imagePaths)}
+                      >
+                        +{vehicle.imagePaths.length - 1}
+                      </div>
+                    )}
+                  </div>
+                )}
+
+                <div className="card-details">
+                  <p><strong>Type:</strong> {vehicle.vehicleType}</p>
+                  <p><strong>License:</strong> {vehicle.licensePlate}</p>
+                  <p><strong>Capacity:</strong> {vehicle.passengerCapacity} passengers</p>
+                  <p><strong>Fuel:</strong> {vehicle.fuelType}</p>
+                  <p><strong>Prices:</strong> 
+                    ${vehicle.pricePerDay}/day + ${vehicle.pricePerKm}/km
+                  </p>
+                  <p><strong>Locations:</strong></p>
+                  <ul className="location-list">
+                    {vehicle.locations?.map(location => (
+                      <li key={location.id}>{location.name}</li>
+                    ))}
+                  </ul>
+                </div>
+
+                <div className="card-actions">
+                  <button onClick={() => handleEdit(vehicle)} className="edit-btn">
+                    Edit
+                  </button>
+                  <button onClick={() => handleDelete(vehicle.id)} className="delete-btn">
+                    Delete
+                  </button>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {viewingImages && (
+            <div className="image-modal" onClick={closeImageGallery}>
+              <div className="modal-content" onClick={e => e.stopPropagation()}>
+                <button className="close-btn" onClick={closeImageGallery}>×</button>
+                <div className="image-gallery">
+                  {viewingImages.map((img, index) => (
+                    <img
+                      key={index}
+                      src={`http://localhost:8081${img}`}
+                      alt={`Gallery ${index + 1}`}
+                      className="gallery-image"
+                    />
+                  ))}
+                </div>
               </div>
             </div>
-          </div>
-        )}
+          )}
+        </div>
       </div>
     </div>
   );
