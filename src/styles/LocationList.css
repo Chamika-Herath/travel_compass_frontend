@@ -1,152 +1,339 @@
-/* LocationList.css - Professional design for location display */
-
-/* Main container styling */
-.location-list {
-  max-width: 1200px;
-  margin: 0 auto;
+/* LocationList.css */
+.location-explorer {
   padding: 2rem;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  max-width: 1400px;
+  margin: 0 auto;
 }
 
-.location-list h2 {
-  color: #2c3e50;
-  font-size: 2.2rem;
-  margin-bottom: 1.5rem;
-  text-align: center;
-  font-weight: 600;
+.search-container {
   position: relative;
-  padding-bottom: 0.8rem;
+  margin-bottom: 2rem;
 }
 
-.location-list h2::after {
-  content: '';
+.search-container input {
+  width: 100%;
+  padding: 1rem 1rem 1rem 3rem;
+  border: 2px solid #e0e0e0;
+  border-radius: 30px;
+  font-size: 1.1rem;
+  transition: all 0.3s ease;
+}
+
+.search-container input:focus {
+  outline: none;
+  border-color: #4a90e2;
+  box-shadow: 0 0 10px rgba(74, 144, 226, 0.2);
+}
+
+.search-icon {
   position: absolute;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 100px;
-  height: 3px;
-  background: linear-gradient(to right, #3498db, #2ecc71);
+  left: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #888;
+  font-size: 1.2rem;
 }
 
-/* Grid layout for location cards */
-.locations-container {
+.locations-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
   gap: 2rem;
-  margin-top: 2rem;
 }
 
-/* Card styling */
 .location-card {
-  background-color: white;
-  border-radius: 12px;
-  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+  background: white;
+  border-radius: 15px;
   overflow: hidden;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  display: flex;
-  flex-direction: column;
-  height: 100%;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
 }
 
 .location-card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
 }
 
-.location-card h3 {
+.image-carousel {
+  position: relative;
+  height: 250px;
+  overflow: hidden;
+}
+
+.image-carousel img {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.image-carousel img.active {
+  opacity: 1;
+}
+
+.nav-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255, 255, 255, 0.8);
+  border: none;
+  padding: 0.5rem;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.nav-btn:hover {
+  background: white;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.nav-btn.prev { left: 1rem; }
+.nav-btn.next { right: 1rem; }
+
+.carousel-dots {
+  position: absolute;
+  bottom: 1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 0.5rem;
+}
+
+.carousel-dots span {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.5);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.carousel-dots span.active {
+  background: white;
+  transform: scale(1.3);
+}
+
+.location-info {
+  padding: 1.5rem;
+}
+
+.location-info h3 {
+  margin: 0 0 0.5rem;
   color: #2c3e50;
   font-size: 1.5rem;
-  margin: 0;
-  padding: 1.2rem 1.5rem;
-  border-bottom: 1px solid #f0f0f0;
-  font-weight: 600;
 }
 
-.location-card p {
-  margin: 0.5rem 0;
-  padding: 0 1.5rem;
-  color: #4a4a4a;
-  line-height: 1.6;
-}
-
-.location-card p strong {
-  color: #2980b9;
-  font-weight: 600;
-}
-
-/* Image gallery styling */
-.image-gallery {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-  gap: 0.8rem;
-  padding: 1.5rem;
-  margin-top: auto;
-}
-
-.location-image {
-  width: 100%;
-  height: 120px;
-  object-fit: cover;
-  border-radius: 8px;
-  transition: transform 0.2s ease;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
-
-.location-image:hover {
-  transform: scale(1.05);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
-
-/* Loading and error states */
-.location-list > div:only-child:not(.locations-container) {
-  padding: 2rem;
-  text-align: center;
-  background-color: #f9f9f9;
-  border-radius: 8px;
-  margin: 2rem auto;
-  max-width: 400px;
-  font-size: 1.1rem;
-  color: #555;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-}
-
-/* Description text styling */
-.location-card p:nth-of-type(4) {
+.location-meta {
+  display: flex;
+  justify-content: space-between;
   margin-bottom: 1rem;
-  font-style: italic;
+  color: #666;
+  font-size: 0.9rem;
+}
+
+.category {
+  background: #4a90e2;
+  color: white;
+  padding: 0.2rem 0.5rem;
+  border-radius: 5px;
+  font-size: 0.8rem;
+}
+
+.description {
   color: #555;
-  border-left: 3px solid #3498db;
-  padding-left: 1.2rem;
-  margin-left: 1.2rem;
+  line-height: 1.6;
+  margin-bottom: 1rem;
+  position: relative;
+  max-height: 3.6em;
+  overflow: hidden;
 }
 
-/* Responsive adjustments */
-@media (max-width: 768px) {
-  .locations-container {
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 1.5rem;
-  }
-  
-  .location-list {
-    padding: 1.5rem;
-  }
-  
-  .location-list h2 {
-    font-size: 1.8rem;
-  }
+.description.expanded {
+  max-height: none;
 }
 
-@media (max-width: 480px) {
-  .locations-container {
-    grid-template-columns: 1fr;
-  }
-  
-  .image-gallery {
-    grid-template-columns: repeat(2, 1fr);
-  }
-  
-  .location-card h3 {
-    font-size: 1.3rem;
-  }
+.read-more {
+  background: none;
+  border: none;
+  color: #4a90e2;
+  cursor: pointer;
+  padding: 0;
+  font-weight: 500;
+  margin-left: 0.5rem;
+}
+
+.read-more:hover {
+  text-decoration: underline;
+}
+
+.action-buttons {
+  margin-top: 1rem;
+}
+
+.btn {
+  background: linear-gradient(135deg, #4a90e2, #6b48ff);
+  color: white;
+  border: none;
+  padding: 0.8rem 1.5rem;
+  border-radius: 25px;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+}
+
+/* Modal Styles */
+.location-details-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background: white;
+  border-radius: 15px;
+  padding: 2rem;
+  max-width: 800px;
+  width: 90%;
+  max-height: 90vh;
+  overflow-y: auto;
+  position: relative;
+}
+
+.close-btn {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: #666;
+}
+
+.location-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  margin: 1rem 0;
+}
+
+.location-gallery img {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.package-sections {
+  margin-top: 2rem;
+}
+
+.package-section {
+  margin-bottom: 2rem;
+  border: 1px solid #eee;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.section-header {
+  background: #f8f9fa;
+  padding: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+}
+
+.section-header:hover {
+  background: #f1f3f5;
+}
+
+.section-header h3 {
+  margin: 0;
+  color: #2c3e50;
+}
+
+.chevron {
+  transition: transform 0.3s ease;
+}
+
+.package-section.active .chevron {
+  transform: rotate(90deg);
+}
+
+.packages-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 1.5rem;
+  padding: 1rem;
+}
+
+.package-card {
+  background: white;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.image-slider {
+  height: 200px;
+  overflow: hidden;
+}
+
+.image-slider img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.package-info {
+  padding: 1rem;
+}
+
+.price-section {
+  display: flex;
+  gap: 1rem;
+  margin: 0.5rem 0;
+  color: #4a90e2;
+  font-weight: 600;
+}
+
+.features {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin-top: 1rem;
+}
+
+.features span {
+  background: #f8f9fa;
+  padding: 0.3rem 0.5rem;
+  border-radius: 5px;
+  font-size: 0.9rem;
+}
+
+.status.available { color: #28a745; }
+.status.unavailable { color: #dc3545; }
+
+.no-packages {
+  text-align: center;
+  color: #666;
+  padding: 2rem;
 }
