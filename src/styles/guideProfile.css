@@ -18,7 +18,7 @@
 .guide-section {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 2rem;
+  padding: 1rem;
   font-family: 'Poppins', 'Segoe UI', sans-serif;
   color: var(--text-color);
 }
@@ -107,8 +107,8 @@
 }
 
 .package-form input[type="checkbox"] {
-  width: 20px;
-  height: 20px;
+  width: 25px;
+  height: 25px;
   accent-color: var(--accent-color);
 }
 
