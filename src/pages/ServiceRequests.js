@@ -187,49 +187,51 @@ const ServiceRequests = () => {
         {requests.length === 0 ? (
           <p>No pending service requests</p>
         ) : (
-          <table className="requests-table">
-            <thead>
-              <tr>
-                <th>Name</th>
-                <th>Service Type</th>
-                <th>Date</th>
-                <th>Actions</th>
-              </tr>
-            </thead>
-            <tbody>
-              {requests.map((request) => (
-                <tr key={request.id}>
-                  <td>{request.fullName}</td>
-                  <td className="service-type">
-                    {request.serviceType.replace(/_/g, ' ')}
-                  </td>
-                  <td>
-                    {new Date(request.createdAt).toLocaleDateString()}
-                  </td>
-                  <td className="actions">
-                    <button 
-                      onClick={() => handleView(request)} 
-                      className="view-btn"
-                    >
-                      View
-                    </button>
-                    <button 
-                      onClick={() => handleAction(request.id, "APPROVED")}
-                      className="approve-btn"
-                    >
-                      Approve
-                    </button>
-                    <button 
-                      onClick={() => handleAction(request.id, "REJECTED")}
-                      className="reject-btn"
-                    >
-                      Reject
-                    </button>
-                  </td>
+          <div class="requests-table-container">
+            <table className="requests-table">
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Service Type</th>
+                  <th>Date</th>
+                  <th>Actions</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
+              </thead>
+              <tbody>
+                {requests.map((request) => (
+                  <tr key={request.id}>
+                    <td>{request.fullName}</td>
+                    <td className="service-type">
+                      {request.serviceType.replace(/_/g, ' ')}
+                    </td>
+                    <td>
+                      {new Date(request.createdAt).toLocaleDateString()}
+                    </td>
+                    <td className="actions">
+                      <button 
+                        onClick={() => handleView(request)} 
+                        className="view-btn"
+                      >
+                        View
+                      </button>
+                      <button 
+                        onClick={() => handleAction(request.id, "APPROVED")}
+                        className="approve-btn"
+                      >
+                        Approve
+                      </button>
+                      <button 
+                        onClick={() => handleAction(request.id, "REJECTED")}
+                        className="reject-btn"
+                      >
+                        Reject
+                      </button>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         )}
       </div>
 
