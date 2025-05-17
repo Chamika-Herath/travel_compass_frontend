@@ -118,15 +118,19 @@
   display: flex;
   gap: 1rem;
   margin-top: 2rem;
+  justify-content: flex-end;
 }
 
 .hotel-owner-profile-page .submit-btn {
-  background: #00b894;
+  background: #00bfff;
   color: white;
   padding: 0.8rem 1.5rem;
   border: none;
   border-radius: 4px;
   cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  width: auto;
 }
 
 .hotel-owner-profile-page .cancel-btn {
@@ -136,6 +140,9 @@
   border: none;
   border-radius: 4px;
   cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  width: auto;
 }
 
 /* Package List */
@@ -303,7 +310,7 @@
 
 /* Create New Package button */
 .hotel-owner-profile-page .toggle-form-btn {
-  background-color: #00b894;
+  background-color: #00bfff;
   color: white;
   padding: 12px 24px;
   border: none;
@@ -319,7 +326,7 @@
 }
 
 .hotel-owner-profile-page .toggle-form-btn:hover {
-  background-color: #009d7a;
+  background-color: #158fae;
   transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(0,0,0,0.15);
 }
@@ -384,9 +391,9 @@
       transition: border-color 0.3s ease;
 
       &:focus {
-        border-color: #00b894;
+        border-color: #00bfff;
         outline: none;
-        box-shadow: 0 0 0 3px rgba(0, 184, 148, 0.2);
+        box-shadow: 0 0 0 3px rgba(11, 202, 227, 0.2);
       }
     }
   }
@@ -409,14 +416,14 @@
       transition: all 0.2s ease;
 
       &:hover {
-        border-color: #00b894;
+        border-color: #00bfff;
         background: #f1f3f5;
       }
 
       input[type="checkbox"] {
         width: 18px;
         height: 18px;
-        accent-color: #00b894;
+        accent-color: #00bfff;
       }
     }
   }
@@ -428,7 +435,7 @@
     width: 100%;
 
     &::file-selector-button {
-      background: #00b894;
+      background: #00bfff;
       color: white;
       border: none;
       padding: 0.5rem 1rem;
@@ -438,7 +445,7 @@
       transition: background 0.3s ease;
 
       &:hover {
-        background: #009d7a;
+        background: #158fae;
       }
     }
   }
@@ -478,7 +485,7 @@
     input[type="checkbox"] {
       width: 20px;
       height: 20px;
-      accent-color: #00b894;
+      accent-color: #00bfff;
     }
   }
 
@@ -508,7 +515,7 @@
     }
 
     .submit-btn {
-      background: #00b894;
+      background: #00bfff;
       color: white;
       padding: 0.8rem 2rem;
       border: none;
@@ -518,7 +525,7 @@
       width: fit-content; /* Natural button width */
 
       &:hover {
-        background: #009d7a;
+        background: #158fae;
         transform: translateY(-1px);
       }
     }

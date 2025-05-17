@@ -94,6 +94,7 @@
 
 import React, { useState } from 'react';
 import axios from 'axios';
+import '../../styles/AddLocationForm.css';
 
 const AddLocationForm = () => {
   const [formData, setFormData] = useState({
@@ -164,6 +165,8 @@ const AddLocationForm = () => {
       {error && <div className="error-message">{error}</div>}
       {success && <div className="success-message">{success}</div>}
       
+    <div className='form1'>
+
       <form onSubmit={handleSubmit}>
         <div className="form-group">
           <label>Province:</label>
@@ -232,6 +235,7 @@ const AddLocationForm = () => {
 
         <button type="submit" className="submit-btn">Add Location</button>
       </form>
+    </div>
     </div>
   );
 };
