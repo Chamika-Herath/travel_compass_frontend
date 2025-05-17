@@ -118,6 +118,7 @@
   display: flex;
   gap: 1rem;
   margin-top: 2rem;
+  justify-content: flex-end;
 }
 
 .hotel-owner-profile-page .submit-btn {
@@ -127,6 +128,9 @@
   border: none;
   border-radius: 4px;
   cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  width: auto;
 }
 
 .hotel-owner-profile-page .cancel-btn {
@@ -136,6 +140,9 @@
   border: none;
   border-radius: 4px;
   cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  width: auto;
 }
 
 /* Package List */
