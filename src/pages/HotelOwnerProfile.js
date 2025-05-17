@@ -416,190 +416,192 @@ const HotelOwnerProfile = ({ user, handleLogout }) => {
     const closeImageGallery = () => setViewingImages(null);
 
     return (
-        <div className="hotel-owner-profile">
-            <UserProfileHeader user={user} handleLogout={handleLogout} />
+        <div className="hotel-owner-profile-page">
+            <div className="hotel-owner-profile">
+                <UserProfileHeader user={user} handleLogout={handleLogout} />
 
-            {hotelDetails && (
-                <div className="hotel-header">
-                    <h1>{hotelDetails.hotelName}</h1>
-                    <div className="hotel-info">
-                        <span>⭐ {hotelDetails.starRating} Star Hotel</span>
-                        <p>{hotelDetails.hotelAddress}</p>
+                {hotelDetails && (
+                    <div className="hotel-header">
+                        <h1>{hotelDetails.hotelName}</h1>
+                        <div className="hotel-info">
+                            <span>⭐ {hotelDetails.starRating} Star Hotel</span>
+                            <p>{hotelDetails.hotelAddress}</p>
+                        </div>
                     </div>
-                </div>
-            )}
+                )}
 
-            <div className="package-management">
-                <div className="header-section">
-                    <h2>Manage Packages</h2>
-                    <button onClick={() => setShowForm(!showForm)} className="toggle-form-btn">
-                        {showForm ? "Close Form" : "Create New Package"}
-                    </button>
-                </div>
+                <div className="package-management">
+                    <div className="header-section">
+                        <h2>Manage Packages</h2>
+                        <button onClick={() => setShowForm(!showForm)} className="toggle-form-btn">
+                            {showForm ? "Close Form" : "Create New Package"}
+                        </button>
+                    </div>
 
-                {showForm && (
-                    <form className="package-form" onSubmit={handleSubmit}>
-                        <div className="form-group">
-                            <label>Package Name</label>
-                            <input
-                                name="packageName"
-                                value={formData.packageName}
-                                onChange={handleChange}
-                                required
-                            />
-                        </div>
-
-                        <div className="form-group">
-                            <label>Bed Count</label>
-                            <input
-                                type="number"
-                                name="bedCount"
-                                min="1"
-                                value={formData.bedCount}
-                                onChange={handleChange}
-                                required
-                            />
-                        </div>
-
-                        <div className="form-group">
-                            <label>Price Per Day ($)</label>
-                            <input
-                                type="number"
-                                name="pricePerDay"
-                                step="0.01"
-                                value={formData.pricePerDay}
-                                onChange={handleChange}
-                                required
-                            />
-                        </div>
-
-                        <div className="form-group locations-group">
-                            <label>Associated Locations</label>
-                            <div className="location-checkboxes">
-                                {locations.map(location => (
-                                    <label key={location.id} className="checkbox-label">
-                                        <input
-                                            type="checkbox"
-                                            name="locationIds"
-                                            value={location.id}
-                                            checked={formData.locationIds.includes(location.id)}
-                                            onChange={handleChange}
-                                        />
-                                        {location.name} ({location.province})
-                                    </label>
-                                ))}
-                            </div>
-                        </div>
-
-                        <div className="form-group">
-                            <label>Package Images (Max 5)</label>
-                            <input
-                                type="file"
-                                accept="image/*"
-                                multiple
-                                onChange={handleImageChange}
-                            />
-                            <div className="image-preview">
-                                {images.map((file, index) => (
-                                    <img
-                                        key={index}
-                                        src={URL.createObjectURL(file)}
-                                        alt={`Preview ${index + 1}`}
-                                        className="preview-image"
-                                    />
-                                ))}
-                            </div>
-                        </div>
-
-                        <div className="form-group availability-group">
-                            <label>
+                    {showForm && (
+                        <form className="package-form" onSubmit={handleSubmit}>
+                            <div className="form-group">
+                                <label>Package Name</label>
                                 <input
-                                    type="checkbox"
-                                    name="available"
-                                    checked={formData.available}
+                                    name="packageName"
+                                    value={formData.packageName}
                                     onChange={handleChange}
+                                    required
                                 />
-                                Available for Booking
-                            </label>
-                        </div>
-
-                        <div className="form-actions">
-                            <button type="submit" className="submit-btn">
-                                {editingId ? "Update Package" : "Create Package"}
-                            </button>
-                            <button type="button" onClick={resetForm} className="cancel-btn">
-                                Cancel
-                            </button>
-                        </div>
-                    </form>
-                )}
-
-                <div className="package-list">
-                    {packages.map(pkg => (
-                        <div key={pkg.id} className="package-card">
-                            <div className="card-header">
-                                <h3>{pkg.packageName}</h3>
-                                <span className={`status ${pkg.available ? 'available' : 'unavailable'}`}>
-                                    {pkg.available ? 'Available' : 'Unavailable'}
-                                </span>
                             </div>
-                            
-                            {pkg.imagePaths?.length > 0 && (
-                                <div className="card-images">
-                                    <img
-                                        src={`http://localhost:8081${pkg.imagePaths[0]}`}
-                                        alt={pkg.packageName}
-                                        className="main-image"
-                                        onClick={() => openImageGallery(pkg.imagePaths)}
-                                    />
-                                    {pkg.imagePaths.length > 1 && (
-                                        <div className="image-count" onClick={() => openImageGallery(pkg.imagePaths)}>
-                                            +{pkg.imagePaths.length - 1}
-                                        </div>
-                                    )}
-                                </div>
-                            )}
 
-                            <div className="card-details">
-                                <p><strong>Bed Count:</strong> {pkg.bedCount}</p>
-                                <p><strong>Price:</strong> ${pkg.pricePerDay}/night</p>
-                                <p><strong>Locations:</strong></p>
-                                <ul className="location-list">
-                                    {pkg.locations?.map(location => (
-                                        <li key={location.id}>{location.name}</li>
+                            <div className="form-group">
+                                <label>Bed Count</label>
+                                <input
+                                    type="number"
+                                    name="bedCount"
+                                    min="1"
+                                    value={formData.bedCount}
+                                    onChange={handleChange}
+                                    required
+                                />
+                            </div>
+
+                            <div className="form-group">
+                                <label>Price Per Day ($)</label>
+                                <input
+                                    type="number"
+                                    name="pricePerDay"
+                                    step="0.01"
+                                    value={formData.pricePerDay}
+                                    onChange={handleChange}
+                                    required
+                                />
+                            </div>
+
+                            <div className="form-group locations-group">
+                                <label>Associated Locations</label>
+                                <div className="location-checkboxes">
+                                    {locations.map(location => (
+                                        <label key={location.id} className="checkbox-label">
+                                            <input
+                                                type="checkbox"
+                                                name="locationIds"
+                                                value={location.id}
+                                                checked={formData.locationIds.includes(location.id)}
+                                                onChange={handleChange}
+                                            />
+                                            {location.name} ({location.province})
+                                        </label>
                                     ))}
-                                </ul>
+                                </div>
                             </div>
 
-                            <div className="card-actions">
-                                <button onClick={() => handleEdit(pkg)} className="edit-btn">
-                                    Edit
-                                </button>
-                                <button onClick={() => handleDelete(pkg.id)} className="delete-btn">
-                                    Delete
-                                </button>
+                            <div className="form-group">
+                                <label>Package Images (Max 5)</label>
+                                <input
+                                    type="file"
+                                    accept="image/*"
+                                    multiple
+                                    onChange={handleImageChange}
+                                />
+                                <div className="image-preview">
+                                    {images.map((file, index) => (
+                                        <img
+                                            key={index}
+                                            src={URL.createObjectURL(file)}
+                                            alt={`Preview ${index + 1}`}
+                                            className="preview-image"
+                                        />
+                                    ))}
+                                </div>
                             </div>
-                        </div>
-                    ))}
-                </div>
 
-                {viewingImages && (
-                    <div className="image-modal" onClick={closeImageGallery}>
-                        <div className="modal-content" onClick={e => e.stopPropagation()}>
-                            <button className="close-btn" onClick={closeImageGallery}>×</button>
-                            <div className="image-gallery">
-                                {viewingImages.map((img, index) => (
-                                    <img
-                                        key={index}
-                                        src={`http://localhost:8081${img}`}
-                                        alt={`Gallery ${index + 1}`}
-                                        className="gallery-image"
+                            <div className="form-group availability-group">
+                                <label>
+                                    <input
+                                        type="checkbox"
+                                        name="available"
+                                        checked={formData.available}
+                                        onChange={handleChange}
                                     />
-                                ))}
+                                    Available for Booking
+                                </label>
+                            </div>
+
+                            <div className="form-actions">
+                                <button type="submit" className="submit-btn">
+                                    {editingId ? "Update Package" : "Create Package"}
+                                </button>
+                                <button type="button" onClick={resetForm} className="cancel-btn">
+                                    Cancel
+                                </button>
+                            </div>
+                        </form>
+                    )}
+
+                    <div className="package-list">
+                        {packages.map(pkg => (
+                            <div key={pkg.id} className="package-card">
+                                <div className="card-header">
+                                    <h3>{pkg.packageName}</h3>
+                                    <span className={`status ${pkg.available ? 'available' : 'unavailable'}`}>
+                                        {pkg.available ? 'Available' : 'Unavailable'}
+                                    </span>
+                                </div>
+                                
+                                {pkg.imagePaths?.length > 0 && (
+                                    <div className="card-images">
+                                        <img
+                                            src={`http://localhost:8081${pkg.imagePaths[0]}`}
+                                            alt={pkg.packageName}
+                                            className="main-image"
+                                            onClick={() => openImageGallery(pkg.imagePaths)}
+                                        />
+                                        {pkg.imagePaths.length > 1 && (
+                                            <div className="image-count" onClick={() => openImageGallery(pkg.imagePaths)}>
+                                                +{pkg.imagePaths.length - 1}
+                                            </div>
+                                        )}
+                                    </div>
+                                )}
+
+                                <div className="card-details">
+                                    <p><strong>Bed Count:</strong> {pkg.bedCount}</p>
+                                    <p><strong>Price:</strong> ${pkg.pricePerDay}/night</p>
+                                    <p><strong>Locations:</strong></p>
+                                    <ul className="location-list">
+                                        {pkg.locations?.map(location => (
+                                            <li key={location.id}>{location.name}</li>
+                                        ))}
+                                    </ul>
+                                </div>
+
+                                <div className="card-actions">
+                                    <button onClick={() => handleEdit(pkg)} className="edit-btn">
+                                        Edit
+                                    </button>
+                                    <button onClick={() => handleDelete(pkg.id)} className="delete-btn">
+                                        Delete
+                                    </button>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+
+                    {viewingImages && (
+                        <div className="image-modal" onClick={closeImageGallery}>
+                            <div className="modal-content" onClick={e => e.stopPropagation()}>
+                                <button className="close-btn" onClick={closeImageGallery}>×</button>
+                                <div className="image-gallery">
+                                    {viewingImages.map((img, index) => (
+                                        <img
+                                            key={index}
+                                            src={`http://localhost:8081${img}`}
+                                            alt={`Gallery ${index + 1}`}
+                                            className="gallery-image"
+                                        />
+                                    ))}
+                                </div>
                             </div>
                         </div>
-                    </div>
-                )}
+                    )}
+                </div>
             </div>
         </div>
     );
