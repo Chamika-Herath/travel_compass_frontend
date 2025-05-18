@@ -126,10 +126,15 @@ const LocationList = () => {
       </div>
 
       {selectedLocation && (
-        <div className="package-container">
-          {renderPackageSection("Guide Packages", guidePackages, 'guide')}
-          {renderPackageSection("Hotel Packages", hotelPackages, 'hotel')}
-          {renderPackageSection("Vehicle Packages", vehiclePackages, 'vehicle')}
+        <div className="popup-overlay">
+          <div className="package-container">
+            <button className="close-popup" onClick={() => setSelectedLocation(null)}>
+            <span className="close-icon"></span>
+            </button>
+            {renderPackageSection("Guide Packages", guidePackages, 'guide')}
+            {renderPackageSection("Hotel Packages", hotelPackages, 'hotel')}
+            {renderPackageSection("Vehicle Packages", vehiclePackages, 'vehicle')}
+          </div>
         </div>
       )}
     </div>
