@@ -150,3 +150,71 @@
     transform: rotate(360deg);
   }
 }
+
+/* Forgot Password Styles */
+.forgot-password-btn {
+  background: none;
+  border: none;
+  color: #0066cc;
+  text-decoration: underline;
+  cursor: pointer;
+  padding: 0;
+  font-size: inherit;
+}
+
+.forgot-password-form {
+  width: 100%;
+}
+
+.form-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.cancel-btn {
+  background: #ccc;
+}
+
+.error-message {
+  color: #ff3333;
+  margin-bottom: 15px;
+}
+
+/* Modal Styles */
+.custom-modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  max-width: 400px;
+  width: 90%;
+  outline: none;
+}
+
+.custom-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+}
+
+.modal-content {
+  text-align: center;
+}
+
+.modal-content button {
+  margin-top: 15px;
+  padding: 8px 20px;
+  background: #0066cc;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
