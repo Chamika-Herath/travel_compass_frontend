@@ -129,6 +129,7 @@ import AdminGuideList from './pages/admin/AdminGuideList';
 import AboutUs from "./pages/AboutUs";
 import AdminHotelOwnerList from './pages/admin/AdminHotelOwnerList';
 import AdminVehicleProviderList from './pages/admin/AdminVehicleProviderList';
+import Pending from "./pages/Pending";
 
 function App({ user, setUser }) {
   const location = useLocation();
@@ -168,6 +169,7 @@ function App({ user, setUser }) {
         <Route path="/register" element={<Register />} />
         <Route path="/recommendations" element={<Recommendations />} />
         <Route path="/about" element={<AboutUs />} />
+        <Route path="/pending" element={< Pending />} />
 
 
        

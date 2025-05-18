@@ -1,0 +1,160 @@
+/* Main container */
+.pending-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100%;
+  background: linear-gradient(135deg, #1e90ff, #00bfff, #87cefa);
+  transition: background 1.5s ease;
+  position: relative;
+}
+
+/* Back button - positioned below navbar */
+.back-button {
+  position: absolute;
+  top: 80px; /* Adjusted to appear below typical navbar */
+  left: 30px;
+  padding: 10px 20px;
+  background: rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-radius: 30px;
+  color: white;
+  font-size: 1rem;
+  cursor: pointer;
+  backdrop-filter: blur(5px);
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  z-index: 100;
+}
+
+.back-button:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: translateY(-2px);
+}
+
+/* Content container */
+.pending-content {
+  text-align: center;
+  transform: translateY(-50px);
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  padding: 40px 60px;
+  border-radius: 20px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  animation: pulse 2s infinite alternate;
+}
+
+/* Rest of your existing styles... */
+.pending-text {
+  font-size: 4rem;
+  color: white;
+  margin-bottom: 2rem;
+  font-weight: 300;
+  letter-spacing: 2px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.pending-dots {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50px;
+}
+
+.dot {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  margin: 0 10px;
+  background-color: white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.dot-1 {
+  animation: bounce 1.5s infinite ease-in-out, colorChange 8s infinite;
+  animation-delay: 0.1s;
+}
+
+.dot-2 {
+  animation: bounce 1.5s infinite ease-in-out, colorChange 8s infinite;
+  animation-delay: 0.3s;
+}
+
+.dot-3 {
+  animation: bounce 1.5s infinite ease-in-out, colorChange 8s infinite;
+  animation-delay: 0.5s;
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-25px);
+    width: 22px;
+    height: 22px;
+  }
+}
+
+@keyframes colorChange {
+  0% { background-color: #ffffff; }
+  25% { background-color: #a8d8ff; }
+  50% { background-color: #7cc0ff; }
+  75% { background-color: #c2e5ff; }
+  100% { background-color: #ffffff; }
+}
+
+@keyframes pulse {
+  from {
+    transform: translateY(-50px) scale(1);
+  }
+  to {
+    transform: translateY(-50px) scale(1.05);
+  }
+}
+
+@media (max-width: 768px) {
+  .pending-text {
+    font-size: 3rem;
+  }
+  
+  .pending-content {
+    padding: 30px 40px;
+  }
+  
+  .dot {
+    width: 15px;
+    height: 15px;
+    margin: 0 8px;
+  }
+  
+  .back-button {
+    top: 70px; /* Adjusted for mobile */
+    left: 20px;
+    padding: 8px 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .pending-text {
+    font-size: 2.5rem;
+  }
+  
+  .pending-content {
+    padding: 20px 30px;
+  }
+  
+  .dot {
+    width: 12px;
+    height: 12px;
+    margin: 0 6px;
+  }
+  
+  .back-button {
+    top: 60px; /* Adjusted for small mobile */
+    left: 15px;
+    font-size: 0.9rem;
+  }
+}
