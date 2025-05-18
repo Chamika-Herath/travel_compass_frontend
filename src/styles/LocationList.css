@@ -103,28 +103,29 @@ h2::after {
   padding: 1.5rem;
   position: relative;
   z-index: 1;
-  color: var(--light);
+  color: rgb(33, 31, 31);
 }
 
 .location-info h3 {
-  font-size: 1.5rem;
+  font-size: 2rem;
   margin-bottom: 0.5rem;
   font-weight: 700;
 }
 
 .location-info p {
-  font-size: 0.95rem;
+  font-size: 1rem;
   opacity: 0.9;
   margin-bottom: 0.3rem;
+  font-weight: 600;
 }
 
 .location-category {
   display: inline-flex;
   align-items: center;
   padding: 0.3rem 1rem;
-  background: rgba(255, 255, 255, 0.15);
+  background: rgba(4, 151, 237, 0.318);
   border-radius: 50px;
-  font-size: 0.85rem;
+  font-size: 1rem;
   margin-top: 1rem;
   backdrop-filter: blur(5px);
 }
@@ -253,6 +254,8 @@ h2::after {
   height: 100%;
   display: flex;
   flex-direction: column;
+  width: 100%;
+  
 }
 
 .package-card:hover {
@@ -271,7 +274,7 @@ h2::after {
 
 /* Package Details */
 .package-details {
-  padding: 1.5rem;
+  padding: 1rem;
   position: relative;
   flex: 1;
   display: flex;
@@ -280,7 +283,7 @@ h2::after {
 }
 
 .package-details h4 {
-  font-size: 1.3rem;
+  font-size: 2rem;
   color: var(--dark);
   margin-bottom: 1rem;
   font-weight: 700;
@@ -288,8 +291,8 @@ h2::after {
 }
 
 .package-details p {
-  color: #64748b;
-  font-size: 0.95rem;
+  color: #101011;
+  font-size: 1.3rem;
   margin-bottom: 0.8rem;
   display: flex;
   justify-content: space-between;
@@ -312,26 +315,18 @@ h2::after {
   letter-spacing: 0.5px;
 }
 
-.hotel-card::after {
-  background: var(--secondary);
-}
-
-.vehicle-card::after {
-  background: var(--accent);
-}
-
 /* Status Indicators */
 .available, .unavailable {
   display: inline-flex;
   align-items: center;
   padding: 0.3rem 0.8rem;
   border-radius: 50px;
-  font-size: 0.85rem;
+  font-size: 1.3rem;
 }
 
 .available {
-  background: rgba(16, 185, 129, 0.15);
-  color: var(--secondary);
+  background: rgba(8, 165, 250, 0.41);
+  color: rgb(78, 78, 80);
 }
 
 .unavailable {
@@ -424,7 +419,7 @@ h2::after {
     padding: 0.3rem 2.5rem;
   }
 
-  .vehicle-card .package-details p span {
+  .package-details p span {
     width: auto;
   }
 

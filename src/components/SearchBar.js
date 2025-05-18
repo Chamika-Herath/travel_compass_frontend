@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import "../styles/Recommendations.css";
+import "../styles/SearchBar.css";
 
 const SearchBar = () => {
   const [showPopup, setShowPopup] = useState(false);
@@ -78,7 +78,7 @@ const SearchBar = () => {
   };
 
   return (
-    <div className="recommendations">
+    <div className="find-recommendations">
       <section className="intro-section">
         <h2 className="fade-in">Find Your Dream Travel Package</h2>
         <p className="fade-in-delay">
@@ -176,9 +176,9 @@ const SearchBar = () => {
       {packages.length > 0 && (
         <div className="results fade-in">
           <h3>Top Packages for You:</h3>
-          <div className="package-grid">
+          <div className="package-grids">
             {packages.map((pkg, index) => (
-              <div className="package-card scale-in" style={{animationDelay: `${index * 0.1}s`}} key={index}>
+              <div className="package-cards scale-in" style={{animationDelay: `${index * 0.1}s`}} key={index}>
                 <p><strong>Guide:</strong> {pkg.guide?.package_name || 'None'}</p>
                 <p><strong>Hotel:</strong> {pkg.hotel?.package_name || 'None'}</p>
                 <p><strong>Vehicle:</strong> {pkg.vehicle?.vehicle_model || 'None'}</p>
