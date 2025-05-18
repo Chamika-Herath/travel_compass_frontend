@@ -1,5 +1,4 @@
 /* LocationList.css */
-
 :root {
   --primary: #6366f1;
   --secondary: #10b981;
@@ -17,7 +16,7 @@
   padding: 0 1rem;
   animation: fadeIn 0.6s ease-out;
   padding-top: 5rem;
-  margin-top: 0; 
+  margin-top: 0;
 }
 
 h2 {
@@ -130,20 +129,98 @@ h2::after {
   backdrop-filter: blur(5px);
 }
 
+/* Popup Overlay */
+.popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(8px);
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: fadeIn 0.3s ease-out;
+}
+
 /* Package Container */
 .package-container {
-  margin-top: 4rem;
+  position: relative;
+  background: white;
+  border-radius: 1.5rem;
+  padding: 2rem;
+  max-width: 1200px;
+  width: 90%;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  animation: modalSlideIn 0.3s ease-out;
+}
+
+/* Close Button */
+.close-popup {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  width: 40px;
+  height: 40px;
+  border: none;
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.close-popup:hover {
+  background: rgba(0, 0, 0, 0.2);
+  transform: rotate(90deg);
+}
+
+.close-icon {
+  width: 24px;
+  height: 24px;
+  position: relative;
+}
+
+.close-icon::before,
+.close-icon::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  height: 2px;
+  background: var(--dark);
+  transition: all 0.3s ease;
+}
+
+.close-icon::before {
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.close-icon::after {
+  transform: translate(-50%, -50%) rotate(-45deg);
+}
+
+.close-popup:hover .close-icon::before,
+.close-popup:hover .close-icon::after {
+  background: #ef4444;
 }
 
 /* Package Sections */
 .package-section {
-  margin-bottom: 4rem;
+  margin-bottom: 2.5rem;
 }
 
 .package-section h3 {
-  font-size: 2rem;
+  font-size: 1.8rem;
   color: var(--dark);
-  margin-bottom: 2rem;
+  margin-bottom: 1.5rem;
   display: flex;
   align-items: center;
   gap: 1rem;
@@ -160,8 +237,8 @@ h2::after {
 /* Package Grid */
 .package-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 2rem;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.5rem;
   align-items: stretch;
 }
 
@@ -219,16 +296,6 @@ h2::after {
   align-items: center;
 }
 
-.package-details p span:first-child {
-  color: #64748b;
-  font-weight: 500;
-}
-
-.package-details p span:last-child {
-  color: var(--dark);
-  font-weight: 600;
-}
-
 /* Type Badges */
 .package-card::after {
   content: attr(data-type);
@@ -251,16 +318,6 @@ h2::after {
 
 .vehicle-card::after {
   background: var(--accent);
-}
-
-/* Vehicle Specific Adjustments */
-.vehicle-card .package-details p {
-  flex-wrap: wrap;
-}
-
-.vehicle-card .package-details p span {
-  width: 50%;
-  margin-bottom: 0.3rem;
 }
 
 /* Status Indicators */
@@ -288,6 +345,17 @@ h2::after {
   to { opacity: 1; transform: translateY(0); }
 }
 
+@keyframes modalSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(50px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
 @keyframes cardEntrance {
   from {
     opacity: 0;
@@ -297,11 +365,6 @@ h2::after {
     opacity: 1;
     transform: scale(1) translateY(0);
   }
-}
-
-.location-card {
-  animation: cardEntrance 0.6s ease-out;
-  animation-fill-mode: backwards;
 }
 
 /* Loading Spinner */
@@ -333,11 +396,27 @@ h2::after {
   .package-section h3 {
     font-size: 1.6rem;
   }
+
+  .package-container {
+    width: 95%;
+    padding: 1.5rem;
+  }
+
+  .close-popup {
+    top: 1rem;
+    right: 1rem;
+    width: 35px;
+    height: 35px;
+  }
 }
 
 @media (max-width: 480px) {
   .location-container {
     padding: 0 0.5rem;
+  }
+
+  .package-container {
+    border-radius: 1rem;
   }
 
   .package-card::after {
@@ -348,4 +427,9 @@ h2::after {
   .vehicle-card .package-details p span {
     width: auto;
   }
+
+  .package-grid {
+    grid-template-columns: 1fr;
+  }
 }
+
