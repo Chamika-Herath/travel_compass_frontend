@@ -305,9 +305,11 @@ const LoginForm = ({
     </form>
     <div className="login-links">
       <p>Don't have an account? <a href="/register">Register</a></p>
-      <button className="text-button" onClick={switchView}>
-        Forgot Password?
-      </button>
+      <a href="#" onClick={(e) => { e.preventDefault(); switchView(); }} className="link-text">
+      Forgot Password?
+      </a>
+
+
     </div>
   </>
 );
