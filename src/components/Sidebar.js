@@ -13,7 +13,7 @@ const Sidebar = () => {
         <li><Link to="/admin/guides">Guides</Link></li>
         <li><Link to="/admin/vehicle">Vehicles</Link></li>
         <li><Link to="/admin/locations">Places</Link></li>
-        <li><Link to="#">Reviews & Ratings</Link></li>
+        <li><Link to="/pending">Reviews & Ratings</Link></li>
       </ul>
     </div>
   );
