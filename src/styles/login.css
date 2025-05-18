@@ -152,15 +152,20 @@
 }
 
 /* Forgot Password Styles */
-.forgot-password-btn {
-  background: none;
-  border: none;
-  color: #0066cc;
+.link-text {
+  color: #3b82f6; /* Tailwind's blue-500 */
   text-decoration: underline;
   cursor: pointer;
-  padding: 0;
-  font-size: inherit;
+  transition: color 0.2s ease-in-out;
 }
+
+.link-text:hover {
+  color: #1d4ed8; /* Tailwind's blue-700 */
+}
+
+
+
+
 
 .forgot-password-form {
   width: 100%;
