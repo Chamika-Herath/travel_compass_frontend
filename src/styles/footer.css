@@ -136,6 +136,10 @@
     font-weight: bold;
 }
 
+.footer-left span1 {
+    color: #040404;
+}
+
 .footer-left span {
     color: #3498db;
 }

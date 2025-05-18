@@ -21,7 +21,7 @@ const Footer = () => {
       <div className="footer-container">
         <div className="footer-left">
           <h2 className="logo">
-            Travel<span>COMPASS</span>
+            <span1>Travel</span1><span>COMPASS</span>
           </h2>
           <p>Best Travel Agency</p>
         </div>
