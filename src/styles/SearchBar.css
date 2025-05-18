@@ -1,83 +1,555 @@
-.search-bar.container {
-  max-width: 1200px;
-  margin: 2rem auto;
-  padding: 1.5rem;
-  background: #ffffff;
-  border-radius: 16px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-  display: flex;
-  gap: 1rem;
-  align-items: center;
+/* General Body Styling for Context */
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #eef2f7; /* Very light blue-gray background */
+    color: #555; /* Softer default text color */
+    line-height: 1.6;
 }
 
-.search-bar input {
-  flex: 1;
-  padding: 0.8rem 1.2rem;
-  border: 2px solid #e0e6ed;
-  border-radius: 8px;
-  font-size: 1rem;
-  transition: all 0.3s ease;
-  min-height: 3rem;
+/* Main Container - Full Width */
+.find-recommendations {
+   
 }
 
-.search-bar input[type="text"] {
-  background: #f8f9fa url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%239ca3af"><path d="M18.031 16.617l4.283 4.282-1.415 1.415-4.282-4.283A8.96 8.96 0 0 1 11 20c-4.968 0-9-4.032-9-9s4.032-9 9-9 9 4.032 9 9a8.96 8.96 0 0 1-1.969 5.617zm-2.006-.742A6.977 6.977 0 0 0 18 11c0-3.868-3.133-7-7-7-3.868 0-7 3.132-7 7 0 3.867 3.132 7 7 7a6.977 6.977 0 0 0 4.875-1.975l.15-.15z"/></svg>') no-repeat 16px center;
-  background-size: 20px;
-  padding-left: 3rem;
+
+.intro-section h2 {
+    font-size: 5em; /* Slightly larger */
+    margin-bottom: 15px;
+    font-weight: bold;
+    color: #007bff; /* Light blue heading */
+    text-shadow: none; /* Remove heavy text shadow */
 }
 
-.search-bar input[type="date"] {
-  min-width: 180px;
-  cursor: pointer;
+.intro-section p {
+    font-size: 2em; /* Slightly larger */
+    margin-bottom: 30px;
+    color: #555;
 }
 
-.search-bar input:focus {
-  outline: none;
-  border-color: #3b82f6;
-  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+/* Start Button - Light Colors */
+.start-btn {
+    padding: 16px 35px; /* More generous padding */
+    font-size: 1.3em; /* Larger font */
+    font-weight: bold;
+    color: #fff;
+    background-color: #49bbef; /* Soft reddish-orange */
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1); /* Lighter shadow */
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    letter-spacing: 0.5px; /* Add slight letter spacing */
 }
 
-.search-bar .btn-primary {
-  background: #3b82f6;
-  color: white;
-  padding: 0.8rem 2rem;
-  border: none;
-  border-radius: 8px;
-  font-weight: 500;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  min-height: 3rem;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
+.start-btn:hover {
+    background-color: #0c5e7e; /* Slightly darker on hover */
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
 }
 
-.search-bar .btn-primary:hover {
-  background: #2563eb;
-  transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.2);
+.start-btn:active {
+    transform: translateY(1px);
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
 }
 
-/* Responsive Design */
-@media (max-width: 768px) {
-  .search-bar.container {
-    flex-direction: column;
-    padding: 1rem;
-  }
-  
-  .search-bar input {
+/* Button Pulse Animation (keep as is) */
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+.start-btn.pulse {
+    animation: pulse 2s infinite;
+}
+
+/* Popup Overlay (keep as is or slightly lighter) */
+.popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
     width: 100%;
-    min-width: auto;
-  }
-  
-  .search-bar .btn-primary {
-    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4); /* Slightly lighter overlay */
+    display: flex;
     justify-content: center;
-  }
+    align-items: center;
+    z-index: 1000;
+}
+
+/* Popup Content - Lighter Appearance */
+.popup-content {
+    background-color: #ffffff;
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); /* Lighter shadow */
+    position: relative;
+    max-width: 600px;
+    width: 90%;
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+.popup-content h3 {
+    text-align: center;
+    margin-top: 0;
+    margin-bottom: 30px;
+    color: #007bff; /* Light blue heading */
+    font-size: 2em;
+}
+
+/* Close Button (keep as is or match new palette) */
+.close-btn {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: none;
+    border: none;
+    font-size: 2em;
+    color: #aaa;
+    cursor: pointer;
+    transition: color 0.2s ease;
+}
+
+.close-btn:hover {
+    color: #777;
+}
+
+/* Form Styling */
+.popup-form .form-group {
+    margin-bottom: 20px;
+}
+
+.popup-form label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #555;
+}
+
+.popup-form input[type="number"],
+.popup-form input[type="text"] {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd; /* Lighter border */
+    border-radius: 8px;
+    font-size: 1em;
+    box-sizing: border-box;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.popup-form input[type="number"]:focus,
+.popup-form input[type="text"]:focus {
+    border-color: #a8edea; /* Match pastel gradient */
+    box-shadow: 0 0 8px rgba(168, 237, 234, 0.4); /* Lighter shadow */
+    outline: none;
+}
+
+/* Location Autocomplete */
+.location-box {
+    position: relative;
+}
+
+.autocomplete-dropdown {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background-color: #fff;
+    border: 1px solid #ddd; /* Lighter border */
+    border-top: none;
+    border-radius: 0 0 8px 8px;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.08); /* Lighter shadow */
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    z-index: 10;
+}
+
+.autocomplete-dropdown li {
+    padding: 10px 12px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    color: #555;
+}
+
+.autocomplete-dropdown li:hover {
+    background-color: #f0f0f0; /* Light hover state */
+    color: #333;
+}
+
+/* Checkbox Group */
+.checkboxes {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.checkbox-label {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    font-weight: normal;
+    color: #555;
+    transition: color 0.2s ease;
+}
+
+.checkbox-label input[type="checkbox"] {
+    margin-right: 8px;
+    accent-color: #14b5ea; /* Match pastel color */
+    transform: scale(1.1);
+}
+
+.checkbox-label:hover {
+    color: #333;
+}
+
+/* Submit Button - Light Colors */
+.submit-btn {
+    display: block;
+    width: 100%;
+    padding: 15px;
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #fff;
+    background-color: #14b5ea; /* Soft cyan */
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    color: #333; /* Darker text on light button */
+}
+
+.submit-btn:hover {
+    background-color: #95d8d5; /* Slightly darker on hover */
+    transform: translateY(-2px);
+    box-shadow: 0 7px 20px rgba(0, 0, 0, 0.15);
+}
+
+.submit-btn:active {
+    transform: translateY(0);
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+}
+
+
+/* Results Section */
+.results {
+    margin-top: 40px;
+    padding-top: 30px;
+    border-top: 1px solid #eee;
+}
+
+.results h3 {
+    text-align: center;
+    margin-bottom: 30px;
+    color: #007bff; /* Light blue */
+    font-size: 2em;
+}
+
+.package-grids {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+}
+
+/* Package Card - Lighter Appearance */
+.package-cards {
+    background-color: #ffffff; /* White background */
+    border: 1px solid #eee; /* Very light border */
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05); /* Very light shadow */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.package-cards:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.08); /* Slightly more visible shadow on hover */
+}
+
+.package-cards p {
+    margin-bottom: 10px;
+    font-size: 1em;
+    line-height: 1.5;
+    color: #555;
+}
+
+.package-cards strong {
+    color: #333; /* Darker for labels */
+}
+
+/* View Details Button - Light Colors */
+.view-btn {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    font-size: 1em;
+    font-weight: bold;
+    color: #fff;
+    background-color: #fed6e3; /* Soft pink */
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 15px;
+    color: #333; /* Darker text on light button */
+}
+
+.view-btn:hover {
+    background-color: #fec1d8; /* Slightly darker on hover */
+}
+
+/* Package Details Popup (reuses popup-overlay and popup-content) */
+.detail-block {
+    margin-bottom: 30px;
+    padding: 20px;
+    border: 1px solid #eee; /* Very light border */
+    border-radius: 10px;
+    background-color: #f9f9f9; /* Slightly off-white */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03); /* Very light shadow */
+}
+
+.detail-block h4 {
+    margin-top: 0;
+    margin-bottom: 15px;
+    color: #0056b3; /* Still a decent blue for emphasis */
+    border-bottom: 2px solid #a8edea; /* Match pastel color */
+    padding-bottom: 5px;
+}
+
+.detail-block p {
+    margin-bottom: 8px;
+    color: #555;
+}
+
+.detail-block strong {
+    color: #333;
+}
+
+.image-gallery {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.preview-img {
+    max-width: 100px;
+    height: auto;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05); /* Lighter shadow */
+}
+
+/* Booking Section */
+.booking-section {
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid #eee;
+    text-align: right;
+}
+
+.price-summary {
+    font-size: 1.5em; /* Slightly larger */
+    font-weight: bold;
+    color: #e74c3c; /* Soft red for price, still visible */
+    margin-bottom: 20px;
+}
+
+/* Book Now Button - Light Colors */
+.book-now-btn {
+    padding: 12px 25px;
+    font-size: 1.1em;
+    font-weight: bold;
+    color: #fff; /* White text */
+    background-color: #ffcf73; /* Soft yellow/orange */
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+}
+
+.book-now-btn:hover {
+    background-color: #ffc350; /* Slightly darker on hover */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+}
+
+/* Success Message - Light Green */
+.success-message {
+    margin-top: 20px;
+    padding: 15px;
+    background-color: #d4edda; /* Light green background */
+    color: #155724; /* Dark green text */
+    border: 1px solid #c3e6cb;
+    border-radius: 8px;
+    text-align: center;
+    font-weight: bold;
+    opacity: 0;
+    animation: fadeInMessage 0.5s ease forwards;
+}
+
+@keyframes fadeInMessage {
+    to {
+        opacity: 1;
+    }
+}
+
+/* Animations (keep as is) */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.fade-in {
+    animation: fadeIn 0.6s ease forwards;
+}
+
+.fade-in-delay {
+    animation: fadeIn 0.6s ease forwards;
+    /* Add delay in React component style prop if needed per element */
+}
+
+@keyframes slideIn {
+    from { transform: translateY(-50px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+.slide-in {
+    animation: slideIn 0.5s ease forwards;
+}
+
+@keyframes scaleIn {
+    from { transform: scale(0.9); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+.scale-in {
+    animation: scaleIn 0.4s ease forwards;
+    /* Add delay in React component style prop */
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .find-ecommendations {
+        padding: 20px 15px; /* Adjust padding */
+    }
+
+    .intro-section {
+        padding: 30px 15px;
+    }
+
+    .intro-section h2 {
+        font-size: 2.2em;
+    }
+
+    .intro-section p {
+        font-size: 1.1em;
+    }
+
+    .start-btn {
+        padding: 14px 30px;
+        font-size: 1.1em;
+    }
+
+    .popup-content {
+        padding: 30px;
+    }
+
+    .popup-content h3 {
+        font-size: 1.8em;
+    }
+
+    .popup-form input[type="number"],
+    .popup-form input[type="text"] {
+        padding: 10px;
+        font-size: 0.9em;
+    }
+
+    .submit-btn {
+        padding: 12px;
+        font-size: 1em;
+    }
+
+    .results h3 {
+        font-size: 1.8em;
+    }
+
+    .package-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .detail-block {
+        padding: 15px;
+    }
+
+    .preview-img {
+        max-width: 80px;
+    }
+
+    .price-summary {
+        font-size: 1.3em;
+    }
+
+    .book-now-btn {
+        padding: 10px 20px;
+        font-size: 1em;
+    }
 }
 
 @media (max-width: 480px) {
-  .search-bar input[type="date"] {
-    width: 100%;
-  }
+    .find-ecommendations {
+        padding: 15px 10px;
+    }
+
+    .intro-section h2 {
+        font-size: 1.8em;
+    }
+
+    .start-btn {
+        font-size: 0.9em;
+        padding: 12px 25px;
+    }
+
+    .popup-content {
+        padding: 20px;
+    }
+
+    .close-btn {
+        font-size: 1.5em;
+    }
+
+    .popup-content h3 {
+        font-size: 1.5em;
+    }
+
+    .checkboxes {
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .preview-img {
+        max-width: 60px;
+    }
+
+     .price-summary {
+        font-size: 1.1em;
+    }
+
+    .book-now-btn {
+        font-size: 0.9em;
+        padding: 8px 15px;
+    }
 }
