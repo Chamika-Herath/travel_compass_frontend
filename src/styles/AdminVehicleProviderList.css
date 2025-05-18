@@ -1,25 +1,25 @@
 /* Main container */
-.guide-packages-admin {
+.vehicle-providers-admin {
   display: flex;
   min-height: 100vh;
   background-color: #f5f7fa;
 }
 
 /* Sidebar adjustment */
-.guide-packages-admin .sidebar {
+.vehicle-providers-admin .sidebar {
   width: 250px;
   flex-shrink: 0;
 }
 
 /* Main content area */
-.guide-packages-admin__main-content {
+.vehicle-providers-admin__main-content {
   flex-grow: 1;
   padding: 30px;
   margin-left: 250px;
 }
 
 /* Title */
-.guide-packages-admin__title {
+.vehicle-providers-admin__title {
   color: #2c3e50;
   margin-bottom: 30px;
   font-size: 28px;
@@ -27,7 +27,7 @@
 }
 
 /* Error message */
-.guide-packages-admin__error {
+.vehicle-providers-admin__error {
   background-color: #ffebee;
   color: #c62828;
   padding: 12px;
@@ -38,7 +38,7 @@
 }
 
 /* Loading indicator */
-.guide-packages-admin__loading {
+.vehicle-providers-admin__loading {
   text-align: center;
   padding: 20px;
   font-style: italic;
@@ -46,25 +46,57 @@
   font-size: 18px;
 }
 
+/* Search container */
+.vehicle-providers-admin__search-container {
+  position: relative;
+  margin-bottom: 25px;
+  max-width: 800px;
+  width: 100%;
+}
+
+.vehicle-providers-admin__search-input {
+  width: 100%;
+  padding: 12px 20px 12px 45px;
+  border: 1px solid #ddd;
+  border-radius: 30px;
+  font-size: 16px;
+  transition: all 0.3s;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.vehicle-providers-admin__search-input:focus {
+  outline: none;
+  border-color: #3498db;
+  box-shadow: 0 2px 10px rgba(52, 152, 219, 0.2);
+}
+
+.vehicle-providers-admin__search-icon {
+  position: absolute;
+  left: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #7f8c8d;
+}
+
 /* Layout */
-.guide-packages-admin__layout {
+.vehicle-providers-admin__layout {
   display: flex;
   gap: 30px;
 }
 
-/* Guide list section */
-.guide-packages-admin__guide-list {
+/* Provider list section */
+.vehicle-providers-admin__provider-list {
   flex: 1;
   max-width: 400px;
 }
 
-.guide-packages-admin__subtitle {
+.vehicle-providers-admin__subtitle {
   color: #34495e;
   margin-bottom: 20px;
   font-size: 22px;
 }
 
-.guide-packages-admin__cards {
+.vehicle-providers-admin__cards {
   display: flex;
   flex-direction: column;
   gap: 20px;
@@ -73,8 +105,8 @@
   padding-right: 15px;
 }
 
-/* Guide card */
-.guide-packages-admin__card {
+/* Provider card */
+.vehicle-providers-admin__card {
   background-color: #fff;
   border-radius: 10px;
   padding: 20px;
@@ -84,44 +116,34 @@
   border-left: 5px solid #3498db;
 }
 
-.guide-packages-admin__card:hover {
+.vehicle-providers-admin__card:hover {
   transform: translateY(-3px);
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.12);
 }
 
-.guide-packages-admin__card--selected {
+.vehicle-providers-admin__card--selected {
   background-color: #f0f7ff;
   border-left: 5px solid #2980b9;
 }
 
-.guide-packages-admin__card-title {
+.vehicle-providers-admin__card-title {
   margin-top: 0;
   color: #2c3e50;
   font-size: 18px;
 }
 
-.guide-packages-admin__card-info {
+.vehicle-providers-admin__card-info {
   margin: 8px 0;
   color: #34495e;
   font-size: 15px;
 }
 
-.guide-packages-admin__expertise {
-  margin: 12px 0;
-  color: #34495e;
-}
-
-.guide-packages-admin__expertise p {
-  margin-top: 5px;
-  font-style: italic;
-}
-
 /* Package section */
-.guide-packages-admin__package-section {
+.vehicle-providers-admin__package-section {
   flex: 2;
 }
 
-.guide-packages-admin__selected-guide {
+.vehicle-providers-admin__selected-provider {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -130,13 +152,13 @@
   border-bottom: 1px solid #e0e0e0;
 }
 
-.guide-packages-admin__selected-title {
+.vehicle-providers-admin__selected-title {
   margin: 0;
   color: #2c3e50;
   font-size: 20px;
 }
 
-.guide-packages-admin__delete-all {
+.vehicle-providers-admin__delete-all {
   background-color: #e74c3c;
   color: white;
   border: none;
@@ -147,12 +169,12 @@
   font-weight: 500;
 }
 
-.guide-packages-admin__delete-all:hover {
+.vehicle-providers-admin__delete-all:hover {
   background-color: #c0392b;
 }
 
 /* Package list */
-.guide-packages-admin__package-list {
+.vehicle-providers-admin__package-list {
   display: flex;
   flex-direction: column;
   gap: 20px;
@@ -162,27 +184,27 @@
 }
 
 /* Package card */
-.guide-packages-admin__package-card {
+.vehicle-providers-admin__package-card {
   background-color: #fff;
   border-radius: 10px;
   padding: 20px;
   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
 }
 
-.guide-packages-admin__package-header {
+.vehicle-providers-admin__package-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 15px;
 }
 
-.guide-packages-admin__package-name {
+.vehicle-providers-admin__package-name {
   margin: 0;
   color: #2c3e50;
   font-size: 18px;
 }
 
-.guide-packages-admin__delete-btn {
+.vehicle-providers-admin__delete-btn {
   background-color: #e74c3c;
   color: white;
   border: none;
@@ -192,22 +214,22 @@
   transition: background-color 0.3s;
 }
 
-.guide-packages-admin__delete-btn:hover {
+.vehicle-providers-admin__delete-btn:hover {
   background-color: #c0392b;
 }
 
-.guide-packages-admin__package-info {
+.vehicle-providers-admin__package-info {
   margin: 8px 0;
   color: #34495e;
   font-size: 15px;
 }
 
 /* Package images */
-.guide-packages-admin__package-images {
+.vehicle-providers-admin__package-images {
   margin-top: 15px;
 }
 
-.guide-packages-admin__package-image {
+.vehicle-providers-admin__package-image {
   max-width: 100%;
   max-height: 250px;
   border-radius: 6px;
@@ -215,8 +237,9 @@
 }
 
 /* Messages */
-.guide-packages-admin__no-packages,
-.guide-packages-admin__select-guide {
+.vehicle-providers-admin__no-results,
+.vehicle-providers-admin__no-packages,
+.vehicle-providers-admin__select-provider {
   color: #7f8c8d;
   font-style: italic;
   text-align: center;
@@ -226,83 +249,26 @@
 
 /* Responsive design */
 @media (max-width: 1024px) {
-  .guide-packages-admin__layout {
+  .vehicle-providers-admin__layout {
     flex-direction: column;
   }
   
-  .guide-packages-admin__guide-list {
+  .vehicle-providers-admin__provider-list {
     max-width: 100%;
   }
 }
 
 @media (max-width: 768px) {
-  .guide-packages-admin__main-content {
+  .vehicle-providers-admin__main-content {
     margin-left: 0;
     padding: 20px;
   }
   
-  .guide-packages-admin {
+  .vehicle-providers-admin {
     flex-direction: column;
   }
   
-  .guide-packages-admin .sidebar {
+  .vehicle-providers-admin .sidebar {
     width: 100%;
-  }
-}
-
-/* Add these styles to your existing CSS file */
-
-/* Search container */
-.guide-packages-admin__search-container {
-  position: relative;
-  margin-bottom: 25px;
-  max-width: 800px;
-  width: 100%;
-}
-
-.guide-packages-admin__search-input {
-  width: 100%;
-  padding: 12px 20px 12px 45px;
-  border: 1px solid #ddd;
-  border-radius: 30px;
-  font-size: 16px;
-  transition: all 0.3s;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
-
-.guide-packages-admin__search-input:focus {
-  outline: none;
-  border-color: #3498db;
-  box-shadow: 0 2px 10px rgba(52, 152, 219, 0.2);
-}
-
-.guide-packages-admin__search-icon {
-  position: absolute;
-  left: 15px;
-  top: 50%;
-  transform: translateY(-50%);
-  color: #7f8c8d;
-}
-
-/* No results message */
-.guide-packages-admin__no-results {
-  padding: 30px;
-  text-align: center;
-  color: #7f8c8d;
-  font-style: italic;
-  background-color: #f9f9f9;
-  border-radius: 8px;
-  margin-top: 20px;
-}
-
-/* Responsive adjustments */
-@media (max-width: 768px) {
-  .guide-packages-admin__search-container {
-    margin-bottom: 15px;
-  }
-  
-  .guide-packages-admin__search-input {
-    padding: 10px 15px 10px 40px;
-    font-size: 14px;
   }
 }

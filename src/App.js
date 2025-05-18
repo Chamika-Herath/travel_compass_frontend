@@ -127,6 +127,8 @@ import LocationList from './pages/LocationList';
 import LocationManage from './pages/admin/LocationManage';
 import AdminGuideList from './pages/admin/AdminGuideList';
 import AboutUs from "./pages/AboutUs";
+import AdminHotelOwnerList from './pages/admin/AdminHotelOwnerList';
+import AdminVehicleProviderList from './pages/admin/AdminVehicleProviderList';
 
 function App({ user, setUser }) {
   const location = useLocation();
@@ -200,6 +202,8 @@ function App({ user, setUser }) {
         <Route path="/packages" element={<LocationList />} />
         <Route path="/admin/locations" element={<LocationManage />} />
         <Route path="/admin/guides" element={<AdminGuideList />} />
+        <Route path="/admin/hotel" element={<AdminHotelOwnerList />} />
+        <Route path="/admin/vehicle" element={<AdminVehicleProviderList />} />
 
 
       </Routes>
