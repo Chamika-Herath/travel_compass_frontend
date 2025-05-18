@@ -1,34 +1,32 @@
 import React from "react";
-import "../styles/AboutUs.css"; // Make sure this path matches your file structure
-import logo from "../images/hero.jpg"; // Replace with your actual logo path
+import "../styles/AboutUs.css";
+import logo from "../images/Travel COMPASS 2.png";
 
 const AboutUs = () => {
   return (
-    <div className="about-container">
-      <div className="logo-section">
-        <img src={logo} alt="Travel Compass Logo" className="about-logo" />
-      </div>
-      <div className="description-section">
-        <h1>About Us</h1>
-        <p>
-          Welcome to <strong>Travel Compass</strong>, your smart companion for planning
-          budget-friendly trips across Sri Lanka. We believe that travel should be
-          simple, personal, and affordable—so we created a platform that brings
-          all your travel needs into one place.
-        </p>
-        <p>
-          Our AI-powered system helps you find the best travel packages based on
-          your budget, destination, and travel dates. Whether you're looking for
-          cozy hotels, experienced tour guides, or reliable transport, Travel
-          Compass connects you with the right service providers—quickly and easily.
-        </p>
-        <p>
-          We’re here to make trip planning stress-free and exciting, helping
-          travelers explore more and spend less.
-        </p>
-        <p>
-          <strong>Let’s plan your next journey—smarter, faster, and better!</strong>
-        </p>
+    <div className="about-wrapper">
+      <div className="about-container">
+        <div className="logo-section">
+          <img src={logo} alt="Travel Compass Logo" className="about-logo" />
+        </div>
+        <div className="description-section">
+          <h1>About <span className="highlight">Travel Compass</span></h1>
+          <p>
+            <strong>Travel Compass</strong> is your smart companion for planning budget-friendly
+            and unforgettable journeys across Sri Lanka.
+          </p>
+          <p>
+            Our AI-powered platform customizes travel packages based on your preferences,
+            budget, and travel duration—making planning easy, fast, and stress-free.
+          </p>
+          <p>
+            From cozy hotels to professional guides and reliable transport, we connect you
+            with trusted service providers so you can enjoy more and spend less.
+          </p>
+          <p className="mission">
+            <em>Let’s plan your next journey — smarter, faster, and better.</em>
+          </p>
+        </div>
       </div>
     </div>
   );

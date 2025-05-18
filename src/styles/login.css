@@ -153,14 +153,14 @@
 
 /* Forgot Password Styles */
 .link-text {
-  color: #3b82f6; /* Tailwind's blue-500 */
+  color: #3b82f6; 
   text-decoration: underline;
   cursor: pointer;
   transition: color 0.2s ease-in-out;
 }
 
 .link-text:hover {
-  color: #1d4ed8; /* Tailwind's blue-700 */
+  color: #1d4ed8; 
 }
 
 
