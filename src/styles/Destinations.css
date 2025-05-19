@@ -5,9 +5,597 @@
 
 .section-title {
   text-align: center;
-  font-size: 2.8rem;
-  color: #2c3e50;
-  margin-bottom: 3rem;
+  font-size: 3rem;
+  color: #010b15;
+  margin-bottom: 3rem;/* Import Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Playfair+Display:wght@700;900&display=swap');
+
+/* General Body Styles (Ensure this is consistent globally if possible) */
+body {
+    font-family: 'Merriweather', serif; /* Use Merriweather for body text */
+    margin: 0;
+    padding: 0;
+    background-color: #f0f8ff; /* Light, airy background */
+    color: #333; /* Standard text color */
+    line-height: 1.6;
+    overflow-x: hidden; /* Prevent horizontal scroll from animations */
+}
+
+/* Main Page Container */
+.destinations-page {
+    padding: 40px 0;
+    overflow: hidden; /* Crucial for containing animations */
+    background: linear-gradient(to bottom, #f9f9f9 0%, #e0f2f7 100%); /* Softer gradient for the page background */
+}
+
+/* Inner Container for Grid */
+.destinations-container {
+    max-width: 1300px; /* Match grid max-width */
+    margin: 0 auto;
+    padding: 0 20px;
+    margin-bottom: 60px;
+}
+
+/* Section Title Styling */
+.section-title {
+    text-align: center;
+    font-size: 3.5rem; /* Slightly larger title */
+    color: #010b15;
+    margin-bottom: 4rem; /* More space below title */
+    text-transform: uppercase;
+    letter-spacing: 3px; /* Increased letter spacing */
+    font-family: 'Playfair Display', serif; /* Use Playfair Display for titles */
+    font-weight: 900; /* Bolder weight */
+    position: relative;
+    padding-bottom: 20px; /* More space for the underline */
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1); /* Subtle text shadow */
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 150px; /* Wider underline */
+    height: 5px; /* Thicker underline */
+    background: linear-gradient(90deg, #007bff, #00d4ff); /* More vibrant blue gradient */
+    border-radius: 3px;
+    animation: underlineExpand 1s ease-out forwards; /* Animation for the underline */
+}
+
+@keyframes underlineExpand {
+    from { width: 0; opacity: 0; }
+    to { width: 150px; opacity: 1; }
+}
+
+
+/* Destinations Grid */
+.destinations-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Use auto-fit for better responsiveness below 1300px */
+    gap: 3rem; /* Increased gap */
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+/* Destination Card */
+.destination-card {
+    background: #ffffff;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.1); /* More pronounced shadow */
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transform: translateY(0);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    border: 1px solid rgba(255, 255, 255, 0.5); /* Subtle light border */
+    cursor: pointer; /* Indicate it's clickable */
+}
+
+.destination-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background: linear-gradient(90deg, #ff9a9e, #fecfef); /* Top accent gradient */
+    z-index: 1;
+}
+
+
+.destination-card:hover {
+    transform: translateY(-15px); /* More lift on hover */
+    box-shadow: 0 25px 50px rgba(0,0,0,0.2); /* Stronger shadow on hover */
+}
+
+/* Destination Image Container */
+.destination-image-container {
+    height: 260px; /* Slightly taller images */
+    position: relative;
+    overflow: hidden;
+}
+
+.destination-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease; /* Slower, smoother zoom */
+}
+
+.destination-card:hover .destination-image {
+    transform: scale(1.15); /* More zoom on hover */
+}
+
+/* Image Overlay */
+.destination-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 2rem;
+    background: linear-gradient(transparent, rgba(0,0,0,0.8));
+    transition: background 0.4s ease;
+}
+
+.destination-card:hover .destination-overlay {
+     background: linear-gradient(transparent, rgba(0,0,0,0.9)); /* Darker on hover */
+}
+
+
+.destination-title {
+    color: #fff;
+    font-size: 2rem; /* Slightly larger title in overlay */
+    text-shadow: 2px 2px 6px rgba(0,0,0,0.4); /* More pronounced shadow */
+    margin: 0 0 0.5rem 0; /* Adjust margin */
+    font-weight: 700;
+}
+
+.destination-location {
+    color: #eee;
+    font-size: 1.2rem; /* Slightly larger location text */
+    margin: 0;
+}
+
+/* Destination Info (below image) */
+.destination-info {
+    padding: 1rem 2rem 2rem 2rem; /* More padding at the bottom */
+    display: flex;
+    justify-content: space-between; /* Space out items */
+    align-items: center;
+    flex-grow: 1;
+}
+
+.destination-category {
+    background: linear-gradient(45deg, #ff8a00, #e14e00); /* Vibrant orange gradient badge */
+    padding: 0.8rem 1.8rem; /* More padding */
+    border-radius: 25px;
+    font-size: 1rem; /* Slightly larger font */
+    color: white;
+    display: inline-block;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    box-shadow: 0 4px 10px rgba(255, 138, 0, 0.3); /* Shadow matching badge color */
+    transition: all 0.3s ease;
+}
+
+.destination-card:hover .destination-category {
+    box-shadow: 0 6px 15px rgba(255, 138, 0, 0.5);
+}
+
+
+/* Description Section */
+.website-description {
+    padding: 8rem 2rem 6rem 2rem; /* More padding */
+    background: linear-gradient(to bottom, #e0f2f7 0%, #f0f8ff 100%); /* Light blue gradient background */
+    position: relative;
+    overflow: hidden;
+}
+
+.website-description::before {
+    content: '';
+    position: absolute;
+    top: 0; /* Position at the top */
+    left: 0;
+    width: 100%;
+    height: 80px; /* Adjust height */
+    background: linear-gradient(135deg, #2ecc71 0%, #27ae60 100%); /* Green gradient */
+    clip-path: polygon(0 0, 100% 0, 100% 50%, 0 100%); /* Shape pointing down */
+    z-index: 0;
+    transform: translateY(-50%); /* Pull it up slightly */
+}
+
+
+.description-container {
+    max-width: 1000px; /* Slightly wider description container */
+    margin: 0 auto;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+}
+
+.description-text {
+    font-size: 1.3rem; /* Larger font */
+    color: #444;
+    line-height: 1.8;
+    margin: 2.5rem auto; /* More margin */
+    max-width: 800px;
+    font-family: 'Merriweather', serif;
+    font-weight: 400;
+}
+
+.highlight-box {
+    background: rgba(46, 204, 113, 0.15); /* Slightly more opaque green */
+    border-radius: 15px;
+    padding: 2.5rem; /* More padding */
+    margin: 4rem auto; /* More margin */
+    border: 2px dashed #2ecc71; /* Dashed border for visual interest */
+    max-width: 700px;
+    box-shadow: 0 8px 20px rgba(46, 204, 113, 0.2); /* Green shadow */
+}
+
+.services-list {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Responsive list grid */
+    gap: 1.5rem;
+    text-align: left;
+}
+
+.services-list li {
+    padding: 1.2rem; /* More padding */
+    background: rgba(255,255,255,0.95); /* Almost opaque white */
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    font-weight: 700; /* Bolder text */
+    color: #0056b3; /* Blue text for list items */
+    box-shadow: 0 3px 10px rgba(0,0,0,0.05); /* Subtle shadow */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border-left: 5px solid #ff9a9e; /* Left accent border */
+}
+
+.services-list li:hover {
+    transform: translateX(10px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.services-list li::before {
+    content: '🌟'; /* More vibrant star bullet */
+    font-size: 1.4em; /* Larger bullet */
+    margin-right: 0.5rem; /* Space between bullet and text */
+}
+/* Remove the old ::before style if keeping the new one */
+.services-list li { padding-left: 1rem; position: static;} /* Adjust if using new ::before */
+
+
+.cta-button {
+    background: linear-gradient(45deg, #ff8a00 0%, #e14e00 100%); /* Orange gradient CTA */
+    color: white;
+    padding: 1.5rem 3.5rem; /* More padding */
+    border-radius: 35px;
+    font-size: 1.3rem; /* Larger font */
+    border: none;
+    cursor: pointer;
+    transition: all 0.4s ease;
+    box-shadow: 0 8px 20px rgba(255, 138, 0, 0.4); /* Matching shadow */
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-top: 4rem; /* More space above button */
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.cta-button::after {
+    content: '→'; /* Add arrow */
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.5em;
+    opacity: 0;
+    transition: all 0.3s ease;
+}
+
+.cta-button:hover {
+    background: linear-gradient(45deg, #e14e00 0%, #ff8a00 100%); /* Reverse gradient on hover */
+    transform: translateY(-5px); /* More lift */
+    box-shadow: 0 12px 30px rgba(255, 138, 0, 0.6); /* Stronger shadow */
+    padding-right: 4.5rem; /* Make space for arrow */
+}
+
+.cta-button:hover::after {
+    opacity: 1;
+    right: 25px; /* Move arrow slightly */
+}
+
+
+/* Loading and Error States */
+.destinations-loading,
+.destinations-error {
+    text-align: center;
+    padding: 4rem 2rem;
+    font-size: 1.5rem; /* Larger font */
+    color: #666;
+    font-family: 'Merriweather', serif;
+    font-weight: 700;
+}
+
+.destinations-error {
+    color: #e74c3c; /* Red */
+}
+
+
+/* Animations (Refined timings) */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideUp {
+    from { transform: translateY(50px); opacity: 0; } /* More pronounced slide */
+    to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes scaleIn {
+    from { transform: scale(0.8); opacity: 0; } /* More pronounced scale */
+    to { transform: scale(1); opacity: 1; }
+}
+
+/* Pulse animation modified for CTA */
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(255, 138, 0, 0.7); /* Orange pulse shadow */
+    }
+    70% {
+        transform: scale(1.03); /* Smaller pulse scale */
+        box-shadow: 0 0 0 15px rgba(255, 138, 0, 0);
+    }
+    100% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(255, 138, 0, 0);
+    }
+}
+
+
+.animate-slide-up {
+    animation: slideUp 1s ease-out forwards; /* Use forwards to keep final state */
+}
+
+.animate-fade-in {
+    animation: fadeIn 1s ease-out forwards; /* Use ease-out and forwards */
+    /* Delay is set inline in the component */
+}
+
+.animate-scale-in {
+     animation: scaleIn 0.8s ease-out forwards;
+}
+
+.animate-pulse {
+     animation: pulse 2s infinite;
+}
+
+
+/* Responsive Design (Adjusted) */
+@media (max-width: 1024px) {
+    .section-title {
+        font-size: 3rem;
+    }
+     .section-title::after {
+        width: 120px;
+     }
+    .destinations-grid {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Adjust minmax for slightly smaller screens */
+        gap: 2rem;
+        padding: 0 1.5rem;
+    }
+     .destination-image-container {
+        height: 220px;
+    }
+     .destination-title {
+        font-size: 1.6rem;
+     }
+     .destination-location {
+        font-size: 1.1rem;
+     }
+
+    .services-list {
+         grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Adjust minmax for service list */
+        gap: 1rem;
+    }
+     .highlight-box {
+        padding: 2rem;
+     }
+     .description-text {
+        font-size: 1.1rem;
+     }
+     .cta-button {
+        padding: 1.2rem 2.5rem;
+        font-size: 1.2rem;
+     }
+     .cta-button:hover::after {
+        right: 20px;
+     }
+      .cta-button:hover {
+        padding-right: 3.5rem;
+     }
+
+}
+
+@media (max-width: 768px) {
+    .destinations-page {
+        padding: 30px 0;
+    }
+    .destinations-container {
+        padding: 0 15px;
+        margin-bottom: 40px;
+    }
+    .section-title {
+        font-size: 2.5em;
+        margin-bottom: 30px;
+    }
+    .section-title::after {
+        width: 100px;
+        height: 4px;
+    }
+    .destinations-grid {
+        gap: 20px;
+        grid-template-columns: 1fr; /* Stack cards on small screens */
+        padding: 0 15px;
+    }
+     .destination-image-container {
+        height: 200px;
+    }
+    .destination-overlay {
+        padding: 15px;
+    }
+     .destination-title {
+        font-size: 1.4em;
+     }
+     .destination-location {
+        font-size: 0.9em;
+     }
+     .destination-info {
+        padding: 10px 15px;
+     }
+     .destination-category {
+        padding: 5px 15px;
+        font-size: 0.9em;
+     }
+     .website-description {
+        padding: 50px 15px 40px 15px;
+     }
+      .website-description::before {
+         height: 60px;
+         transform: translateY(-50%);
+      }
+     .website-description .section-title {
+        font-size: 2em;
+     }
+     .highlight-box {
+        padding: 1.5rem;
+        margin: 3rem auto;
+     }
+     .services-list li {
+        font-size: 1em;
+        margin-bottom: 8px;
+        padding: 1rem;
+     }
+      .services-list li::before {
+         font-size: 1.2em;
+      }
+     .cta-button {
+        font-size: 1.1em;
+        padding: 1rem 2.2rem;
+        margin-top: 3rem;
+     }
+     .cta-button:hover {
+        padding-right: 3rem;
+     }
+      .cta-button::after {
+        font-size: 1.3em;
+        right: 15px;
+     }
+      .cta-button:hover::after {
+        right: 20px;
+     }
+}
+
+@media (max-width: 480px) {
+    .destinations-page {
+        padding: 20px 0;
+    }
+    .destinations-container {
+        padding: 0 10px;
+        margin-bottom: 30px;
+    }
+    .section-title {
+        font-size: 2rem;
+        margin-bottom: 25px;
+        letter-spacing: 1.5px;
+    }
+     .section-title::after {
+        width: 80px;
+     }
+    .destinations-grid {
+        gap: 15px;
+        padding: 0 10px;
+    }
+     .destination-image-container {
+        height: 160px;
+    }
+    .destination-overlay {
+        padding: 10px;
+    }
+     .destination-title {
+        font-size: 1.2em;
+     }
+     .destination-location {
+        font-size: 0.8em;
+     }
+      .destination-info {
+        padding: 8px 10px;
+     }
+     .destination-category {
+        padding: 4px 10px;
+        font-size: 0.8em;
+     }
+     .website-description {
+        padding: 40px 10px 30px 10px;
+     }
+      .website-description::before {
+         height: 50px;
+      }
+      .website-description .section-title {
+        font-size: 1.6em;
+        margin-bottom: 20px;
+     }
+      .description-text {
+        font-size: 1em;
+        margin: 2rem auto;
+     }
+     .highlight-box {
+        padding: 1rem;
+        margin: 2rem auto;
+     }
+      .services-list {
+        gap: 0.8rem;
+     }
+      .services-list li {
+        font-size: 0.9em;
+        padding: 0.8rem;
+        gap: 0.8rem;
+     }
+      .services-list li::before {
+         font-size: 1em;
+      }
+      .cta-button {
+        font-size: 1em;
+        padding: 0.8rem 1.8rem;
+        margin-top: 2.5rem;
+     }
+      .cta-button:hover {
+        padding-right: 2.5rem;
+     }
+      .cta-button::after {
+        font-size: 1.2em;
+        right: 10px;
+     }
+      .cta-button:hover::after {
+        right: 15px;
+     }
+}
   text-transform: uppercase;
   letter-spacing: 2px;
   font-family: 'Playfair Display', serif;
@@ -76,7 +664,7 @@
 }
 
 .destination-image-container {
-  height: 380px;
+  height: 240px;
   position: relative;
   overflow: hidden;
 }
@@ -105,6 +693,7 @@
   color: #fff;
   font-size: 1.8rem;
   text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+  
 }
 
 .destination-location {
@@ -113,7 +702,7 @@
 }
 
 .destination-category {
-  background: #2ecc71;
+  background: #07cfe1;
   padding: 0.6rem 1.5rem;
   border-radius: 25px;
   font-size: 0.9rem;
