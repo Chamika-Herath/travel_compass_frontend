@@ -5,27 +5,27 @@ body {
     padding: 0;
     background-color: #eef2f7; /* Very light blue-gray background */
     color: #555; /* Softer default text color */
-    line-height: 1.6;
+    line-height: 1.3;
+    
 }
 
 /* Main Container - Full Width */
-.find-recommendations {
-   
-}
-
 
 .intro-section h2 {
-    font-size: 5em; /* Slightly larger */
-    margin-bottom: 15px;
-    font-weight: bold;
-    color: #007bff; /* Light blue heading */
-    text-shadow: none; /* Remove heavy text shadow */
+  text-align: center;
+  font-size: 4rem;
+  color: #0862bc;
+  margin-bottom: 3rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-family: 'Playfair Display', serif;/* Remove heavy text shadow */
 }
 
 .intro-section p {
     font-size: 2em; /* Slightly larger */
     margin-bottom: 30px;
     color: #555;
+    font-family: 'Playfair Display', serif;
 }
 
 /* Start Button - Light Colors */
