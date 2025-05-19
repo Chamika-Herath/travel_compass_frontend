@@ -9,6 +9,7 @@ const Register = () => {
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
   const [error, setError] = useState("");
   const [successMessage, setSuccessMessage] = useState(""); 
   const navigate = useNavigate();
@@ -16,6 +17,11 @@ const Register = () => {
   const handleRegister = async (e) => {
     e.preventDefault();
     setError(""); // Clear previous errors
+
+    if (password !== confirmPassword) {
+      setError("Passwords do not match.");
+      return;
+    }
 
     try {
       const response = await axios.post("http://localhost:8081/auth/register", {
@@ -80,6 +86,13 @@ const Register = () => {
                 placeholder="Password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
+                required
+              />
+              <input
+                type="password"
+                placeholder="Confirm Password"
+                value={confirmPassword}
+                onChange={(e) => setConfirmPassword(e.target.value)}
                 required
               />
               <button type="submit">Register</button>
