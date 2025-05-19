@@ -62,7 +62,7 @@ const Destinations = () => {
         </div>
       </div>
 
-      <div className="website-description animate-fade-in">
+      <div className="websites-description animate-fade-in">
         <div className="description-container">
           <h2 className="section-title">Discover the Wonder of Sri Lanka</h2>
           <p className="description-text">
@@ -71,7 +71,7 @@ const Destinations = () => {
             to be explored!
           </p>
           
-          <div className="highlight-box animate-scale-in">
+          <div className="highlights-box animate-scale-in">
             <ul className="services-list">
               <li>🏖️ Pristine beaches & surf spots</li>
               <li>🏰 UNESCO World Heritage Sites</li>
@@ -81,7 +81,7 @@ const Destinations = () => {
             </ul>
           </div>
 
-          <p className="description-text">
+          <p className="descriptions-text">
             Find everything you need for your perfect Sri Lankan adventure:
             expert guides, boutique hotels, and reliable transportation. 
             Dive into our curated packages and create unforgettable memories 
@@ -89,7 +89,7 @@ const Destinations = () => {
           </p>
           
           <button 
-            className="cta-button animate-pulse"
+            className="ctas-button animate-pulse"
             onClick={() => navigate('/packages')}
           >
             Begin Your Lankan Journey →
