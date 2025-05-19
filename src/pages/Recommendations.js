@@ -1,31 +1,3 @@
-// import React, { useState } from 'react';
-// import axios from 'axios';
-// import RecommendationForm from '../components/RecommendationForm';
-// import RecommendationsList from '../components/RecommendationsList';
-
-// const Recommendations = () => {
-//     const [results, setResults] = useState([]);
-
-//     const fetchRecommendations = async (budget, location) => {
-//         try {
-//             const response = await axios.get(`http://127.0.0.1:5000/recommend?budget=${budget}&location=${location}`);
-//             setResults(response.data);
-//         } catch (error) {
-//             console.error("Error fetching recommendations:", error);
-//         }
-//     };
-
-//     return (
-//         <div>
-//             <h2>Get Travel Recommendations</h2>
-//             <RecommendationForm onSearch={fetchRecommendations} />
-//             <RecommendationsList results={results} />
-//         </div>
-//     );
-// };
-
-// export default Recommendations;
-
 import React, { useState } from 'react';
 import axios from 'axios';
 import "../styles/Recomendations.css";

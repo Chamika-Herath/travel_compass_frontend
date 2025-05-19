@@ -1,19 +1,3 @@
-// import React from "react";
-// import "../styles/hero.css";
-
-// const HeroSection = () => {
-//   return (
-//     <section className="hero">
-//       <div>
-//         <h2>Explore the Beauty of the Beautiful World</h2>
-//         <a href="#explore" className="btn">Explore Now</a>
-//       </div>
-//     </section>
-//   );
-// };
-
-// export default HeroSection;
-
 import React, { useState, useEffect } from "react";
 import hero1 from "../images/hero.jpg";
 import hero2 from "../images/hero2.jpeg";
@@ -43,7 +27,7 @@ const HeroSection = () => {
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
   const [zoomLevel, setZoomLevel] = useState(100);
 
-  // Auto-rotate slides every 10 seconds with animations
+  
   useEffect(() => {
     let interval;
     if (isAutoPlaying) {
@@ -70,7 +54,7 @@ const HeroSection = () => {
 
   return (
     <section className="hero">
-      {/* Moving background with zoom effect */}
+      {/*zoom effect */}
       <div 
         className="hero-bg" 
         style={{ 
@@ -87,7 +71,6 @@ const HeroSection = () => {
           <span className="title-line subtitle">{slides[currentIndex].subtitle}</span>
         </h2>
         
-        {/* Constant "Explore Now" button */}
         <a href="#explore" className="explore-btn">
           <span>Explore Now</span>
           <svg className="arrow-icon" viewBox="0 0 24 24">

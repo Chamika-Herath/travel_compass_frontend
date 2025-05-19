@@ -1,7 +1,7 @@
 //ADMIN PPROFILE NAVBAR
 
 import React, { useEffect, useState } from "react";
-import "../styles/navbar.css"; // Adjust the path if necessary
+import "../styles/navbar.css"; 
 
 const ProfileNavbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
