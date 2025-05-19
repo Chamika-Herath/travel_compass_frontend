@@ -336,7 +336,7 @@ const ServiceRegistration = () => {
       </div>
 
       <div className="form-group">
-        <label>Fleet Size*</label>
+        <label>Vehicle Count*</label>
         <input
           type="number"
           name="fleetSize"
