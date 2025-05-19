@@ -9,6 +9,8 @@ const LocationList = () => {
   const [hotelPackages, setHotelPackages] = useState([]);
   const [vehiclePackages, setVehiclePackages] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [searchQuery, setSearchQuery] = useState(""); // 🆕 Search input state
+
 
   useEffect(() => {
     const fetchLocations = async () => {
@@ -96,12 +98,27 @@ const LocationList = () => {
     );
   };
 
+  // 🔍 Filtered locations based on search
+  const filteredLocations = locations.filter((loc) =>
+    loc.name.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+
   return (
     <div className="location-container">
       <h2>Explore Locations</h2>
+
+       {/* 🔍 Search Bar */}
+      <input
+        type="text"
+        placeholder="Search locations..."
+        value={searchQuery}
+        onChange={(e) => setSearchQuery(e.target.value)}
+        className="search-bar"
+      />
       
       <div className="location-grid">
-        {locations.map(loc => (
+        {locations.filter(loc => loc.name.toLowerCase().includes(searchQuery.toLowerCase()))
+                  .map(loc => (
           <div
             key={loc.id}
             className={`location-card ${selectedLocation?.id === loc.id ? "selected" : ""}`}

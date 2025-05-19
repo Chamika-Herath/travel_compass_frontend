@@ -148,8 +148,3 @@ const VehicleRegistrationForm = () => {
 };
 
 export default VehicleRegistrationForm;
-
-
-
-
-
