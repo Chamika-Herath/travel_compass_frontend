@@ -1,33 +1,3 @@
-// import React, { useState } from 'react';
-// import "../styles/Recomendations.css";
-// import "../styles/RecommendationForm.css";
-// import "../styles/RecommendationList.css";
-
-// const RecommendationForm = ({ onSearch }) => {
-//     const [budget, setBudget] = useState('');
-//     const [location, setLocation] = useState('');
-
-//     const handleSubmit = (e) => {
-//         e.preventDefault();
-//         if (budget && location) {
-//             onSearch(budget, location);
-//         }
-//     };
-
-//     return (
-//         <form onSubmit={handleSubmit} style={{ margin: "20px 0" }}>
-//             <input type="number" placeholder="Budget" value={budget} 
-//                    onChange={(e) => setBudget(e.target.value)} required />
-//             <input type="text" placeholder="Location" value={location} 
-//                    onChange={(e) => setLocation(e.target.value)} required />
-//             <button type="submit">Get Recommendations</button>
-//         </form>
-//     );
-// };
-
-// export default RecommendationForm;
-
-
 import React, { useState } from 'react';
 import "../styles/RecommendationForm.css";
 
