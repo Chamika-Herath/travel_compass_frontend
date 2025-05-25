@@ -3,7 +3,6 @@
 
 import React, { useState, useEffect } from "react";
 import profileImage from "../images/1.png";
-//import "../styles/userprofile.css";
 import "../styles/UserProfileHeader.css";
 
 const UserProfileHeader = ({ user, handleLogout, handleUpdateUser }) => {
