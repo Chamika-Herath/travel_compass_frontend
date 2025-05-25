@@ -2,7 +2,7 @@
 
 
 import React, { useState, useEffect } from "react";
-import profileImage from "../images/1.png";
+import profileImage from "../images/images.jpeg";
 //import "../styles/userprofile.css";
 import "../styles/UserProfileHeader.css";
 
